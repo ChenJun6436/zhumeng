@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>猪码头大屏</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=dLDZdoArfqb28YTG6OXhyLOeeEHGFvlq" type="text/javascript"></script>
+    <!-- built files will be auto injected -->
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+           // orientationchange 事件 用来监听手机屏幕的反转
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;//(window.innerWidth);UC 或者QQ 安卓4.0 以下原生浏览器下面是没有
+              if (!clientWidth) return;
+              
+               docEl.style.fontSize = 100 * (clientWidth / 1920) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          //DOMContentLoaded dom 加载完成，onload 有什么区别 dom css js OK 才执行的
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+  </body>
+</html>

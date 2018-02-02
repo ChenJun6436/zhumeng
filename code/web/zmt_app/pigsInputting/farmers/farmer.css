@@ -1,0 +1,14 @@
+.liList{
+	p{
+		span{
+		
+			display:block;
+			float:left
+			/* display:inline-block;width:25%; */
+			/* display:inline-block;width:20%; */
+			/* display:inline-block;width:30%; */
+			/* display:inline-block; */
+		}	
+	
+	}
+}

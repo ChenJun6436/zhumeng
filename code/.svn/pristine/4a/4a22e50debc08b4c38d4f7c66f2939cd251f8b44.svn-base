@@ -1,0 +1,19 @@
+{
+	"code":"200",
+	"data":{
+		"banner":[
+			"src/images/index/index_banner.jpg",
+			"src/images/index/index_banner2.jpg",
+			"src/images/index/index_banner3.jpg"
+
+		 ],
+		"solution":[
+		    {"imgUrl":"src/images/index/pic_1.png","name":"第一张"},
+	        {"imgUrl":"src/images/index/pic_1.png","name":"第二张"},
+	        {"imgUrl":"src/images/index/pic_1.png","name":"第三张"},
+	        {"imgUrl":"src/images/index/pic_1.png","name":"第四张"}
+		    ]
+	},
+	"message":"",
+	"success": true
+}

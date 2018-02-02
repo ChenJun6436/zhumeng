@@ -1,0 +1,69 @@
+server:
+  port: 8080 #端口号
+
+spring:
+  #实例名
+  application:
+    name: zmt-oficialwebsite
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+
+  #数据库
+  datasource:
+    url: jdbc:mysql://192.168.5.203:3306/zmt-ow?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: system
+    password: wolf
+    driver-class-name: com.mysql.jdbc.Driver
+
+  #hibernate jpa配置
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    generate-ddl: true
+
+  #出现错误时, 直接抛出异常
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+  #不要为我们工程中的资源文件建立映射
+  resources:
+    add-mappings: false
+#log
+logging:
+  config: classpath:logback-spring.xml
+
+#fastDFS
+fdfs:
+  soTimeout: 1500
+  connectTimeout: 600
+  trackerList: 192.168.5.163:22122
+  resthost: 192.168.5.164
+#自定义配置
+com:
+  zmt:
+    new:
+      type:
+        #公司新闻
+        companynews: 1
+        #行业新闻
+        tradenews: 2
+    case:
+      type:
+        #生猪溯源系统
+        pig: 1
+        #猪产品电商平台
+        pigplatform: 2
+        #猪产业金融中心
+        pigfinancial: 3
+        #猪产业数据研究院
+        pigdataresearch: 4
+
+
+

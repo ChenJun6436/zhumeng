@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jf.projects.zmt.dao.SignExcelMapper">
+	<resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.SignExcel">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, address, url, create_time, update_time
+	</sql>
+	<select id="findById" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from sign_excel
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="delete" parameterType="java.lang.String">
+		delete from sign_excel
+		where id
+		= #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.jf.projects.zmt.model.SignExcel">
+		insert into sign_excel
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="address != null">
+				address,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=VARCHAR},
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="update" parameterType="com.jf.projects.zmt.model.SignExcel">
+		update sign_excel
+		<set>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="findAllSignExcel" parameterType="java.lang.Integer"
+		resultType="com.jf.projects.zmt.vo.farms.SignExcelVo">
+		SELECT sign_excel.id AS id,
+		sign_excel.address AS address,
+		sign_excel.url AS url,
+		DATE_FORMAT(sign_excel.create_time,'%Y/%m/%d') AS createTime
+	    FROM sign_excel LIMIT #{start},#{length}
+	</select>
+	<select id="countSignExcel" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM
+		sign_excel
+	</select>
+</mapper>

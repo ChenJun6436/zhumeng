@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<title>市场管理</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!-- VENDOR CSS -->
+
+		<link rel="stylesheet" href="../assets/vendor/zTree/css/demo.css" />
+		<link rel="stylesheet" href="../assets/vendor/zTree/css/zTreeStyle.css" />
+		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+		<link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="../assets/css/main.css">
+		<!--<link rel="stylesheet" href="src/css/user_list_product.css">-->
+		<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+		<link rel="stylesheet" href="../assets/css/demo.css">
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+		<!-- ICONS -->
+		<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+		<link rel="stylesheet" type="text/css" href="../src/css/navSidebar.css" />
+		<link rel="stylesheet" href="../src/css/main.css" />
+		<link rel="stylesheet" href="../src/css/test_market_account_config.css" />
+
+	</head>
+
+	<body>
+		<!-- WRAPPER -->
+		<div id="wrapper">
+			<!-- NAVBAR -->
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div id="navbar-menu">
+						<div class="backUpper">
+							<a href="#" class="backUpper-toggle testCenterBack" data="testCenter" data-toggle="backUpper" onclick="">
+								<img src="../src/images/navSidebar/back.png" class="back-img" alt="返回" />
+								<span>返回上一页</span></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" class="welcome-font">
+									<span class="admin-font"><i class="fa fa-user" aria-hidden="true"></i> <span class="admin-arrt">超级管理员</span>，</span> 欢迎您！
+								</a>
+							</li>
+							<li class="cut-off">|</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="$.loginOut()"><span>退出登录</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!-- END NAVBAR -->
+			<!-- LEFT SIDEBAR -->
+			<div id="sidebar-nav" class="sidebar">
+				<div class="brand">
+					<a href="index.html"><img src="../src/images/navSidebar/logo.png" alt="" class="img-responsive img-circle avatar"></a>
+				</div>
+				<div class="sidebar-scroll">
+					<nav>
+						<ul class="nav">
+							<li class="none">
+								<a href="../index.html"><span>首页</span></a>
+							</li>
+							<li class="none">
+								<a href="../filing_manage/filing_manage.html"><span>建档管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../breed_manage/breed_manage.html" class=""><span>养殖管理</span></a>
+							</li>
+							<!--<li class="none">
+								<a href="../butcher_manage/butcher_manage.html" class=""><span>屠宰管理</span></a>
+							</li>-->
+							<li class="none">
+								<a href="#butcherPages" data-toggle="collapse" class="collapsed"><span>屠宰管理</span><i class="icon-submenu"></i> </a>
+								<div id="butcherPages" class="collapse">
+									<ul class="nav">
+										<li class="none">
+											<a href="../butcher_manage/butcher_manage.html" class="">屠宰场管理</a>
+										</li>
+										<li class="none">
+											<a href="../butcher_manage/entryOutDataSelsct.html" class="">屠宰场出入库数据</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="none">
+								<a href="../testing_center/testing_center.html" class=""><span>检验中心</span></a>
+							</li>
+							<li class="none">
+								<a href="../market_manage/market_manage.html" class="active"><span>市场管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../account_manage/account_manage.html" class=""><span>账号管理</span></a>
+							</li>
+							<li class="none">
+								<a href="#subPages" data-toggle="collapse" class="collapsed"><span>基础配置</span><i class="icon-submenu"></i> </a>
+								<div id="subPages" class="collapse ">
+									<ul class="nav">
+										<li class="none">
+											<a href="../basic_configuration/role management.html" class="">角色管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/address_manage.html" class="">地址管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/pig_breed_manage.html" class="">生猪品种管理</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- END LEFT SIDEBAR -->
+			<!-- MAIN -->
+			
+			<div id="dddd" style="padding-left: 260px;">
+				<div style="width: 100%;float: none !important;" class="main main_container">
+
+				<!--市场中新建市场 start-->
+				<div id="marketList">
+					<div class="col-md-12 ">
+						<span class="curLocation">市场管理</span>
+					</div>
+					<div class="col-md-12 marketListBody">
+						<div class="col-md-12 marketListHead">
+							<button class="newAddMarket none">
+								<img src="../src/images/add.png"/>
+								新增市场</button>
+							<span class="marketListSearch">
+								<label for="">搜索：</label>
+								<input type="text" placeholder="名称/负责人/联系方式" class="marketKey"/>
+								<button type="button" class="btn marketSearchBtn">
+									<img src="../src/images/3.png" alt="" />
+									查询</button>
+							</span>
+
+						</div>
+
+						<div class="col-md-12">
+							<table id="shichangManageList" class="table table-hover table-striped hover dataTable no-footer" width="100%">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>名称</th>
+										<th>负责人</th>
+										<th>市场人员</th>
+										<th>联系方式</th>
+										<th>地址</th>
+										<th>建号人</th>
+										<th>建号时间</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+
+							</table>
+						</div>
+
+					</div>
+
+				</div>
+				<!--市场中新建市场 end-->
+
+				<!--新增市场的弹框内容 start-->
+				<div class="newAddMarketLayer" style="display: none;">
+					<div class="col-md-12">
+						<form class="form-horizontal marketBaseMsg">
+							<div class="form-group shichangBox">
+								<label for="">市 <span style="margin-left: 25px;">场：</span></label>
+								<input type="text" class="mk_name"/>
+							</div>
+							<div class="form-group fuzeren">
+								<label for="">负&nbsp;&nbsp;&nbsp;责&nbsp;&nbsp;人：</label>
+								<input type="text" class="mk_principalName"/>
+							</div>
+							<div class="form-group peopleName" style="display: none;">
+								<label for="">名<span style="margin-left: 29px;">称：</span></label>
+								<input type="text" class="mk_userName"/>
+							</div>
+							<div class="form-group">
+								<label for="">联系方式：</label>
+								<input type="number" class="mk_phone" maxlength="11"/>
+							</div>
+							<div class="info-default">
+								<label class="select-label pull-left nomrg-top">地 <span style="margin-left: 20px;">址:</span></label>
+								<select class="selected form-control province" name="provinceId" id="province1">
+									<option value="">--请选择--</option>
+								</select>
+								<select class="selected form-control info-mrgLeft city" name="cityId" id="city1">
+									<option value="">--请选择--</option>
+								</select>
+								<select class="selected form-control info-mrgLeft district" name="districtId" id="district1">
+									<option value="">--请选择--</option>
+								</select>
+								<select class="selected form-control info-mrgLeft town" name="townId" id="town1">
+									<option value="">--请选择--</option>
+								</select>
+								<select class="selected form-control info-mrgLeft village" name="villageId" id="village1">
+									<option value="">--请选择--</option>
+								</select>
+							</div>
+						</form>
+
+					</div>
+
+				</div>
+
+				<!--新增市场的弹框内容 end-->
+
+				<!--检验人员start-->
+				<div class="testCenterAll" id="marketManageAll" style="display: none;">
+					<div class="col-md-12 headList1">
+						<span>市场管理  》</span>
+						<span>市场人员列表</span>
+					</div>
+					<!--市场的详情 start-->
+					<div class="col-md-12 jinayanCenterDel">
+						<div>
+							<ul class="col-md-12">
+								<li class="col-md-3 ">名称： <span class="ct_name"></span> </li>
+								<li class="col-md-3 ">人员数量： <span class="ct_number"></span></li>
+								<li class="col-md-4 ">状态：<span class="ct_status" style="margin-right: 5px;"></span> <img class="ct_isDisabledBtn none" src="" alt="" /></li>
+							</ul>
+
+							<form class="form-inline col-md-12">
+								<div class="form-group col-md-3">
+									<label for="">负责人：</label>
+									<span class="ct_principalName"></span>
+								</div>
+								<div class="form-group col-md-3">
+									<label for="">联系方式：</label>
+									<span class="ct_phone"></span>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="">地址：</label>
+									<span class="ct_address" style="margin-right: 5px;"></span>
+									<img src="../src/images/edit.png" alt="" class="ct_addressEdit none" />
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+
+					<!--市场人员的详情 end-->
+					<div class="col-md-12 mainContent">
+						<!--头部搜索按钮 start-->
+						<div class="col-md-12 testHead">
+							<form class="form-inline">
+								<a class="newAddTestPeople none"> 
+									<img src="../src/images/add.png"/>
+									新建市场管理员</a>
+								<div class="form-group" style="float: right;">
+									<!--<label for="">筛选：</label>
+									<select name="" id="shaixuanSel">
+										<option value="all">全部</option>
+									</select>-->
+									<input type="text" class="inputBox testing_search1" id="testing_search" placeholder="账号/名称/联系方式">
+									<button type="button" class="btn searchBtn">
+									<img src="../src/images/3.png" alt="" />
+									查询</button>
+								</div>
+							</form>
+						</div>
+						<!--头部搜索按钮 end-->
+						<!--中间表格start-->
+						
+							<div class="col-md-12 testCenterBox">
+							<table id="testCenterTable" class="table table-hover table-striped hover dataTable no-footer" width="100%">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>账号</th>
+										<th>姓名</th>
+										<th>联系方式</th>
+										<th>管理生猪数量</th>
+										<th>地址</th>
+										<th>操作</th>
+
+									</tr>
+								</thead>
+							</table>
+						</div>
+					
+						
+						<!--中间表格end-->
+					</div>
+
+				</div>
+				<!--检验人员end-->
+				<!--点击新增市场管理员 start-->
+				<div id="newAddchecekPeo" style="display: none;">
+					<div class="col-md-12 contentBox">
+						<!--左边内容-->
+						<div class="col-md-6 newAddLeft">
+							<form class="form-horizontal leftForm">
+								<div class="form-group">
+									<label for="">选择类型：</label>
+									<select name="" id="accountAllType">
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="">选择部门：</label>
+									<select name="" id="departmentOfType">
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="">选择角色：</label>
+									<select name="" id="roleOfDepartment" class="chooseRole">
+									</select>
+								</div>
+								<div class="form-group ">
+									<label for="">基本信息 &nbsp;&nbsp;&nbsp;&nbsp;</label>
+									<span class="zhongxian"></span>
+								</div>
+
+								<div class="form-group baseMag">
+									<label for="">登录账号：</label>
+									<span class="">系统生成JD字母+9位数字账号</span>
+								</div>
+								<div class="form-group">
+									<label for="">密 <span style="margin-left: 26px;">码：</span></label>
+									<span class="">原始密码ZMT123456</span>
+								</div>
+								<div class="form-group">
+									<label for="">市场名称：</label>
+									<span class="marketName"></span>
+								</div>
+								<div class="form-group">
+									<label for="">姓 <span style="margin-left: 26px;">名：</span></label>
+									<input type="text" class="popleName"/>
+								</div>
+								<div class="form-group">
+									<label for="">联系方式：</label>
+									<input type="number" class="peopleTle" maxlength="11"/>
+								</div>
+
+							</form>
+
+						</div>
+						<!--右边内容-->
+						<div class="col-md-6 newAddRight">
+							<form class="form-horizontal rightForm">
+								<div class="info-default">
+									<label class="select-label pull-left nomrg-top" style="margin-right: 61px;">地&nbsp;&nbsp;址:</label>
+									<select class="selected form-control" name="provinceId" id="province">
+										<option value="">--请选择--</option>
+									</select>
+									<select class="selected form-control info-mrgLeft" name="cityId" id="city">
+										<option value="">--请选择--</option>
+									</select>
+									<select class="selected form-control info-mrgLeft" name="districtId" id="district">
+										<option value="">--请选择--</option>
+									</select>
+									<select class="selected form-control info-mrgLeft" name="townId" id="town">
+										<option value="">--请选择--</option>
+									</select>
+									<select class="selected form-control info-mrgLeft" name="villageId" id="village">
+										<option value="">--请选择--</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="">可用权限</label>
+									<span class="zhongxian" style="margin-left: 57px;"></span>
+								</div>
+								<div class="form-group">
+									<ul class="col-sm-10 col-sm-offset-2" id="newAddPeoLimit">
+									</ul>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+				<!--点击新增市场管理员 end-->
+				<!--点击查看详情 start-->
+				<div class="testCenterDetails" style="display: none;">
+					<div class="col-md-12">
+						<div class="headList2">
+							<span>市场管理 》</span>
+							<span>市场管理列表  》</span>
+							<span class="nowselected">售卖猪列表</span>
+						</div>
+						<div class="col-md-12 detailsTop">
+							<div>
+								<ul class="col-md-12 firstLine">
+									<li class="col-md-3">账号： <span class="account"></span> </li>
+									<li class="col-md-3">管理数量： <span class="number"></span></li>
+									<li class="col-md-4">状态：<span class="status"></span> <img src="../src/images/enabled.png" alt="" class="detailsDisabled none" /></li>
+								</ul>
+
+								<form class="form-inline col-md-12 secondLine">
+									<div class="form-group col-md-3">
+										<label for="">名称：</label>
+										<span class="userName"></span>
+									</div>
+									<div class="form-group col-md-3">
+										<label for="">联系方式：</label>
+										<span class="phone"></span>
+									</div>
+									<div class="form-group col-md-4">
+										<label for="">地址：</label>
+										<span class="address"></span>
+										<img src="../src/images/edit.png" alt="" class="detailsEdit none" />
+									</div>
+
+								</form>
+
+							</div>
+						</div>
+
+						<div class="col-md-12 tdetailsContent">
+							<div class="col-md-12 detailsSearch">
+								<a class="tcDetailsAddReport none">
+									<img src="../src/images/add.png"/>
+									录入生猪
+								</a>
+								<!--<a class="tcDetailsAddReport">+录入生猪</a>-->
+								<span>
+									<input type="text" class="seachId" placeholder="搜索ID"/>
+									<button class="ctDetailsSerach">
+										<img src="../src/images/3.png" alt="" />搜索
+									</button>
+								</span>
+							</div>
+
+							<div class="col-md-12 testdetailsTable">
+								<table id="testCenterDetailsTable" class="table table-hover table-striped hover dataTable no-footer" width="100%">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>ID</th>
+											<th>
+												<select name="" id="testCenterDetalSlect"></select>
+											</th>
+											<th>重量</th>
+											<th>录入人</th>
+											<th>录入时间</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--点击查看详情end-->
+
+				<!--详情中录入生猪 start-->
+				<div id="reportLayer" style="display: none;">
+					<form class="col-md-10 col-md-offset-1">
+						<div class="form-group">
+							<label for="">您确认录入以下生猪？</label>
+							<input type="text" class="form-control" id="breedPigId" placeholder="请输入ID">
+						</div>
+					</form>
+				</div>
+				<!--详情中录入生猪 end-->
+
+				<!--详情中录入生猪 点击是 start-->
+				<div id="reportYesLayer" style="display: none;">
+					<p class="breedWeight">生猪ID：<span class="shengzhuId">185555</span> </p>
+					<p class="breedWeight">净重：<input type="number" placeholder="精确到小数点后两位" class="weight" min="1" />kg</p>
+				</div>
+				<!--详情中录入生猪  点击是 end-->
+
+				
+				<!--新增市场管理员下一步的新增地址  start-->
+				<div id="newAddArea" style="display: none;">
+					<ul class="ztree" id="newAddArea1"></ul>
+				</div>
+
+				<!--新增市场管理员下一步的新增地址  end-->
+
+				<!--点击查看详情 start-->
+				<div class="testCenterDetails1" style="display: none;">
+					<div class="col-md-12">
+						<div class="headList2">
+							<span>市场管理 》</span>
+							<span>市场管理列表  》</span>
+							<span>售卖猪列表 》</span>
+							<span class="nowselected">生猪列表</span>
+						</div>
+
+						<div class="col-md-12 tdetailsContent">
+							<div class="col-md-12 detailsSearch">
+								<span class="breed_id">ID：1231214</span>
+								<span class="pig_pinzhong">品种：长白猪</span>
+							</div>
+							<div class="col-md-12 testdetailsTable">
+								<table id="testCenterDetailsTable1" class="table table-hover table-striped hover dataTable no-footer" width="100%">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>事件</th>
+											<th>生猪状态</th>
+											<th>地址</th>
+											<th>描述</th>
+											<th>操作人</th>
+											<th>时间</th>
+											<th>备注</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--点击查看详情end-->
+
+			</div>
+			</div>
+			
+		</div>
+		<!-- END WRAPPER -->
+
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/layer/layer.js"></script>
+		<script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/vendor/datatables/js/dataTables.bootstrap.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
+		<script src="../assets/vendor/zTree/js/jquery.ztree.core.js"></script>
+		<script src="../assets/vendor/zTree/js/jquery.ztree.excheck.js"></script>
+		<script src="../src/js/Main.js"></script>
+		<script src="../src/js/allUrl.js"></script>
+		<script src="../src/js/manage.js"></script>
+		<script src="../src/js/market_manage.js"></script>
+
+	</body>
+
+</html>

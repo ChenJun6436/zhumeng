@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title id="title">猪码头官网</title>
+		<meta name="keywords" id="keywords" content=""/>
+		<meta name="description" id="description" content=""/>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/vendor/layer/layui.css">
+		<link rel="stylesheet" href="../src/css/navBar.css" />
+		<link rel="stylesheet" href="../src/css/myStyle.css" />
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="navbar navbar-fixed-top navbar-inverse">
+				<div class="container">
+					<div class="nav-logo">
+						<a class="" href="index.html">
+							<img class="img-responsive" src="../src/images/ic_logo.png" alt="猪码头" style="height: 100%;width: auto;" />
+						</a>
+					</div>
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navBar">    
+                <span class="icon-bar"></span>  
+                <span class="icon-bar"></span>  
+                <span class="icon-bar"></span>  
+              </button>
+					</div>
+					<div class="collapse navbar-collapse navbar-right" id="navBar">
+						<ul class="nav navbar-nav">
+							<li >
+								<a href="../index.html">首页</a>
+							</li>
+							<li>
+								<a href="../aboutZmt.html">关于猪码头</a>
+							</li>
+							<li>
+								<a href="../solution.html">解决方案</a>
+							</li>
+							<li class="sub-menu active">
+								<a href="#">成功案例 <span class="triangle-down"></span></a>
+								<ul class="sub-menu-ul">
+									<li>
+										<a href="pigTraceabilitySystem.html">生猪溯源系统</a>
+									</li>
+									<li class="on">
+										<a href="pigDirSir.html">猪产品电商平台</a>
+									</li>
+									<li>
+										<a href="pigFinancial.html">猪产业金融中心</a>
+									</li>
+									<li>
+										<a href="pigData.html">猪产业数据研究院</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="../news.html">新闻动态</a>
+							</li>
+							<li>
+								<a href="../contactUs.html">联系我们</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--nav end-->
+			<div class="main-content">
+				<div class="row">
+					<img src="../src/images/case_banner.jpg" class="top_img_contactUs" />
+				</div>
+				<div class="container">
+					<div class="row case">
+						<div class="case-tab-menu">
+						<div class="col-md-2 col-sm-3 col-xs-12 noPadLeft xsPad">
+							<p class="tabRoot">猪产品电商平台</p>
+							<ul id="caseTab" class="case-nav">
+								<!--<li class="active">
+									<a href="#companyNews" data-toggle="tab">公司新闻</a>
+								</li>
+								<li>
+									<a href="#tradeNews" data-toggle="tab">行业新闻</a>
+								</li>-->
+							</ul>
+						</div>
+						</div>
+						<div class="col-md-10 col-sm-9 col-xs-12">
+							<div id="caseTabContent" class="tab-content">
+								<!--公司新闻-->
+								<!--<div class="tab-pane fade in active" id="companyNews">
+									<ul class="news_list">
+										<li class="news_img"><img src="src/images/news_banner.jpg"> </li>
+										<li class="news_title"> 为什么都做农村电商？</li>
+										<li class="time_gray">2017-09-01</li>
+										<li class="news_content">前几期我与大家分享了电商生态思考系列文章，在微信公众平台及头条号上进行了推送，受到了业界的高度认同，并得到粉丝的积极互动，有些好友直接要求我写一些农村电商的思考，这其实本身就在我计划...</li>
+										<li class="news_details">查看详情></li>
+									</ul>
+									<hr/>
+									<ul class="news_list">
+										<li class="news_img"><img src="src/images/news_banner.jpg"> </li>
+										<li class="news_title"> 为什么都做农村电商？</li>
+										<li class="time_gray">2017-09-01</li>
+										<li class="news_content">前几期我与大家分享了电商生态思考系列文章，在微信公众平台及头条号上进行了推送，受到了业界的高度认同，并得到粉丝的积极互动，有些好友直接要求我写一些农村电商的思考，这其实本身就在我计划...</li>
+										<li class="news_details">查看详情></li>
+									</ul>
+								</div>
+								<!--行业新闻-->
+								<!--<div class="tab-pane fade" id="tradeNews">
+									<ul class="news_list">
+										<li class="news_title"> 为什么都做农村电商2？</li>
+										<li class="time_gray">2017-09-01</li>
+										<li class="news_content">前几期我与大家分享了电商生态思考系列文章，在微信公众平台及头条号上进行了推送，受到了业界的高度认同，并得到粉丝的积极互动，有些好友直接要求我写一些农村电商的思考，这其实本身就在我计划...</li>
+										<li class="news_details">查看详情></li>
+									</ul>
+								</div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--container end-->
+			</div>
+			<!--main-content end-->
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
+							<div class="footer_box">
+								<ul class="row">
+									<li class="col-xs-6 col-sm-4 col-md-4 footer_max_box">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12">
+												<p class="footer_title"><span class="footer_title_left"></span>咨询电话：</p>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 impressum">
+												<i class="footer_icon footer_tel"></i>
+												<span class="footer_font bottom-tel"></span>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 impressum">
+												<i class="footer_icon footer_phone"></i>
+												<span class="footer_font bottom-phone"></span>
+											</div>
+										</div>
+										<p class="footer_title margin-top-20"><span class="footer_title_left"></span>公司地址：</p>
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 impressum">
+												<i class="footer_icon footer_address"></i>
+												<span class="footer_font bottom-addres"></span>
+											</div>
+										</div>
+									</li>
+									<li class="col-xs-6 col-sm-2 col-md-2 footer_min_box">
+										<p class="footer_title"><span class="footer_title_left"></span>成功案例：</p>
+										<p class="footer_font">猪溯源监管系统 </p>
+										<p class="footer_font">猪产品电商平台</p>
+										<p class="footer_font">猪产业金融中心</p>
+										<p class="footer_font">猪产业链数据研究院</p>
+
+									</li>
+									<li class="col-xs-6 col-sm-6 col-md-2">
+										<p class="footer_title"><span class="footer_title_left"></span>关于我们：</p>
+										<p class="footer_font">联系我们</p>
+									</li>
+									<li class="col-xs-6 col-sm-6 col-md-4">
+										<div class="row">
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<p class="footer_title bottom-wxName"></p>
+												<img class="footer_weixin footer_font" src=""></img>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<p class="footer_title bottom-wbName"></p>
+												<img class="footer_weibo footer_font" src="">
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12  margin-top-20">
+									<ul class="blogroll">
+
+									</ul>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<p class="footer_font text-center bottom-record"></p>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div><!--底部部分end-->
+	</body>
+	<script src="../assets/vendor/jquery/jquery.min.js"></script>
+	<script src="../assets/vendor/layer/layer.js"></script>
+	<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../src/js/allUrl.js"></script>
+	<script src="../src/js/footer.js"></script>
+	<script src="../src/js/pigTraceabilitySystem.js"></script>
+</html>

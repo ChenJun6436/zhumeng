@@ -1,0 +1,129 @@
+
+
+			<div class="container-fluid">
+			<!-- PANEL HEADLINE-->
+			<div class="locationNav">
+				<ul>
+					<li>
+						<a>屠宰管理&nbsp;</a>
+					</li>
+					<li class="butcher_m">
+						<span class="direction">》</span>
+						<a href="#" class="butcher">屠宰场管理</a>
+					</li>
+					<li class="personnel">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="personnelArea">屠宰场人员</a>
+					</li>
+					<li class="details">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="detailsArea on">生猪列表</a>
+					</li>
+				</ul>
+			</div>
+			<div class="panel panelDefault">
+				<!--butcher_details-->
+
+				<div class="butcher_details">
+					<div class="adminInfoArea">
+						<div class="butcher-info">
+							<div class="ainfo-group pull-left">
+								<span class="pull-left">账号：</span>
+								<span id="butcher_details_account"></span>
+							</div>
+							<div class="ainfo-group none">
+								<span class="pull-left">id：</span>
+								<span id="butcher_details_userId"></span>
+							</div>
+							<div class="ainfo-group none">
+								<span class="pull-left">rowData：</span>
+								<span id="butcher_details_rowData"></span>
+							</div>
+							<div class="ainfo-group none">
+								<span class="pull-left">屠宰场id：</span>
+								<span id="butcher_details_slaughterhouseId"></span>
+							</div>
+							<div class="ainfo-group pull-left">
+								<span class="pull-left">已屠宰数量：</span>
+								<span id="butcher_details_number"></span>
+							</div>
+							<div class="ainfo-group pull-left">
+								<span class="account-lable pull-left">状态：</span>
+								<p class="tips">
+									<span id="butcher_details_status"></span>
+									<span class="statusBtn none"></span>
+								</p>
+							</div>
+							<div class="ainfo-group pull-left">
+								<span class="account-lable pull-left">名称：</span>
+								<span id="butcher_details_userName"></span>
+							</div>
+							<div class="ainfo-group pull-left">
+								<span class="account-lable pull-left">联系方式：</span>
+								<span id="butcher_details_phone"></span>
+							</div>
+							<div class="ainfo-group pull-left butcher_details_address">
+								<span class=" pull-left">地址：</span>
+								<span id="butcher_details_address"></span>
+								<i class="editorBtn none"></i>
+							</div>
+						</div>
+					</div>
+					<div class="butcher_details_content">
+						<div class="butcher_details-searchAera">
+							<div class="pull-left notPadMrg">
+								<button class="btn addBtn butcherDetailAdd none"><img src="../src/images/add.png"> 新增生猪</button>
+
+							</div>
+							<div class=" pull-right searchBar">
+								<div class="form-group pull-right">
+									<button class="btn searchBtn pull-right butcherDetailSearch"><img src="../src/images/seacher.png"/> 搜索</button>
+									<input type="text" class="form-control search-input pull-right" name="butcherDetailVal" maxlength="15" id="butcherDetailVal" placeholder="搜索ID" />
+
+								</div>
+							</div>
+						</div>
+						<div class="panel-content">
+							<table id="butcherBetailsTable" class="table table-hover table-striped butcherBetailsTable" cellspacing="0">
+								<thead>
+									<tr>
+										<th>序 号</th>
+										<th class="none">userId</th>
+										<th>ID</th>
+										<th>
+											<select name="butcher-type" id="butcher-type">
+												<option value="">所有品种</option>
+											</select>
+										</th>
+										<th>
+											<select name="butcher-status" id="butcher-status">
+												<option value="">所有状态</option>
+												<option value="0">正常</option>
+												<option value="1">死亡</option>
+												<option value="2">待屠宰录入</option>
+												<option value="3">待屠宰</option>
+												<option value="4">宰后待检验</option>
+												<option value="5">待销售</option>
+												<option value="6">已处理</option>
+												<option value="7">已销售</option>
+											</select>
+										</th>
+										<th>操 作</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--butcher_details end-->
+
+			</div>
+			
+		</div>
+		<!--container-fluid end-->
+		
+				
+		<script src="../src/js/pigList.js"></script>
+

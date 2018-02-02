@@ -1,0 +1,298 @@
+
+/*==============================================
+    BASIC  STYLES    
+    =============================================*/
+.text-gray{color:#808080;}
+.text-gray2{color:#e8e9ed;}
+.text-gray3{color:#999;}
+.text-red{color:#ed4d4d;}
+.btn-danger{background:#ed4d4d!important;}
+.must{background:url('../../src/images/ic_star.png') no-repeat right top;padding:0px 10px;line-height:31px;}
+.mustLeft{background:url('../../src/images/ic_star.png') no-repeat left 8px;line-height:31px;}
+
+.underLine{border-top:none;border-left:none;border-right:none;outline:none;border-bottom:1px solid #000;width:30px;height:31px;}
+/*表格样式*/
+table thead .h4{font-size:14px;background:#aaa ;color:#fff;height:50px;line-height: 50px;}
+table tbody td,
+table thead th{vertical-align: middle;}
+
+
+/*按钮及链接样式*/
+a.button{border-radius:0;color:#fff;outline:none;padding:7px 20px 7px 20px;background:#bbb;}
+a.button:hover{color:#fff;text-decoration: none;}
+a.link:link{text-decoration: none;color:#ed4d4d;font-size:15px;}
+a.link:hover,
+a.link:active,
+a.link:visited {text-decoration: none;color:#ed4d4d;border:none;}
+
+.modal-header{height:40px;background:#f66;padding-top:0;padding-bottom: 0;}
+.modal-header .h4{color:#fff;line-height:40px;font-weight:bold;font-size:16px;}
+.modal-header .pull-right{margin-top:0;margin-bottom: 0;color:#fff!important;line-height:40px;}
+.modal-body .form-list{margin-top:30px;}
+.modal-body form{padding-left:10px;}
+.modal-body .btn{color:#fff;}
+.modal-body input[type='text']{background:#f8f9f8;}
+.modal-body{color:#333;}
+.modal-dialog{margin-top:300px;}
+
+.main-list{
+    background-color: #fff!important;
+    margin: 10px 20px 10px 0px;
+    padding: 10px;
+}
+.userInfo{min-height:700px;}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height:25px;
+}
+#wrapper {
+    width: 100%;
+    background: #202020;
+    margin-top:75px;
+}
+
+.navbar-side{position:fixed;left:0;top:75px;}
+
+#page-wrapper {
+    padding: 20px 30px;
+    min-height: 600px;
+    background: #F3F3F3;
+}
+
+#page-inner {
+    width: 100%;
+
+    min-height: 700px;
+}
+
+.page-head-line {
+    font-size: 30px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 800;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #00CA79;
+    margin-bottom: 10px;
+}
+
+.page-subhead-line {
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    font-style:italic;
+    margin-bottom:30px;
+    border-bottom:1px dashed #00CA79;
+
+}
+
+.copyrights{
+	text-indent:-9999px;
+	height:0;
+	line-height:0;
+	font-size:0;
+	overflow:hidden;
+}
+/*==============================================
+    MENU STYLES    
+    =============================================*/
+
+
+.navbar-cls-top .navbar-brand {
+    color: #333;
+    width: 300px;
+    text-align: center;
+    height: 75px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 900;
+    padding-top: 20px;
+    text-transform:uppercase;
+}
+.navbar-cls-top .navbar-brand div img{
+    width:40px;
+    height:40px;
+    margin-right:10px;
+}
+.navbar-brand:hover{
+    color:#333!important;
+}
+
+.header-right {
+    color: #000;
+    padding: 25px 50px 5px 50px;
+    float: right;
+    font-size: 14px;
+}
+.header-right .text-red{
+    cursor:pointer;
+}
+
+
+
+.user-img-div {
+    min-height: 140px;
+    padding: 20px;
+    background-color: #4380B8;
+}
+
+    .user-img-div img {
+        max-height: 60px;
+    }
+
+    .user-img-div .inner-text {
+        text-align: right;
+        position: relative;
+        color: #fff;
+        font-weight: 800;
+        line-height: 25px;
+    }
+
+.active-menu {
+    background-color: #ed4d4d!important;
+}
+.active-menu-top {
+    background-color: #000!important;
+}
+
+.arrow {
+    float: right;
+}
+
+.fa.arrow:before {
+    content: "\f104";
+}
+
+.active > a > .fa.arrow:before {
+    content: "\f107";
+}
+
+
+.nav-second-level li,
+.nav-third-level li {
+    border-bottom: none !important;
+}
+
+    .nav-second-level li a {
+        padding-left: 37px;
+    }
+
+    .nav-third-level li a {
+        padding-left: 55px;
+    }
+
+.sidebar-collapse, .sidebar-collapse .nav {
+    background: none;
+}
+
+    .sidebar-collapse .nav {
+        padding: 0;
+    }
+
+        .sidebar-collapse .nav > li > a {
+            color: #fff;
+            background: #202020;
+            text-shadow: none;
+            padding: 15px 40px;
+            border-bottom: 1px solid #2F2E31;
+        }
+
+    .sidebar-collapse > .nav > li > a {
+        padding: 15px 10px;
+    }
+
+    .sidebar-collapse .nav > li > a:hover,
+    .sidebar-collapse .nav > li > a:focus {
+        background: #0A0A0A;
+        outline: 0;
+    }
+
+
+
+.nav-second-level > li:last-child > a:after,
+.nav-third-level > li:last-child > a:after {
+    height: 50%;
+}
+
+.nav-third-level > li > a:after,
+.nav-third-level > li > a:before {
+    left: 40px;
+}
+
+.navbar-side {
+    border: none;
+    background-color: #202020;
+}
+
+.navbar-cls-top {
+
+    border-bottom: none;
+}
+
+
+.navbar-default {
+    border: 0px solid black;
+}
+
+
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #00CA79;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #fff;
+}
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #FFF;
+    }
+
+.nav > li > a > i {
+    margin-right: 10px;
+}
+/*==============================================
+    FOOTER  STYLES    
+    =============================================*/
+#footer-sec {
+    background-color:#000;
+    padding:20px 50px;
+    color:#fff;
+    font-size:12px;
+}
+
+    #footer-sec a {
+        color:#fff;
+    }
+    #footer-sec a:hover,a:focus {
+        color:#fff;
+        text-decoration:none;
+    }
+/*==============================================
+    MEDIA QUERIES     
+    =============================================*/
+
+
+@media (min-width:1224px) {
+    #page-wrapper {
+        margin: 0 0 0 260px;
+        padding: 30px 60px;
+        min-height: 1200px;
+    }
+
+
+    .navbar-side {
+        z-index: 1;
+        position: absolute;
+        width: 260px;
+    }
+
+    .navbar {
+        border-radius: 0px;
+    }
+}
+@media (max-width:1224px) {
+    .navbar-side {
+        display: none;
+    }
+}

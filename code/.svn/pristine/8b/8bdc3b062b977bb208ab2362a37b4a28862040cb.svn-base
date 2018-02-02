@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.AndCheckoutPigMapper">
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.AndCheckoutPig">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="pig_id" jdbcType="VARCHAR" property="pigId" />
+    <result column="quarantine_result" jdbcType="INTEGER" property="quarantineResult" />
+    <result column="is_dispose" jdbcType="INTEGER" property="isDispose" />
+    <result column="describes" jdbcType="VARCHAR" property="describe" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="vaccine" jdbcType="VARCHAR" property="vaccine" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="type" jdbcType="TIMESTAMP" property="type" />
+    <result column="check_type" jdbcType="TIMESTAMP" property="checkType" />
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, pig_id,  quarantine_result, is_dispose, describes, 
+    remark, vaccine, create_time, update_time,type,check_type
+  </sql>
+  
+   <select id="findInfoByPigId" parameterType="java.lang.String" resultType="com.jf.projects.zmt.vo.checkout.CheckoutPigtVo">
+	pig_flow
+  </select>
+  <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from and_checkout_pig
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+      <sql id="Pid_List_last">
+   		FROM
+		and_checkout_pig
+		WHERE and_checkout_pig.user_id = #{userId,jdbcType=VARCHAR}
+	 	<if test="type != null">
+         AND and_checkout_pig.type= #{type}
+      	</if>
+      	<if test="pigId != null">
+         AND and_checkout_pig.pig_id= #{pigId}
+      	</if>
+   
+     </sql>
+    <select id="findListByPid" parameterType="com.jf.projects.zmt.vo.BaseParam" resultType="com.jf.projects.zmt.vo.checkout.CheckoutPigsVo">
+		SELECT
+		and_checkout_pig.id,
+		and_checkout_pig.pig_id AS pigId,
+		and_checkout_pig.type,
+		and_checkout_pig.quarantine_result AS quarantineResult,
+		and_checkout_pig.describes AS `describe`,
+		and_checkout_pig.create_time AS createTime,
+		and_checkout_pig.user_id AS userId,
+		and_checkout_pig.remark AS remark,
+		and_checkout_pig.vaccine AS	vaccine
+		<include refid="Pid_List_last" />
+		ORDER BY  and_checkout_pig.create_time DESC
+		LIMIT #{start,jdbcType=INTEGER},#{length,jdbcType=INTEGER}
+
+  	</select>
+  	 <select id="findListCountByPid" parameterType="com.jf.projects.zmt.vo.BaseParam" resultType="java.lang.Long">
+		SELECT
+		count(and_checkout_pig.id) AS count
+   		<include refid="Pid_List_last" />
+  	</select>
+ 
+    <select id="findPidDetails" parameterType="java.lang.String" resultType="com.jf.projects.zmt.vo.checkout.PidDetailsVo">
+		SELECT
+		s_user.`name` AS userName,
+		and_checkout_pig.create_time  AS createTime,
+		and_checkout_pig.check_type  AS checkType,
+		and_checkout_pig.quarantine_result AS result,
+		and_checkout_pig.is_dispose AS isDispose,
+		and_checkout_pig.describes  AS describes,
+		and_checkout_pig.remark  AS  remark
+		FROM
+		and_checkout_pig
+		LEFT JOIN s_user ON and_checkout_pig.user_id = s_user.Id
+		WHERE and_checkout_pig.pig_id=#{pigId,jdbcType=VARCHAR}
+		limit 1
+	</select>
+
+   <select id="getUsers" resultType="com.jf.projects.zmt.vo.OptionVo" >
+		SELECT
+		s_user.`name` AS `value`,
+		and_checkout_pig.user_id AS `key`
+		FROM
+		and_checkout_pig
+		LEFT JOIN s_user ON and_checkout_pig.user_id = s_user.Id
+		LEFT JOIN and_inspection_user ON and_inspection_user.user_id = s_user.Id
+		LEFT JOIN inspectin ON inspectin.id = and_inspection_user.inspection_id
+		WHERE  inspectin.`status`='enable' AND s_user.`status`='enable'
+		GROUP BY
+			and_checkout_pig.user_id
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from and_checkout_pig
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.AndCheckoutPig">
+    insert into and_checkout_pig
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="pigId != null">
+        pig_id,
+      </if>
+   
+      <if test="quarantineResult != null">
+        quarantine_result,
+      </if>
+      <if test="isDispose != null">
+        is_dispose,
+      </if>
+      <if test="describe != null">
+        describes,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="vaccine != null">
+        vaccine,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+         <if test="type != null">
+        type,
+      </if>
+            <if test="checkType != null">
+        check_type,
+      </if>
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="pigId != null">
+        #{pigId,jdbcType=VARCHAR},
+      </if>
+ 
+      <if test="quarantineResult != null">
+        #{quarantineResult,jdbcType=INTEGER},
+      </if>
+      <if test="isDispose != null">
+        #{isDispose,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccine != null">
+        #{vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+         <if test="type != null">
+        #{type,jdbcType=TIMESTAMP},
+      </if>
+            <if test="checkType != null">
+        #{checkType,jdbcType=TIMESTAMP},
+      </if>
+      
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.AndCheckoutPig">
+    update and_checkout_pig
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="pigId != null">
+        pig_id = #{pigId,jdbcType=VARCHAR},
+      </if>
+ 
+      <if test="quarantineResult != null">
+        quarantine_result = #{quarantineResult,jdbcType=INTEGER},
+      </if>
+      <if test="isDispose != null">
+        is_dispose = #{isDispose,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null">
+        describes = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccine != null">
+        vaccine = #{vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+         <if test="type != null">
+        type = #{type,jdbcType=TIMESTAMP},
+      </if>
+         <if test="checkType != null">
+         check_type = #{checkType,jdbcType=TIMESTAMP},
+      </if>
+     
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据用户id统计该用户关联条数 -->
+  	<select id="findCountByUserId" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select
+		COUNT(id)
+		from and_checkout_pig
+		where user_id  = #{userId,jdbcType=VARCHAR}
+ 	 </select>
+</mapper>

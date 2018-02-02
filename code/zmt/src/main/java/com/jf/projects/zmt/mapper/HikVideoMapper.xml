@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jf.projects.zmt.dao.HikVideoMapper" >
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.HikVideo" >
+    <id column="Id" property="id" jdbcType="VARCHAR" />
+    <result column="video_no" property="videoNo" jdbcType="VARCHAR" />
+    <result column="rtmp" property="rtmp" jdbcType="VARCHAR" />
+    <result column="hls" property="hls" jdbcType="VARCHAR" />
+    <result column="slaughterhouse_id" property="slaughterhouseId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, video_no, rtmp, hls, slaughterhouse_id, create_time, update_time, status
+  </sql>
+  <!-- 获取视频地址信息 -->
+  <select id="findBySlaughterhouseId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hik_video
+     where status ='enable'
+    <if test="slaughterhouseId != null">
+      and slaughterhouse_id = #{slaughterhouseId}
+    </if>
+  </select>
+  <!-- 根据ID获取数据 -->
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hik_video
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from hik_video
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.HikVideo" >
+    
+    insert into hik_video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="videoNo != null" >
+        video_no,
+      </if>
+      <if test="rtmp != null" >
+        rtmp,
+      </if>
+      <if test="hls != null" >
+        hls,
+      </if>
+      <if test="slaughterhouseId != null" >
+        slaughterhouse_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=VARCHAR},
+      <if test="videoNo != null" >
+        #{videoNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rtmp != null" >
+        #{rtmp,jdbcType=VARCHAR},
+      </if>
+      <if test="hls != null" >
+        #{hls,jdbcType=VARCHAR},
+      </if>
+      <if test="slaughterhouseId != null" >
+        #{slaughterhouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.HikVideo" >
+    update hik_video
+    <set >
+      <if test="videoNo != null" >
+        video_no = #{videoNo,jdbcType=VARCHAR},
+      </if>
+      <if test="rtmp != null" >
+        rtmp = #{rtmp,jdbcType=VARCHAR},
+      </if>
+      <if test="hls != null" >
+        hls = #{hls,jdbcType=VARCHAR},
+      </if>
+      <if test="slaughterhouseId != null" >
+        slaughterhouse_id = #{slaughterhouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

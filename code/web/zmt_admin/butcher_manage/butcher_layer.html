@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>屠宰管理</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!-- VENDOR CSS -->
+		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+		<link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="../assets/css/main.css">
+		<!--<link rel="stylesheet" href="src/css/user_list_product.css">-->
+		<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+		<link rel="stylesheet" href="../assets/css/demo.css">
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+		<!-- ICONS -->
+		<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+		<link rel="stylesheet" href="../assets/vendor/layer/layui.css">
+		<link rel="stylesheet" type="text/css" href="../src/css/navSidebar.css" />
+		<link rel="stylesheet" href="../src/css/index.css">
+	</head>
+
+	<body style="background: #FFFFFF;">
+		<!--panel end-->
+		<div class="slaughteredLayer">
+			<p class="slaughtered">您是否确认屠宰ID:<span class="slaughteredId"></span></p>
+		</div>
+		<div class="addPIgLayer none">
+			<div class="form-groud addPigIdArea">
+				<p>您确认要录入以下生猪？</p>
+				<input class="form-control addPig margin-top-20" maxlength="15" placeholder="请输入ID" />
+			</div>
+			<div class="info-default none margin-top-25 pidTypeArae">
+				<label class="select-label pull-left">生猪类型:</label>
+				<select class="selected form-control" name="pidTypeAdd" id="pidTypeAdd">
+					<option value="">全部</option>
+				</select>
+			</div>
+		</div>
+		<div class="reportInputLayer">
+			<form id="reportInputFrom">
+				<div class="info-default">
+					<label class="select-label pull-left">检&ensp;验&ensp;员:</label>
+					<select class="selected form-control" name="userId" id="butcherInspectorList">
+						<option value="">全部</option>
+					</select>
+				</div>
+				<div class="info-default  margin-top-25">
+					<label class="select-label pull-left">检查结果:</label>
+					<div class="permission pull-left">
+						<img src="../src/images/public/choise3.png" class="quarantineChecked pull-left" />
+						<span>通过</span>
+						<input type="radio" class="input-default none" name="quarantineResult" value="1">
+					</div>
+					<div class="permission pull-left">
+						<img src="../src/images/public/choise2.png" class="quarantineChecked pull-left" />
+						<span>不通过</span>
+						<input type="radio" class="input-default none" name="quarantineResult" value="0">
+					</div>
+				</div>
+				<div class="info-default margin-top-25 isDispose none ">
+					<label class="select-label pull-left">处理方式:</label>
+					<div class="permission pull-left">
+						<img src="../src/images/public/choise3.png" class="isDisposeChecked pull-left" />
+						<span>处理</span>
+						<input type="radio" class="input-default none" name="isDispose" value="1">
+					</div>
+					<div class="permission pull-left">
+						<img src="../src/images/public/choise2.png" class="isDisposeChecked pull-left" />
+						<span>不处理</span>
+						<input type="radio" class="input-default none" name="isDispose" value="0">
+					</div>
+				</div>
+				<div class="info-default margin-top-25">
+					<label class="select-label pull-left nomrg-top">详情描述:</label>
+					<input class="selected form-control info-mrg describe" name="describe" placeholder="请描述处理结果">
+				</div>
+				<hr class="margin-top-25" />
+				<div class="info-default">
+					<label class="select-label margin-top-10">备&ensp;&ensp;&ensp;&ensp;注:</label>
+					<textarea class="form-control remark" placeholder="选填......" name="remark" maxlength="255"></textarea>
+				</div>
+			</form>
+
+		</div>
+		<div class="salesLayer">
+			<p class="sales">您是否录入ID:<span class="salesId"></span></p>
+			<form class="entryArea none">
+				<div class="salesPigId">
+					<label class="pull-left">生猪ID:</label>
+					<input name="pigId" class="input-default pigId" readonly>
+
+				</div>
+				<div class="info-default suttleArea">
+					<label class="select-label pull-left">净&emsp;&emsp;重:</label>
+					<input type="number" name="suttle" class="form-control suttle" placeholder="精确到小数点后两位数" />
+					<span class="kg">kg</span>
+				</div>
+				<div class="clear"></div>
+
+				<div class="info-default farmerSearch">
+					<label class="select-label pull-left margin-top-25">流向市场:</label>
+					<input class="selected form-control info-mrg pull-left farmer">
+					<a class="btn farmerBtn pull-right margin-top-25"><img src="../src/images/seacher.png" /> 搜索</a>
+					<ul class="farmersList none">
+
+					</ul>
+				</div>
+				<div class="clear"></div>
+				<div class="info-default  margin-top-25">
+					<label class="select-label pull-left" id="departmentAdd">市场人员:</label>
+					<select class="selected form-control" name="salePigType" id="marketId">
+						<option value="">全部</option>
+					</select>
+				</div>
+				<div class="clear"></div>
+				<div class="info-default margin-top-10">
+					<span>名&emsp;&emsp;称:</span>
+					<span class="mrgLeft35" id="farmerName"></span>
+				</div>
+				<div class="info-default none">
+					<span>id:</span>
+					<span class="mrgLeft35" id="farmerId"></span>
+				</div>
+				<div class="info-default margin-top-10">
+					<span>联系电话:</span>
+					<span class="mrgLeft35" id="farmerPhone"></span>
+				</div>
+				<div class="info-default margin-top-10">
+					<span>地&emsp;&emsp;址:</span>
+					<span class="mrgLeft35" id="farmerAddress"></span>
+				</div>
+			</form>
+			
+		</div>
+		<!--新增屠宰数弹框start-->
+		<div class="newAddBuctNum">
+			<p class="layerTitle">今日屠宰数量:</p>
+			<input class="butchNumber form-control margin-top-20" type="number" placeholder="请输入整数" min="0" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"/>
+			<span>头</span>
+		</div>
+		<!--新增屠宰数弹框end-->
+		<div class="button-group">
+				<a href="#" class="btn confirmBtn pull-left">是</a>
+				<a href="#" class="btn btn-colse cancelBtn pull-right">否</a>
+			</div>
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/layer/layer.js"></script>
+		<script src="../assets/vendor/layer/layui.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
+		<script src="../assets/vendor/echarts/echarts.js"></script>
+		<script src="../assets/vendor/datatables/js/jquery.dataTables.js"></script>
+		<script src="../assets/vendor/datatables/js/dataTables.bootstrap.js"></script>
+		<script src="../src/js/allUrl.js"></script>
+		<script src="../src/js/Main.js"></script>
+		<script src="../src/js/manage.js"></script>
+		<script src="../src/js/butcher_layer.js"></script>
+	</body>
+
+</html>

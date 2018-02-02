@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.EntryAreaMapper">
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.EntryArea">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="town" jdbcType="VARCHAR" property="town" />
+    <result column="village" jdbcType="VARCHAR" property="village" />
+    <result column="parent" jdbcType="INTEGER" property="parent" />
+    <result column="district_id" jdbcType="INTEGER" property="districtId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, code, town, village, parent, district_id, create_time, update_time, status
+  </sql>
+  
+  <!-- 视图v_entry_area条件查询 -->
+  <sql id="base_view_where">
+	    <if test="provinceId != null and provinceId != '' ">
+	      AND provinceId = #{provinceId}
+	    </if>
+	    <if test="cityId != null and cityId != '' ">
+	      AND cityId = #{cityId}
+	    </if>
+	    <if test="districtId != null and districtId != '' ">
+	      AND districtId = #{districtId}
+	    </if>
+	    <if test="townId != null and townId != '' ">
+	      AND townId = #{townId}
+	    </if>
+	</sql>
+	
+  <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from entry_area
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from entry_area
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.jf.projects.zmt.model.EntryArea">
+    insert into entry_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        code,
+      </if>
+      <if test="town != null">
+        town,
+      </if>
+      <if test="village != null">
+        village,
+      </if>
+      <if test="parent != null">
+        parent,
+      </if>
+      <if test="districtId != null">
+        district_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="town != null">
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+        #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null">
+        #{parent,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null">
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.EntryArea">
+    update entry_area
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="town != null">
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="village != null">
+        village = #{village,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null">
+        parent = #{parent,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null">
+        district_id = #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据镇id获取下面所有的乡村信息 -->
+  <select id="findByParent" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select 
+    	<include refid="Base_Column_List" />
+    from entry_area
+    where parent = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据区县id获取区县下所有的村 -->
+  <select id = "findByDistrictIds"
+  	resultType = "com.jf.projects.zmt.vo.area.EntryAraeListVo">
+  	SELECT
+  		entry.Id AS villageId,entry.village AS villageName,entry.town AS townName,
+  		area.district AS districtName,city.city AS cityName,province.province AS provinceName,
+  		if(entry.`status`="enable","正常","禁用") AS `status`,city.id AS cityId,
+  		area.id AS districtId,entry.Id AS townId,province.id AS provinceId
+  	FROM entry_area entry
+  	LEFT JOIN area ON area.id = entry.district_id
+  	LEFT JOIN area city ON city.id = area.parent
+  	LEFT JOIN area province ON province.id = city.parent
+  	WHERE entry.parent IS NOT NULL
+  	<if test="distructIds != null">
+	   	AND entry.district_id IN
+	   	<foreach item="item" index="index" collection="distructIds"
+               open="(" separator="," close=")"> #{item}
+    	</foreach>
+ 	</if>
+ 	LIMIT #{start},#{length}
+  </select>
+  
+  <!-- 根据区县id获取区县下所有的村总条数 -->
+  <select id = "findtotalByDistrictIds" resultType="long">
+  	SELECT COUNT(demp.id) FROM(
+  	SELECT
+  		entry.Id FROM entry_area entry
+  	LEFT JOIN area ON area.id = entry.district_id
+  	LEFT JOIN area city ON city.id = area.parent
+  	LEFT JOIN area province ON province.id = city.parent
+  	WHERE entry.parent IS NOT NULL
+  	<if test="distructIds != null">
+	   	AND entry.district_id IN
+	   	<foreach item="item" index="index" collection="distructIds"
+               open="(" separator="," close=")"> #{item}
+    	</foreach>
+ 	</if>
+ 	) AS demp
+  </select>
+  
+  <!-- 根据乡镇id获取该乡镇下所有村列表 -->
+  <select id = "findBytownId" parameterType="java.lang.Integer"
+  	resultType = "com.jf.projects.zmt.vo.area.EntryAraeListVo">
+  	SELECT
+  		entry.Id AS villageId,entry.village AS villageName,entry.town AS townName,
+  		area.district AS districtName,city.city AS cityName,province.province AS provinceName,
+  		if(entry.`status`="enable","正常","禁用") AS `status`,area.id AS districtId,
+  		entry.Id AS townId,province.id AS provinceId
+  	FROM entry_area entry
+  	LEFT JOIN area ON area.id = entry.district_id
+  	LEFT JOIN area city ON city.id = area.parent
+  	LEFT JOIN area province ON province.id = city.parent
+  	WHERE entry.parent IS NOT NULL
+  	AND entry.parent = #{townId,jdbcType=INTEGER}
+  	LIMIT #{start},#{length}
+  </select>
+  
+  <!-- 根据乡镇id获取该乡镇下所有村列表总条数 -->
+  <select id = "findtotalByTownId" parameterType="java.lang.Integer" resultType="java.lang.Long">
+  	SELECT COUNT(demp.id) FROM(
+  	SELECT
+  		entry.Id
+  	FROM entry_area entry
+  	LEFT JOIN area ON area.id = entry.district_id
+  	LEFT JOIN area city ON city.id = area.parent
+  	LEFT JOIN area province ON province.id = city.parent
+  	WHERE entry.parent IS NOT NULL
+  	AND entry.parent = #{townId,jdbcType=INTEGER}
+  	) AS demp
+  </select>
+  
+  <!-- 根据区县id获取所有镇村 -->
+  <select id="findByDistrictId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from entry_area
+    where district_id = #{distructId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 获取当前区域下最大的code -->
+  <select id="findMaxCodeByDistrictId" parameterType="java.lang.Integer" 
+  		resultType="java.lang.Integer">
+  	SELECT entry.`code` FROM entry_area entry 
+  		WHERE entry.district_id = #{distructId,jdbcType=INTEGER} 
+  	ORDER BY entry.`code` DESC LIMIT 1
+  </select>
+  
+  <!-- 根据镇id获取该镇级相关村的所有id -->
+  <select id="getTownASId" parameterType="java.lang.Integer" 
+  		resultType="java.lang.Integer">
+  	SELECT Id FROM entry_area WHERE Id = #{id,jdbcType=INTEGER} 
+  		OR parent = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 修改乡镇名称 -->
+  <update id="updateTown">
+  	update entry_area SET town = #{town,jdbcType=VARCHAR} where id in
+  		<foreach item="item" index="index" collection="ids"
+               open="(" separator="," close=")"> #{item}
+    	</foreach>
+  </update>
+  
+  <!-- 修改村 -->
+  <update id="updateVillage">
+  	update entry_area SET village = #{village,jdbcType=VARCHAR} WHERE Id = #{id,jdbcType=INTEGER} 
+  </update>
+  
+  <!-- 根据区县id获取镇的下拉列表数据 -->
+  <select id="getTownOption" parameterType="java.lang.Integer"
+  	resultType = "com.jf.projects.zmt.vo.OptionVo">
+  	SELECT entry.Id AS `KEY`,entry.town AS `VALUE` 
+  		FROM entry_area entry WHERE entry.parent is null 
+  		AND entry.`status` = 'enable' 
+  		AND entry.district_id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据乡镇id获取村下拉数据-->
+  <select id="getVillageOption" parameterType="java.lang.Integer"
+  	resultType = "com.jf.projects.zmt.vo.OptionVo">
+  	SELECT entry.Id AS `KEY`,entry.village AS `VALUE` 
+  		FROM entry_area entry WHERE 1 = 1
+  		AND entry.`status` = 'enable' 
+  		AND entry.parent = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 判断乡镇是否重名 -->
+  <select id = "townIsRepetition" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from entry_area entry
+    WHERE entry.district_id = #{districtId,jdbcType=INTEGER}
+    AND entry.parent IS NULL
+    AND entry.town = #{townName,jdbcType=VARCHAR}
+    <if test="id != null">
+      AND entry.Id != #{id,jdbcType=INTEGER}
+    </if>
+    LIMIT 1
+  </select>
+  
+  <!-- 判断村是否重名 -->
+  <select id = "villageIsRepetition" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from entry_area entry
+    WHERE entry.parent = #{townId,jdbcType=INTEGER}
+    AND entry.village = #{name,jdbcType=VARCHAR}
+    <if test="id != null">
+      AND entry.Id != #{id,jdbcType=INTEGER}
+    </if>
+    LIMIT 1
+  </select>
+  
+  <!-- 根据村id获取镇id -->
+  <select id="findTownIdById" resultType="java.lang.Integer">
+  	SELECT entry.parent FROM entry_area entry WHERE entry.Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据镇id获取区县id -->
+  <select id="findDisIdById" resultType="java.lang.Integer">
+  	SELECT entry.district_id FROM entry_area entry WHERE entry.Id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 根据条件查询条数（视图v_entry_area） -->
+  <select id = "findtotal" parameterType="com.jf.projects.zmt.vo.area.EntryAreaSearch" 
+  	resultType="java.lang.Long">
+  	SELECT COUNT(aa.villageId) FROM(
+	  	SELECT
+		entry.villageId
+	FROM
+		v_entry_area entry
+	WHERE 1 = 1
+	<include refid="base_view_where" />
+  	) AS aa
+  </select>
+  
+  <!-- 根据条件查询条数（视图v_entry_area） -->
+  <select id = "findPage" parameterType="com.jf.projects.zmt.vo.area.EntryAreaSearch" 
+  	resultType="com.jf.projects.zmt.vo.area.EntryAraeListVo">
+  	SELECT
+		entry.villageId AS villageId,
+		entry.provinceName AS provinceName,
+		entry.cityName AS cityName,
+		entry.districtName AS districtName,
+		entry.townName AS townName,
+		entry.village AS villageName,
+		entry.`status` AS `status`,
+		entry.provinceId AS provinceId,
+		entry.cityId AS cityId,
+		entry.districtId AS districtId,
+		entry.townId AS townId
+	FROM
+		v_entry_area entry
+	WHERE 1 = 1
+	<include refid="base_view_where" />
+	LIMIT #{start},#{length}
+  </select>
+  
+  <!-- 根据区县id获取村id -->
+  <select id="getVillageIdByDistrictIds" resultType="java.lang.Integer">
+  	SELECT entry.Id FROM entry_area entry WHERE entry.village IS NOT NULL AND entry.parent IS NOT NULL
+  	<if test="districtIds != null">
+	    	AND entry.district_id IN
+	    	<foreach item="item" index="index" collection="districtIds"
+	                open="(" separator="," close=")"> #{item}
+	     	</foreach>
+	    </if>
+  </select>
+  
+  <!-- 根据乡镇ids获取 -->
+  <select id="findTownByList" resultType="com.jf.projects.zmt.vo.OptionVo">
+  	SELECT entry.Id AS `KEY`,entry.town AS `VALUE` FROM entry_area entry WHERE entry.Id IN
+  	<foreach item="item" index="index" collection="ids"
+         open="(" separator="," close=")"> #{item}
+   	</foreach>
+  </select>
+  
+  <!-- 根据村ids获取村-->
+  <select id="findVillByList" resultType="com.jf.projects.zmt.vo.OptionVo">
+  	SELECT entry.Id AS `KEY`,entry.village AS `VALUE` FROM entry_area entry WHERE entry.Id IN
+  	<foreach item="item" index="index" collection="ids"
+         open="(" separator="," close=")"> #{item}
+   	</foreach>
+  </select>
+  
+</mapper>

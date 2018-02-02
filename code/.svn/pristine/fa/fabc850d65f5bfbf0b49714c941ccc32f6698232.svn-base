@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>出入库数据</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="../src/css/entryOutData.css" />
+	</head>
+	<body>
+		<div class="entryOutMain">
+			<!--<a class="back none" href="">返回</a>-->
+			<div class="container-fluid entryOutData">
+				<div class="data_list locationNav">
+					<span>屠宰管理  》</span>
+					<a href="butcher_manage.html">屠宰场管理  》</a>
+					<span class="on">屠宰场出入库数据</span>
+				</div>
+				<!--出入库数据的统计-->
+				<div class="numberStatistics col-md-12">
+					<span class="col-md-3">今日屠宰数量：<span class="todayButcherNum"></span></span>
+					<span class="col-md-3">今日入库数量：<span class="todayEntryNum"></span></span>
+					<span class="col-md-3">今日出库数量：<span class="todayOutNum"></span></span>
+
+				</div>
+				
+				
+				<!--出库单的入库单的列表以及新增-->
+				<div class="entry_listTable col-md-12">
+					<div class="listBtn col-md-12">
+						<ul class="" id="">
+							<li class="activeLi chukudan">入库单</li>
+							<li class="rukudan">出库单</li>
+						</ul>
+						<div class="listContent col-md-12">
+							<div class="col-md-12 btnList">
+								<ul>
+									<li class="entryDataBtn">
+										<img src="../src/images/add.png" />入库单
+									</li>
+									<li class="none outDataBtn">
+										<img src="../src/images/add.png" />出库单
+									</li>
+									<li class="newAddButcherNum">
+										<img src="../src/images/add.png" />屠宰数
+									</li>
+								</ul>
+							</div>
+							<!--入库单的table列表-->
+							<div class="clear"></div>
+							<div class="rukudanLis" id="">
+								<div class="entryDataContent col-md-12">
+									<table class="table table-hover table-striped" id="entryDataTable" cellspacing="0">
+										<thead>
+											<tr>
+												<th>序号</th>
+												<th>单号</th>
+												<th>供应商</th>
+												<th>联系方式</th>
+												<th>生猪数量</th>
+												<th>生猪重量</th>
+												<th>运输车辆</th>
+												<th>时间</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody></tbody>
+									</table>
+								</div>
+
+							</div>
+							<!--出库单的table列表-->
+							<div class="none chukudabList panel-content">
+								<div class="row">
+									<div class="col-md-12 notPadMrg">
+										<table id="chukudabListTable" class="table table-hover table-striped" cellspacing="0">
+											<thead>
+												<tr>
+													<th>序号</th>
+													<!--<th class="none">id</th>-->
+													<th>单号</th>
+													<th>销售商</th>
+													<th>联系方式</th>
+													<th>生猪数量</th>
+													<th>生猪重量</th>
+													<th>运输车辆</th>
+													<th>时间</th>
+													<th>操作</th>
+												</tr>
+											</thead>
+
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		<!--新增入库单start-->
+		<div class="addIntoForm none">
+			<div class="container-fluid">
+			<div class="locationNav">
+				<ul>
+					<li>
+						<a>屠宰管理&nbsp;</a>
+					</li>
+					<li>
+						<span class="direction">》</span>
+						<a class="butcher  ">屠宰场入库数据&nbsp;</a>
+					</li>
+					<li>
+						<span class="direction">》</span>
+						<a href="add_factory.html" class="butcher  on">新增入库单</a>
+					</li>
+					<li class="personnel none">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="personnelArea">屠宰场人员</a>
+					</li>
+					<li class="details none">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="detailsArea">生猪列表</a>
+					</li>
+					<li class="pig none">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="pigArea">生猪详情</a>
+					</li>
+				</ul>
+			</div>
+			<div class="panel panelDefault">
+				<div class="butcher_manage">
+					<div class="panel-head filing-searchAera">
+						<div class="pull-left notPadMrg">
+							<span style="font-size: 18px;font-weight: bold;color: #1FB5AD;line-height: 90px;margin-left: 40px">新增入库单</span>
+
+						</div>
+						<div class=" pull-right searchBar">
+							<div class="form-group pull-right">
+								<button class="btn  pull-right " id='ADD_INTO_CANCLE' style='width: 91px;height: 32px;color: #fff;margin-left:20px;background-color: rgb(189,189,189);'> 取消</button>
+								<button class="btn  pull-right " id='ADD_INTO_SURE' style='width: 91px;height: 32px;color: #fff;'>确定</button>
+
+							</div>
+						</div>
+					</div>
+					<div style="display: flex;">
+						<div class="panel-content" style="margin:0;border-right: 1px dashed #e3e3e3;margin-top: 32px;margin-bottom: 32px;padding-right: 20px;width: 45%">
+							<div class="row">
+								<div class="col-md-12 notPadMrg table-butcherM">
+									<div class="addButcherLayer ">
+										<form class="into_factoryForm" style="width: 100%;padding-left: 50px">
+											<p class="basic-Info pull-left" style="width:85px;margin:0">供货商信息:</p>
+											<div class="clear"></div>
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;"><!-- <span style='color: red'>*</span> -->进货单号:</label>
+												<input class="selected form-control info-mrg" id='FAC_code' name="name" style="width: 70%;" placeholder="请填写纸质凭证号" maxlength="25">
+											</div>
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span><span style="letter-spacing: 7px">供应</span>商:</label>
+												<input class="selected form-control info-mrg" id='FAC_name' name="phone" style="width: 70%;" placeholder="请填写供应商姓名或公司名称" maxlength="35">
+											</div>
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>联系方式:</label>
+												<input class="selected form-control info-mrg" id='FAC_tel' name="phone" style="width: 70%;" placeholder="请填写联系方式" maxlength="11">
+											</div>
+											<div class="info-default margin-top-25" style="overflow:hidden;">
+												<label class="select-label pull-left nomrg-top" id="typeAdd" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>公司地址:</label>
+												<select class="selected form-control" name="address1" style="width: 22%;float: left;margin:0">
+													<option value="0" selected="selected">所有省</option>
+												</select>
+												<select class="selected form-control info-mrgLeft" name="address2" style="width: 22%;float: left;margin:0;margin-left: 2%;">
+													<option value="0" selected="selected">所有市</option>
+												</select>
+												<select class="selected form-control info-mrgLeft" name="address3" style="width: 22%;float: left;margin:0;margin-left: 2%;">
+													<option value="0" selected="selected">所有区/县</option>
+												</select>
+											</div>
+											<div class="info-default margin-top-25" style="margin-top: 25px;">
+												<label class="select-label pull-left nomrg-top" id="typeAdd" style="    margin: 0px 13px 0px 0px;opacity: 0">详细地址:</label>
+												<input class="selected form-control info-mrg" name="phone" style="width: 70%;" placeholder="请填写详细地址" id='FAC_address' maxlength="100">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-content" style="margin:0;">
+							<div class="row">
+								<div class="col-md-12 notPadMrg table-butcherM">
+									<div class="addButcherLayer ">
+										<form class="addButcherForm" style="width: 520px;padding-left: 50px">
+											<p class="basic-Info pull-left" style="width: 80px;">生猪信息:</p>
+											<div class="clear"></div>
+											<div class="info-default" style='position: relative'>
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;text-align: right"><span style='color: red'>*</span>生猪数量:</label>
+												<input class="selected form-control info-mrg" id='FAC_pigNumber' name="phone" style="width: 195px;" type="number" placeholder="请输入整数">
+												<p style="position: absolute;left: 230px;top: 0;">头</p>
+											</div>
+											<div class="info-default" style='position: relative'>
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;text-align: right">生猪重量:</label>
+												<input class="selected form-control info-mrg" id='FAC_pigWeight' name="phone" style="width: 195px;" type="number" placeholder="精确到小数点后两位">
+												<p style="position: absolute;left: 230px;top: 0;">kg</p>
+											</div>
+											<!--  -->
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style='width: 100%;border-top: 1px dashed #e3e3e3;'>
+						<div class="panel-content" style="margin:0; width: 40%;padding-right: 20px;margin-bottom: 32px;">
+							<div class="row">
+								<div class="col-md-12 notPadMrg table-butcherM" id='ONE_CAR_INFO'>
+									<div class="addButcherLayer " style="margin:0; border-top: 1px dashed #e3e3e3;position: relative;">
+										<form class="add_intoF_car_Form" style="width: 100%;padding-left: 50px">
+											<p class="basic-Info pull-left" style="width: 100px;">运输车辆信息:</p>
+											<div class="clear"></div>
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="margin: 0px 13px 0px 0px;"><span style="color: red">*</span>运输人员:</label>
+												<input class="selected form-control info-mrg car_cari" id='FAC_car_driver0' name="name" style="width: 70%;"  maxlength="35"/>
+											</div>
+											
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>联系方式:</label>
+												<input class="selected form-control info-mrg car_cari" id='FAC_car_tel0' name="phone" style="width: 70%;"  maxlength="11"/>
+											</div>
+											<div class="info-default margin-top-25" style="overflow:hidden;">
+												<label class="select-label pull-left nomrg-top" id="typeAdd" style="margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>运输车辆:</label>
+												<select class="selected form-control info-mrgLeft car_cari" id="CARNAME0" style="width: 15%;float: left;margin:0;">
+													<option value="川" selected="selected">川</option>
+												</select>
+												<select class="selected form-control info-mrgLeft car_cari" id="CARCODE0" style="width: 15%;float: left;margin:0;margin-left: 3%">
+													<option value="A" selected="selected">A</option>
+												</select>
+												<input class="selected form-control car_cari"  id='FAC_car_carNo0' name="CARNUM1" style="width: 34%;float: left;margin:0;margin-left: 3%;"  maxlength="6"/>
+											</div>
+										</form>
+										<img src="../src/images/ic_delate.jpg" id='INTO_DEL_CAR' alt="" style="margin-top: 25%;cursor: pointer;position: absolute;top: 0;right: 0;">
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel-head filing-searchAera" style='padding: 0 25px;border-top: 1px dashed #e3e3e3;box-sizing: border-box;'>
+						<div class="pull-left notPadMrg">
+							<button class="btn addBtn" id='ADD_CAR_INFO'><img src="../src/images/add.png"> 运输车辆信息</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		</div>
+		
+		
+		<!--新增入库单end-->
+		
+		<!--新增出库单start-->
+		<div class="addOutoForm none">
+			<div class="container-fluid">
+			<div class="locationNav">
+				<ul>
+					<li>
+						<a>屠宰管理&nbsp;</a>
+					</li>
+					<li>
+						<span class="direction">》</span>
+						<a class="butcher  ">屠宰场出库数据&nbsp;</a>
+					</li>
+					<li>
+						<span class="direction">》</span>
+						<a href="add_factory.html" class="butcher  on">新增出库单</a>
+					</li>
+					<li class="personnel none">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="personnelArea">屠宰场人员</a>
+					</li>
+					<li class="details none">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="detailsArea">生猪列表</a>
+					</li>
+					<li class="pig none">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="pigArea">生猪详情</a>
+					</li>
+				</ul>
+			</div>
+			<div class="panel panelDefault">
+				<div class="butcher_manage">
+					<div class="panel-head filing-searchAera">
+						<div class="pull-left notPadMrg">
+							<span style="font-size: 18px;font-weight: bold;color: #1FB5AD;line-height: 90px;margin-left: 40px">新增出库单</span>
+
+						</div>
+						<div class=" pull-right searchBar">
+							<div class="form-group pull-right">
+								<button class="btn  pull-right " id='ADD_OUTO_CANCLE' style='width: 91px;height: 32px;color: #fff;margin-left:20px;background-color: rgb(189,189,189);'> 取消</button>
+								<button class="btn  pull-right " id='ADD_OUTO_SURE' style='width: 91px;height: 32px;color: #fff;'>确定</button>
+
+							</div>
+						</div>
+					</div>
+					<div style="display: flex;">
+						<div class="panel-content" style="margin:0;border-right: 1px dashed #e3e3e3;margin-top: 32px;margin-bottom: 32px;padding-right: 20px;width: 45%">
+							<div class="row">
+								<div class="col-md-12 notPadMrg table-butcherM">
+									<div class="addButcherLayer ">
+										<form class="outo_factoryForm" style="width: 100%;padding-left: 50px">
+											<p class="basic-Info pull-left" style="width:85px;margin:0">销售商信息:</p>
+											<div class="clear"></div>
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;"><!-- <span style='color: red'>*</span> -->出货单号:</label>
+												<input class="selected form-control info-mrg" id='FAC_code_ou' name="name" style="width: 70%;" placeholder="请填写纸质凭证号" maxlength="25">
+											</div>
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span><span style="letter-spacing: 7px">销售</span>商:</label>
+												<input class="selected form-control info-mrg" id='FAC_name_ou' name="phone" style="width: 70%;" placeholder="请填写供应商姓名或公司名称"  maxlength="35">
+											</div>
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>联系方式:</label>
+												<input class="selected form-control info-mrg" id='FAC_tel_ou' name="phone" style="width: 70%;" placeholder="请填写联系方式"  maxlength="11">
+											</div>
+											<div class="info-default margin-top-25" style="overflow:hidden;">
+												<label class="select-label pull-left nomrg-top" id="typeAdd" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>公司地址:</label>
+												<select class="selected form-control" name="address1" da='outadressSale' style="width: 22%;float: left;margin:0">
+													<option value="0" selected="selected">所有省</option>
+												</select>
+												<select class="selected form-control info-mrgLeft" name="address2"  da='outadressSale'  style="width: 22%;float: left;margin:0;margin-left: 2%;">
+													<option value="0" selected="selected">所有市</option>
+												</select>
+												<select class="selected form-control info-mrgLeft"  name="address3"  da='outadressSale' style="width: 22%;float: left;margin:0;margin-left: 2%;">
+													<option value="0" selected="selected">所有区/县</option>
+												</select>
+											</div>
+											<div class="info-default margin-top-25" style="margin-top: 25px;">
+												<label class="select-label pull-left nomrg-top" id="typeAdd" style="    margin: 0px 13px 0px 0px;opacity: 0">详细地址:</label>
+												<input class="selected form-control info-mrg" name="phone" style="width: 70%;" placeholder="请填写详细地址" id='FAC_address_ou'  maxlength="50">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-content" style="margin:0;">
+							<div class="row">
+								<div class="col-md-12 notPadMrg table-butcherM">
+									<div class="addButcherLayer ">
+										<form class="pigINFO_ou_form" style="width: 520px;padding-left: 50px">
+											<p class="basic-Info pull-left" style="width: 80px;">生猪信息:</p>
+											<div class="clear"></div>
+											<div class="info-default" style='position: relative'>
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;text-align: right"><span style='color: red'>*</span>生猪数量:</label>
+												<input class="selected form-control info-mrg" id='FAC_pigNumber_ou' name="phone" style="width: 195px;" type="number" placeholder="请输入整数">
+												<p style="position: absolute;left: 230px;top: 0;">头</p>
+											</div>
+											<div class="info-default" style='position: relative'>
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;text-align: right">生猪重量:</label>
+												<input class="selected form-control info-mrg" id='FAC_pigWeight_ou' name="phone" style="width: 195px;" type="number" placeholder="精确到小数点后两位">
+												<p style="position: absolute;left: 230px;top: 0;">kg</p>
+											</div>
+											<div class="info-default margin-top-25" style="overflow:hidden;">
+												<label class="select-label pull-left nomrg-top" id="typeAdd" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>销售地址:</label>
+												<select class="selected form-control" name="address1"  da='outadressPig' style="width: 22%;float: left;margin:0">
+													<option value="0" selected="selected">所有省</option>
+												</select>
+												<select class="selected form-control info-mrgLeft" name="address2" da='outadressPig' style="width: 22%;float: left;margin:0;margin-left: 2%;">
+													<option value="0" selected="selected">所有市</option>
+												</select>
+												<select class="selected form-control info-mrgLeft" name="address3" da='outadressPig' style="width: 22%;float: left;margin:0;margin-left: 2%;">
+													<option value="0" selected="selected">所有区/县</option>
+												</select>
+											</div>
+											<div class="info-default margin-top-25" style="margin-top: 25px;">
+												<label class="select-label pull-left nomrg-top" id="typeAdd" style="    margin: 0px 13px 0px 0px;opacity: 0">详细地址:</label>
+												<input class="selected form-control info-mrg" name="phone" style="width: 70%;" placeholder="请填写详细地址" id='FAC_address_ouSale'  maxlength="100">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style='width: 100%;border-top: 1px dashed #e3e3e3;'>
+						<div class="panel-content" style="margin:0; width: 40%;padding-right: 20px;margin-bottom: 32px;">
+							<div class="row">
+								<div class="col-md-12 notPadMrg table-butcherM" id='ONE_CAR_INFO_OU'>
+									<div class="addButcherLayer " style="margin:0; border-top: 1px dashed #e3e3e3;position: relative;">
+										<form class="add_outoF_car_Form" style="width: 100%;padding-left: 50px;margin-bottom: 20px;">
+											<p class="basic-Info pull-left" style="width: 100px;">运输车辆信息:</p>
+											<div class="clear"></div>
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="margin: 0px 13px 0px 0px;"><span style="color: red">*</span>运输人员:</label>
+												<input class="selected form-control info-mrg car_caro" id='FAC_car_driver_OU0' name="name" style="width: 70%;"  maxlength="35" />
+											</div>
+											
+											<div class="info-default">
+												<label class="select-label pull-left nomrg-top" style="    margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>联系方式:</label>
+												<input class="selected form-control info-mrg car_caro" id='FAC_car_tel_OU0' name="phone" style="width: 70%;"  maxlength="11" />
+											</div>
+											<div class="info-default margin-top-25" style="overflow:hidden;">
+												<label class="select-label pull-left nomrg-top" id="typeAdd" style="margin: 0px 13px 0px 0px;"><span style='color: red'>*</span>运输车辆:</label>
+												<select class="selected form-control info-mrgLeft car_caro" id="CARNAME_OU0" style="width: 15%;float: left;margin:0;">
+													<option value="川" selected="selected">川</option>
+												</select>
+												<select class="selected form-control info-mrgLeft car_caro" id="CARCODE_OU0" style="width: 15%;float: left;margin:0;margin-left: 3%">
+													<option value="A" selected="selected">A</option>
+												</select>
+												<input class="selected form-control car_caro"  id='FAC_car_carNo_OU0' name="CARNUM1" style="width: 34%;float: left;margin:0;margin-left: 3%;"  maxlength="6"/>
+											</div>
+										</form>
+										<img src="../src/images/ic_delate.jpg" id='OUTO_DEL_CAR' alt="" style="margin-top: 25%;cursor: pointer;position: absolute;top: 0;right: 0;">
+									</div>
+									<!-- JS添加 -->
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel-head filing-searchAera" style='padding: 0 25px;border-top: 1px dashed #e3e3e3;box-sizing: border-box;'>
+						<div class="pull-left notPadMrg">
+							<button class="btn addBtn" id='ADD_CAR_INFO_OU'><img src="../src/images/add.png"> 运输车辆信息</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+			
+			
+		</div>
+		<!--新增出库单end-->
+		<script src="../assets/vendor/layer/layer.js"></script>
+		<script src="../assets/vendor/layer/layui.js"></script>
+		<script src="../src/js/entryOutData.js"></script>
+		<script src="../src/js/add_into_factory.js"></script>
+		<script src="../src/js/add_outo_factory.js"></script>
+	</body>
+</html>

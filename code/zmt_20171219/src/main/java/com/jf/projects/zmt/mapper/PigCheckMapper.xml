@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.PigCheckMapper">
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.PigCheck">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="check_type" jdbcType="INTEGER" property="checkType" />
+    <result column="check_status" jdbcType="INTEGER" property="checkStatus" />
+    <result column="dealwith" jdbcType="INTEGER" property="dealwith" />
+    <result column="dealmethod" jdbcType="VARCHAR" property="dealmethod" />
+    <result column="check_people_id" jdbcType="VARCHAR" property="checkPeopleId" />
+    <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
+    <result column="pig_sign" jdbcType="VARCHAR" property="pigSign" />
+  </resultMap>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.PigCheck">
+    insert into pig_check
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="checkType != null">
+        check_type,
+      </if>
+      <if test="checkStatus != null">
+        check_status,
+      </if>
+      <if test="dealwith != null">
+        dealwith,
+      </if>
+      <if test="dealmethod != null">
+        dealmethod,
+      </if>
+      <if test="checkPeopleId != null">
+        check_people_id,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="pigSign != null">
+        pig_sign,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
+      <if test="checkType != null">
+        #{checkType,jdbcType=INTEGER},
+      </if>
+      <if test="checkStatus != null">
+        #{checkStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dealwith != null">
+        #{dealwith,jdbcType=INTEGER},
+      </if>
+      <if test="dealmethod != null">
+        #{dealmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="checkPeopleId != null">
+        #{checkPeopleId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pigSign != null">
+        #{pigSign,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="countByUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(id) FROM pig_check WHERE check_people_id = #{userId,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<div xmlns="http://www.w3.org/1999/xhtml" component="$model/UI2/system/components/justep/window/window" design="device:m;" xid="window" class="window cbQJJfe" data-bind="component:{name:'$model/UI2/system/components/justep/window/window'}" __cid="cbQJJfe" components="$model/UI2/system/components/justep/model/model,$model/UI2/system/components/justep/loadingBar/loadingBar,$model/UI2/system/components/justep/button/button,$model/UI2/system/components/justep/controlGroup/controlGroup,$model/UI2/system/components/justep/titleBar/titleBar,$model/UI2/system/components/justep/panel/child,$model/UI2/system/components/justep/data/data,$model/UI2/system/components/justep/window/window,$model/UI2/system/components/justep/panel/panel,">
+  <xhtml:style xmlns:xhtml="http://www.w3.org/1999/xhtml">null</xhtml:style>  
+  <div component="$model/UI2/system/components/justep/model/model" xid="model" style="display:none" data-bind="component:{name:'$model/UI2/system/components/justep/model/model'}" __cid="cbQJJfe" class="cbQJJfe"></div>  
+  <div component="$model/UI2/system/components/justep/panel/panel" class="x-panel x-full pcyYR363-iosstatusbar cbQJJfe" xid="panel1" data-bind="component:{name:'$model/UI2/system/components/justep/panel/panel'}" __cid="cbQJJfe"> 
+    <div class="x-panel-top cbQJJfe" xid="top1" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="cbQJJfe"> 
+      <div component="$model/UI2/system/components/justep/titleBar/titleBar" class="x-titlebar cbQJJfe" style="background-color:#3CC6BD;" data-bind="component:{name:'$model/UI2/system/components/justep/titleBar/titleBar'}" data-config="{&quot;title&quot;:&quot;注册养殖户&quot;}" __cid="cbQJJfe"> 
+        <div class="x-titlebar-left cbQJJfe" __cid="cbQJJfe"> 
+          <a component="$model/UI2/system/components/justep/button/button" class="btn btn-link btn-only-icon cbQJJfe" xid="backBtn" data-bind="component:{name:'$model/UI2/system/components/justep/button/button'}" data-events="onClick:{operation:'window.close'}" data-config="{&quot;icon&quot;:&quot;icon-chevron-left&quot;,&quot;label&quot;:&quot;&quot;}" __cid="cbQJJfe"> 
+            <i class="icon-chevron-left cbQJJfe" __cid="cbQJJfe"/>  
+            <span __cid="cbQJJfe" class="cbQJJfe"/> 
+          </a> 
+        </div>  
+        <div class="x-titlebar-title cbQJJfe" __cid="cbQJJfe">注册养殖户</div>  
+        <div class="x-titlebar-right  cbQJJfe" __cid="cbQJJfe">
+          <div class="empty cbQJJfe" __cid="cbQJJfe"/>
+          <a component="$model/UI2/system/components/justep/button/button" class="btn btn-link cbQJJfe" xid="saveBtn" style="font-size: 15px;font-weight: medium;" data-bind="component:{name:'$model/UI2/system/components/justep/button/button'}" data-events="onClick:saveBtnClick" data-config="{&quot;label&quot;:&quot;保存&quot;}" __cid="cbQJJfe"> 
+            <i xid="i2" __cid="cbQJJfe" class="cbQJJfe"/>  
+            <span xid="span2" __cid="cbQJJfe" class="cbQJJfe">保存</span>
+          </a>
+        </div> 
+      </div> 
+    </div>  
+    <div class="x-panel-content cbQJJfe" xid="content1" component="$model/UI2/system/components/justep/panel/child" data-bind="component:{name:'$model/UI2/system/components/justep/panel/child'}" __cid="cbQJJfe">
+      <div component="$model/UI2/system/components/justep/controlGroup/controlGroup" class="x-control-group cbQJJfe" xid="controlGroup1" data-bind="component:{name:'$model/UI2/system/components/justep/controlGroup/controlGroup'}" data-config="{&quot;title&quot;:&quot;title&quot;}" __cid="cbQJJfe"> 
+        <div class="x-control-group-title cbQJJfe" xid="controlGroupTitle1" __cid="cbQJJfe"> 
+          <span xid="span4" __cid="cbQJJfe" class="cbQJJfe">title</span>
+        </div> 
+      </div> 
+    </div>  
+    <style __cid="cbQJJfe" class="cbQJJfe">.x-panel.pcyYR363-iosstatusbar &gt;.x-panel-top {height: 48px;}.x-panel.pcyYR363-iosstatusbar &gt;.x-panel-content { top: 48px;bottom: nullpx;}.x-panel.pcyYR363-iosstatusbar &gt;.x-panel-bottom {height: nullpx;}.iosstatusbar .x-panel.pcyYR363-iosstatusbar &gt;.x-panel-top,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pcyYR363-iosstatusbar &gt;.x-panel-top {height: 68px;}.iosstatusbar .x-panel.pcyYR363-iosstatusbar &gt;.x-panel-content,.iosstatusbar .x-panel .x-panel-content .x-has-iosstatusbar.x-panel.pcyYR363-iosstatusbar &gt;.x-panel-content { top: 68px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pcyYR363-iosstatusbar &gt;.x-panel-top {height: 48px;}.iosstatusbar .x-panel .x-panel-content .x-panel.pcyYR363-iosstatusbar &gt;.x-panel-content {top: 48px;}</style>
+  </div> 
+</div>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.SlaughterhouseMapper">
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.Slaughterhouse">
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="principal_name" property="principalName" jdbcType="VARCHAR" />
+    <result column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="district_id" jdbcType="INTEGER" property="districtId" />
+    <result column="town_id" jdbcType="INTEGER" property="townId" />
+    <result column="village_id" jdbcType="INTEGER" property="villageId" />
+    <result column="creator_id" property="creatorId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, address, phone, create_time, update_time, principal_name, province_id,city_id,district_id,town_id,village_id,
+    creator_id,status,number
+  </sql>
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from slaughterhouse
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+    <sql id="find_List_Where" >
+       LEFT JOIN and_slaughterhouse_user ON and_slaughterhouse_user.user_id = s_user.Id 
+       where 1=1
+       <if test="userId != null" >
+      	and  and_slaughterhouse_user.user_id= #{userId,jdbcType=VARCHAR}
+       </if>
+      <if test="key != null" >
+        and    (
+        slaughterhouse.`name` like    '%${key}%' 
+        or  slaughterhouse.principal_name  like    '%${key}%' 
+        or  slaughterhouse.phone = #{key,jdbcType=VARCHAR}
+        )
+        </if>
+        	GROUP BY 	slaughterhouse.id
+  	</sql>
+   <!-- 屠宰场列表 -->
+   <select id="findListByKey" resultType="com.jf.projects.zmt.vo.slaughterhouse.SlaughterhouseListVo" parameterType="java.lang.String" >
+    select 
+	    slaughterhouse.id ,
+		slaughterhouse.`name`,
+		slaughterhouse.address,
+		slaughterhouse.phone,
+		slaughterhouse.create_time AS createTime,
+		slaughterhouse.update_time AS updateTime,
+		slaughterhouse.principal_name AS principalName,
+		slaughterhouse.province_id AS provinceId,
+		slaughterhouse.city_id AS cityId,
+		slaughterhouse.district_id AS districtId,
+		slaughterhouse.town_id AS townId,
+		slaughterhouse.village_id AS villageId,
+		slaughterhouse.creator_id AS creatorId,
+		slaughterhouse.`status` ,
+		slaughterhouse.number As number,
+	    s_user.`name` AS creatorName,
+		s_user.create_time AS creatorTime
+    from slaughterhouse
+    LEFT JOIN s_user ON slaughterhouse.creator_id = s_user.Id
+ 
+  	<include refid="find_List_Where" />
+  
+      LIMIT #{start},#{length}
+  </select>
+  <!-- 屠宰场详情 -->
+   <select id="findDetailsById" resultType="com.jf.projects.zmt.vo.slaughterhouse.SlaughterhouseDetailsVo" parameterType="java.lang.String" >
+	  SELECT
+	  	slaughterhouse.id,
+		slaughterhouse.`name`,
+		slaughterhouse.address,
+		slaughterhouse.phone,
+		(
+			SELECT
+				COUNT(
+					and_slaughterhouse_user.pig_id
+				)
+			FROM
+				and_slaughterhouse_user
+			LEFT JOIN pig_file ON and_slaughterhouse_user.pig_id = pig_file.pig_id
+			WHERE
+				and_slaughterhouse_user.slaughterhouse_id = #{id,jdbcType=VARCHAR}
+			AND pig_file.pig_status > 3
+		) AS number,
+		slaughterhouse.`status`,
+		slaughterhouse.principal_name AS principalName,
+		slaughterhouse.province_id AS provinceId,
+		slaughterhouse.city_id AS cityId,
+		slaughterhouse.district_id AS districtId,
+		slaughterhouse.town_id AS townId,
+		slaughterhouse.village_id AS villageId
+		FROM
+		slaughterhouse
+	 where id = #{id,jdbcType=VARCHAR}
+	</select>
+  
+   <!-- 屠宰场列表总条数 -->
+   <select id="findListCountByKey" resultType="long" parameterType="java.lang.String" >
+   	SELECT COUNT(*) from (
+	    select 
+		    slaughterhouse.id
+	    from slaughterhouse
+	    LEFT JOIN s_user ON slaughterhouse.creator_id = s_user.Id
+	  	<include refid="find_List_Where" />
+  	) AS tab
+  	
+      
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from slaughterhouse
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.Slaughterhouse" >
+    insert into slaughterhouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="principalName != null" >
+        principal_name,
+      </if>
+ 
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+        <if test="status != null" >
+        status,
+      </if>
+      	  <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="districtId != null">
+        district_id,
+      </if>
+      <if test="townId != null">
+        town_id,
+      </if>
+      <if test="villageId != null">
+        village_id,
+      </if>
+       <if test="number != null">
+        number,
+      </if>
+      
+      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="principalName != null" >
+        #{principalName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+        <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+       <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null">
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="townId != null">
+        #{townId,jdbcType=INTEGER},
+      </if>
+      <if test="villageId != null">
+        #{villageId,jdbcType=INTEGER},
+      </if>
+        <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.Slaughterhouse" >
+    update slaughterhouse
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="principalName != null" >
+        principal_name = #{principalName,jdbcType=VARCHAR},
+      </if>
+   
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=VARCHAR},
+      </if>
+        <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+            <if test="provinceId != null">
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null">
+        district_id = #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="townId != null">
+        town_id = #{townId,jdbcType=INTEGER},
+      </if>
+      <if test="villageId != null">
+        village_id = #{villageId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+       	number = #{number,jdbcType=INTEGER},
+      </if>
+      
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="countByAreaToday" parameterType="java.lang.Integer"
+		resultType = "java.lang.Integer">
+  	SELECT
+		COUNT(andsl.pig_id)
+	FROM
+		and_slaughterhouse_user andsl
+	LEFT JOIN slaughterhouse sl ON sl.id = andsl.slaughterhouse_id
+	LEFT JOIN pig_file file ON file.pig_id = andsl.pig_id
+	WHERE
+		1 = 1
+	AND file.pig_status > 3
+	<if test="type == 1">
+			and sl.province_id = #{areaId}
+		</if>
+		<if test="type == 2">
+			and sl.city_id = #{areaId}
+		</if>
+		<if test="type == 3">
+			and sl.district_id = #{areaId}
+		</if>
+		<if test="type == 4">
+			and sl.town_id = #{areaId}
+		</if>
+		<if test="type == 5">
+			and sl.village_id = #{areaId}
+		</if>
+		AND TO_DAYS(andsl.update_time) = TO_DAYS(NOW())
+  </select>
+  
+  <!-- 统计一年每月的宰杀数 -->
+  <select id="countSlaughterNumberForYear" parameterType="java.lang.Integer"
+		resultType="com.jf.projects.zmt.vo.home.SlaughterNumberVo">
+  	select 
+		sum(case month(andsl.create_time) when '1' then 1 else 0 end) as jan,
+		sum(case month(andsl.create_time) when '2' then 1 else 0 end) as feb,
+		sum(case month(andsl.create_time) when '3' then 1 else 0 end) as mar,
+		sum(case month(andsl.create_time) when '4' then 1 else 0 end) as apr,
+		sum(case month(andsl.create_time) when '5' then 1 else 0 end) as may,
+		sum(case month(andsl.create_time) when '6' then 1 else 0 end) as jun,
+		sum(case month(andsl.create_time) when '7' then 1 else 0 end) as jul,
+		sum(case month(andsl.create_time) when '8' then 1 else 0 end) as aug,
+		sum(case month(andsl.create_time) when '9' then 1 else 0 end) as sept,
+		sum(case month(andsl.create_time) when '10' then 1 else 0 end) as oct,
+		sum(case month(andsl.create_time) when '11' then 1 else 0 end) as nov,
+		sum(case month(andsl.create_time) when '12' then 1 else 0 end) as dece 
+	from and_slaughterhouse_user andsl
+	LEFT JOIN slaughterhouse sl ON sl.id = andsl.slaughterhouse_id
+	LEFT JOIN pig_file file ON file.pig_id = andsl.pig_id
+	where year(andsl.create_time) = DATE_FORMAT(NOW(), '%Y')
+  	AND file.pig_status > 3
+	<if test="type == 1">
+		and sl.province_id = #{areaId}
+	</if>
+	<if test="type == 2">
+		and sl.city_id = #{areaId}
+	</if>
+	<if test="type == 3">
+		and sl.district_id = #{areaId}
+	</if>
+	<if test="type == 4">
+		and sl.town_id = #{areaId}
+	</if>
+	<if test="type == 5">
+		and sl.village_id = #{areaId}
+	</if>
+  </select>
+  
+  <!-- 获取屠宰场下拉数据 -->
+  <select id="findOption" resultType="com.jf.projects.zmt.vo.OptionVo">
+  	SELECT sl.id AS `key`,sl.`name` AS value FROM slaughterhouse sl
+  </select>
+  <!-- 获取用户屠宰场下拉数据 -->
+  <select id="findUserOption" resultType="com.jf.projects.zmt.vo.OptionVo" parameterType="java.lang.String">
+  	SELECT
+	slaughterhouse.id AS `key`,
+	slaughterhouse.`name` AS `value`
+	FROM
+	and_slaughterhouse_user
+	LEFT JOIN slaughterhouse ON and_slaughterhouse_user.slaughterhouse_id = slaughterhouse.id
+	WHERE
+	and_slaughterhouse_user.user_id = #{userId}
+	GROUP BY  and_slaughterhouse_user.slaughterhouse_id
+
+  </select>
+  
+</mapper>

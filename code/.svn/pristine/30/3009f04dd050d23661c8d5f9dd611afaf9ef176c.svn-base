@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jf.projects.zmt.dao.AndSlaughterhouseUserMapper" >
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.AndSlaughterhouseUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="slaughterhouse_id" property="slaughterhouseId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="pig_id" property="pigId" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, slaughterhouse_id, create_time, update_time,pig_id
+  </sql>
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from and_slaughterhouse_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from and_slaughterhouse_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+    <select id="existByUserId" parameterType="java.lang.String" resultType="boolean">
+        select 
+	    count(user_id)>0
+	    from and_slaughterhouse_user
+	    where user_id= #{pigId,jdbcType=VARCHAR}
+   </select>
+   <select id="existPigId" parameterType="java.lang.String" resultType="boolean">
+    select 
+    count(pig_id)>0
+    from and_slaughterhouse_user
+    where pig_id = #{pigId,jdbcType=VARCHAR}
+  </select>
+   <select id="getSlaughterhouseIdByUserId" parameterType="java.lang.String" resultType="java.lang.String">
+    select 
+    slaughterhouse_id
+    from and_slaughterhouse_user
+    where user_id = #{userId,jdbcType=VARCHAR}  limit 1
+  </select>
+  <select id="findCountById" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		SELECT
+			COUNT(aa.pig_id)
+		FROM
+			and_slaughterhouse_user aa
+		LEFT JOIN pig_file bb ON aa.pig_id = bb.pig_id
+		WHERE
+			aa.user_id = #{userId,jdbcType=VARCHAR}
+		AND bb.pig_status > 3
+		AND aa.pig_id IS NOT NULL
+  </select>
+  <select id="findPeopleNumBySlaughterhouseId" resultType="long" parameterType="java.lang.String" >
+		SELECT COUNT(*) from 
+		(
+		SELECT
+		user_id
+		FROM
+		and_slaughterhouse_user 
+		
+		WHERE   slaughterhouse_id=#{slaughterhouseId,jdbcType=VARCHAR}
+		
+	
+		GROUP BY user_id
+		) AS tab
+	</select>
+  
+  <select id="findCountByUser" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		SELECT
+			COUNT(aa.pig_id)
+		FROM
+			and_slaughterhouse_user aa
+		WHERE
+			aa.user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  	 <select id="findCountByUserId" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select
+		COUNT(and_slaughterhouse_user.pig_id)
+		from and_slaughterhouse_user
+		LEFT JOIN pig_file ON and_slaughterhouse_user.pig_id = pig_file.pig_id
+		where user_id  = #{userId,jdbcType=VARCHAR}
+		AND pig_file.pig_status >3
+		AND  and_slaughterhouse_user.pig_id  is not null
+ 	 </select>
+  
+  
+   <select id="findNumberById" resultType="long" parameterType="java.lang.String" >
+	  SELECT
+		count(id) AS count
+		FROM
+			and_slaughterhouse_user
+		LEFT JOIN pig_file ON and_slaughterhouse_user.pig_id = pig_file.pig_id
+		WHERE
+		slaughterhouse_id= #{id,jdbcType=VARCHAR}
+		AND  pig_file.pig_status>3
+		AND  and_slaughterhouse_user.pig_id  is not null
+	</select>
+  
+    <sql id="Pid_List_last">
+   		FROM
+		and_slaughterhouse_user
+		LEFT JOIN pig_file ON and_slaughterhouse_user.pig_id = pig_file.pig_id
+		LEFT JOIN pig_breed ON pig_file.pig_type = pig_breed.id
+		WHERE and_slaughterhouse_user.user_id = #{id,jdbcType=VARCHAR}
+
+	 	<if test="pigBreed != null">
+        AND pig_breed.id= #{pigBreed,jdbcType=VARCHAR}
+      	</if>
+      	<if test="pigStatus != null">
+        AND 	pig_file.pig_status= #{pigStatus,jdbcType=VARCHAR}
+      	</if>
+	    <if test="pigId != null">
+        AND and_slaughterhouse_user.pig_id= #{pigId,jdbcType=VARCHAR}
+      	</if>
+      	<if test="startTime != null">
+        AND DATE_FORMAT(and_slaughterhouse_user.create_time,'%Y-%m-%d')   &gt;= #{startTime}
+      	</if>
+        <if test="endTime != null">
+        AND DATE_FORMAT(and_slaughterhouse_user.create_time,'%Y-%m-%d')   &lt;= #{endTime}
+      	</if>
+      	AND  and_slaughterhouse_user.pig_id  is not null
+	   
+   </sql>
+    <select id="findListByPid" parameterType="com.jf.projects.zmt.vo.BaseParam" resultType="com.jf.projects.zmt.vo.slaughterhouse.SlaughterhousePigVo">
+		SELECT
+		and_slaughterhouse_user.id AS id,
+		and_slaughterhouse_user.pig_id AS pigId,
+		pig_breed.`name` AS pigBreed,
+		pig_file.pig_status AS `status`,
+		DATE_FORMAT(and_slaughterhouse_user.create_time,'%Y-%m-%d') AS createTime
+   		<include refid="Pid_List_last" />
+   		ORDER BY  and_slaughterhouse_user.create_time DESC
+   		 LIMIT #{start,jdbcType=INTEGER},#{length,jdbcType=INTEGER}
+  	</select>
+  	 <select id="findList" parameterType="com.jf.projects.zmt.vo.BaseParam" resultType="com.jf.projects.zmt.vo.slaughterhouse.SlaughterhousePigVo">
+		SELECT
+		and_slaughterhouse_user.id AS id,
+		and_slaughterhouse_user.pig_id AS pigId,
+		pig_breed.`name` AS pigBreed,
+		pig_file.pig_status AS `status`,
+		DATE_FORMAT(and_slaughterhouse_user.create_time,'%Y-%m-%d') AS createTime
+   		<include refid="Pid_List_last" />
+   		ORDER BY  and_slaughterhouse_user.create_time DESC
+  	</select>
+  	
+  	 <select id="findListCountByPid" parameterType="com.jf.projects.zmt.vo.BaseParam" resultType="java.lang.Long">
+		SELECT
+		count(and_slaughterhouse_user.id) AS count
+   		<include refid="Pid_List_last" />
+  	</select>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.AndSlaughterhouseUser" >
+    insert into and_slaughterhouse_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="slaughterhouseId != null" >
+        slaughterhouse_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="pigId != null" >
+         pig_id
+      </if>
+    
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=VARCHAR},
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="slaughterhouseId != null" >
+        #{slaughterhouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+        <if test="pigId != null" >
+        #{pigId,jdbcType=TIMESTAMP},
+      </if>
+      
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.AndSlaughterhouseUser" >
+    update and_slaughterhouse_user
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="slaughterhouseId != null" >
+        slaughterhouse_id = #{slaughterhouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="pigId != null" >
+        pig_id = #{pigId,jdbcType=TIMESTAMP},
+      </if>
+      
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据用户id删除数据 -->
+  <delete id="deleteByUserId" parameterType="java.lang.String">
+  	delete from and_slaughterhouse_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+</mapper>

@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<title>养殖管理</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!-- VENDOR CSS -->
+		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+		<link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="../assets/css/main.css">
+		<!--<link rel="stylesheet" href="src/css/user_list_product.css">-->
+		<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+		<link rel="stylesheet" href="../assets/css/demo.css">
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+		<!-- ICONS -->
+		<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+		<link rel="stylesheet" href="../assets/vendor/layer/layui.css">
+		<link rel="stylesheet" type="text/css" href="../src/css/navSidebar.css" />
+		<link rel="stylesheet" href="../src/css/index.css">
+	</head>
+
+	<body>
+		<!-- WRAPPER -->
+		<div id="wrapper">
+			<!-- NAVBAR -->
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div id="navbar-menu">
+						<div class="backUpper">
+							<a href="#" class="backUpper-toggle">
+								<img src="../src/images/navSidebar/back.png" class="back-img" alt="返回" />
+								<span>返回上一页</span></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" class="welcome-font">
+									<span class="admin-font"><i class="fa fa-user" aria-hidden="true"></i> <span class="admin-arrt">超级管理员</span>，</span> 欢迎您！
+								</a>
+							</li>
+							<li class="cut-off">|</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="$.loginOut()"><span>退出登录</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!-- END NAVBAR -->
+			<!-- LEFT SIDEBAR -->
+			<div id="sidebar-nav" class="sidebar">
+				<div class="brand">
+					<a href="index.html"><img src="../src/images/navSidebar/logo.png" alt="" class="img-responsive img-circle avatar"></a>
+				</div>
+				<div class="sidebar-scroll">
+					<nav>
+						<ul class="nav">
+							<li class="none">
+								<a href="../index.html"><span>首页</span></a>
+							</li>
+							<li class="none">
+								<a href="../filing_manage/filing_manage.html" class=""><span>建档管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../breed_manage/breed_manage.html" class="active"><span>养殖管理</span></a>
+							</li>
+							<!--<li class="none">
+								<a href="../butcher_manage/butcher_manage.html" class=""><span>屠宰管理</span></a>
+							</li>-->
+							<li class="none">
+								<a href="#butcherPages" data-toggle="collapse" class="collapsed"><span>屠宰管理</span><i class="icon-submenu"></i> </a>
+								<div id="butcherPages" class="collapse">
+									<ul class="nav">
+										<li class="none">
+											<a href="../butcher_manage/butcher_manage.html" class="">屠宰场管理</a>
+										</li>
+										<li class="none">
+											<a href="../butcher_manage/entryOutDataSelsct.html" class="">屠宰场出入库数据</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="none">
+								<a href="../testing_center/testing_center.html" class=""><span>检验中心</span></a>
+							</li>
+							<li class="none">
+								<a href="../market_manage/market_manage.html" class=""><span>市场管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../account_manage/account_manage.html" class=""><span>账号管理</span></a>
+							</li>
+							<li class="none">
+								<a href="#subPages" data-toggle="collapse" class="collapsed"><span>基础配置</span><i class="icon-submenu"></i> </a>
+								<div id="subPages" class="collapse ">
+									<ul class="nav">
+										<li class="none">
+											<a href="../basic_configuration/role management.html" class="">角色管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/address_manage.html" class="">地址管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/pig_breed_manage.html" class="">生猪品种管理</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- END LEFT SIDEBAR -->
+			<!-- MAIN -->
+			<div class="main main_container">
+				<!-- MAIN CONTENT -->
+				<div class="main-content">
+					<!-- CONTAINER FLUID -->
+					<div class="container-fluid">
+						<!-- PANEL HEADLINE-->
+						<div class="locationNav">
+							<ul>
+								<li>
+									<a>养殖管理</a>
+								</li>
+								<li>
+									<span class="direction">&nbsp;》</span>
+									<a href="breed_manage.html" class="breedArea on">养殖户管理</a>
+								</li>
+								<li class="details none">
+									<span class="direction">&nbsp;》</span>
+									<a href="#" class="detailsArea">生猪列表</a>
+								</li>
+								<li class="pig none">
+									<span class="direction">&nbsp;》</span>
+									<a href="#" class="pigArea">生猪详情</a>
+								</li>
+							</ul>
+						</div>
+						<div class="panel panelDefault">
+							<div class="breed_manage">
+								<div class="panel-head filing-searchAera">
+									<div class="pull-left notPadMrg">
+										<button class="btn addBtn breedAdd none"><img src="../src/images/add.png"> 新建养殖户</button>
+
+									</div>
+									<div class=" pull-right searchBar">
+										<div class="form-group pull-right">
+											<button class="btn searchBtn pull-right breedSearch"><img src="../src/images/seacher.png"/> 查询</button>
+											<input type="text" class="form-control search-input pull-right" name="searchVal" id="searchVal" placeholder="账号/名称/联系方式" />
+
+										</div>
+										<div class="form-group pull-right">
+											<label class="pull-left">筛选:</label>
+											<select class="form-control filter-select">
+												<option value="all">全部</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="panel-content">
+									<div class="row">
+										<div class="col-md-12 notPadMrg">
+											<table id="breedManage" class="table table-hover table-striped " cellspacing="0">
+												<thead>
+													<tr>
+														<th class="serialNum">序号</th>
+														<th class="none">id</th>
+														<th class="none">状态</th>
+														<th class="th-select">
+															<select name="breed-departments" id="breed-departments">
+																<option value="all">所有部门</option>
+															</select>
+														</th>
+														<th class="th-select">
+															<select name="breed-admins" id="breed-role">
+																<option value="all">所有管理员</option>
+															</select>
+														</th>
+														<th>账号</th>
+														<th>名称</th>
+														<th>联系方式</th>
+														<th class="th-select">
+															<select name="breed-type" id="breed-type">
+																<option value="">全部类型</option>
+																<option value="0">个体</option>
+																<option value="1">养殖场</option>
+															</select>
+														</th>
+														<th>养殖数量</th>
+														<th>当前喂养饲料</th>
+														<th>地址</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+
+												<tbody id="tbodyBreedM">
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- breed_manage end -->
+							<!-- breed_details -->
+							<div class="breed_details none">
+								<div class="adminInfoArea baseInfo">
+									<div class="breed-info">
+										<div class="firstBox col-md-4">
+											<div class="col-md-12">
+												<span class="pull-left">账号：</span>
+												<span id="breed_details_account"></span>
+											</div>
+											<div class="col-md-12">
+												<span class="account-lable pull-left">名称：</span>
+												<span id="breed_details_userName"></span>
+											</div>
+											<div class="col-md-12">
+												<span class="pull-left">养殖数量：</span>
+												<span id="breed_details_total"></span>
+											</div>
+											<div class="col-md-12">
+												<span class="account-lable pull-left">状态：</span>
+												<p class="tips">
+													<span id="breed_details_status"></span>
+													<span class="statusBtn none"></span>
+												</p>
+											</div>
+										</div>
+										<div class="secondBox col-md-4">
+											<div class="col-md-12">
+												<span class="account-lable pull-left">联系方式：</span>
+												<span id="breed_details_phone"></span>
+											</div>
+											<div class="col-md-12">
+												<span class="account-lable pull-left">当前喂养饲料：</span>
+												<span id="breed_details_fooderName"></span>
+											</div>
+											<div class="col-md-12">
+												<span class=" pull-left">地址：</span>
+												<span id="breed_details_address"></span>
+												<i class="editorBtn none" title="编辑"></i>
+											</div>
+											<div class="col-md-12">
+												<span class="account-lable pull-left">类型：</span>
+												<span id="breed_details_farmType"></span>												
+											</div>											
+										</div>
+										<div class="thirdBox col-md-4">
+											<div class="downloadCode">
+												<img src="../src/images/applogo.png"/>
+												<img class="appCode" src="../src/images/apple.png" style="margin:0px 5px 0px 5px"/>
+												<img class="androidCode" src="../src/images/android.png" alt="" />
+												<span style="margin:0px 5px 0px 5px">|</span>
+												<span>扫码下载APP</span>
+											</div>
+										</div>
+										<!--dandan代码start-->
+										<div class="ainfo-group pull-left none">
+											<span class="pull-left">账号：</span>
+											<span id="breed_details_account"></span>
+										</div>
+										<div class="ainfo-group none">
+											<span class="pull-left">id：</span>
+											<span id="breed_details_id"></span>
+										</div>
+										<div class="ainfo-group none">
+											<span class="pull-left">养殖管理员信息：</span>
+											<span class="rowData"></span>
+										</div>
+										<div class="ainfo-group pull-left none">
+											<span class="pull-left">养殖数量：</span>
+											<span id="breed_details_total"></span>
+										</div>
+										<div class="ainfo-group pull-left ainfo-group-width none">
+											<span class="account-lable pull-left">状态：</span>
+											<p class="tips">
+												<span id="breed_details_status"></span>
+												<span class="statusBtn none"></span>
+											</p>
+										</div>
+										<div class="ainfo-group pull-left ainfo-group-width none">
+											<span class="account-lable pull-left">类型：</span>
+											<span id="breed_details_farmType"></span>
+										</div>
+										<div class="ainfo-group pull-left none">
+											<span class="account-lable pull-left">名称：</span>
+											<span id="breed_details_userName"></span>
+										</div>
+										<div class="ainfo-group pull-left none">
+											<span class="account-lable pull-left">联系方式：</span>
+											<span id="breed_details_phone"></span>
+										</div>
+										<div class="ainfo-group pull-left ainfo-group-width none">
+											<span class="account-lable pull-left">当前喂养饲料：</span>
+											<span id="breed_details_fooderName"></span>
+										</div>
+										<div class="ainfo-group pull-left ainfo-group-width none">
+											<span class=" pull-left">地址：</span>
+											<span id="breed_details_address"></span>
+											<i class="editorBtn" title="编辑"></i>
+										</div>
+										<!--dandan代码end-->	
+									</div>
+								</div>
+								<div class="breed_details_content">
+									<div class="breed_details-searchAera">
+										<div class="pull-left notPadMrg">
+											<button class="btn addBtn breedDetailAdd none"><img src="../src/images/add.png"> 新增生猪</button>
+
+										</div>
+										<div class=" pull-right searchBar">
+											<div class="form-group pull-right">
+												<button class="btn searchBtn pull-right breedDetailSearch"><img src="../src/images/seacher.png"/> 搜索</button>
+												<input type="text" class="form-control search-input pull-right" name="searchId" maxlength="15" id="searchId" placeholder="搜索ID" />
+
+											</div>
+										</div>
+									</div>
+									<div class="breed_details_table">
+										<table id="breedBetailsTable" class="table table-hover table-striped" cellspacing="0">
+											<thead>
+												<tr>
+													<th>序 号</th>
+													<th class="none">breedId</th>
+													<th>ID</th>
+													<th>品种</th>
+													<th>当前状态</th>
+													<th>创建时间</th>
+													<th>创建人</th>
+													<th>操 作</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- breed_details end -->
+							<!--Pig_list-->
+							<div class="pig_list none">
+								<div class="pig_list_content">
+									<div class="pig_list_heade">
+										<div class="pig_infor">
+											<div class="pig-group">
+												<span class="pull-left">ID：</span>
+												<span class="pig-id"></span>
+											</div>
+											<div class="pig-group pull-left">
+												<span class="pull-left">品种：</span>
+												<span class="pig-type"></span>
+											</div>
+
+										</div>
+									</div>
+									<div class="pig_list_table">
+										<table id="pigListTable" class="table table-hover table-striped" cellspacing="0">
+											<thead>
+												<tr>
+													<th>序 号</th>
+													<th>事件</th>
+													<th>生猪状态</th>
+													<th>地址</th>
+													<th>描述</th>
+													<th>操作人</th>
+													<th>时间</th>
+													<th>备注</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!--Pig_list end-->
+						</div>
+						<!-- PANEL END-->
+					</div>
+					<!-- CONTAINER FLUID END -->
+				</div>
+				<!-- END MAIN CONTENT -->
+				<div class="addPigLayer">
+					<div class="form-groud addPigIdArea">
+						<p>您确认要养殖以下生猪？</p>
+						<input class="form-control addPig margin-top-25" placeholder="请输入ID" />
+					</div>
+					<div class="addPigTypeArea none">
+						<p>生猪ID：<span class="addPigId"></span></p>
+						<div class="form-group margin-top-25">
+							<label class="pull-left">生猪类型:</label>
+							<select class="form-control addPigType">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- MAIN END-->
+
+		</div>
+		<!-- END WRAPPER -->
+
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/layer/layer.js"></script>
+		<script src="../assets/vendor/layer/layui.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
+		<script src="../assets/vendor/echarts/echarts.js"></script>
+		<script src="../assets/vendor/datatables/js/jquery.dataTables.js"></script>
+		<script src="../assets/vendor/datatables/js/dataTables.bootstrap.js"></script>
+		<script src="../src/js/allUrl.js"></script>
+		<script src="../src/js/Main.js"></script>
+		<script src="../src/js/manage.js"></script>
+		<script src="../src/js/breed_manage.js"></script>
+	</body>
+
+</html>

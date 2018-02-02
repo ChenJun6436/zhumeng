@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jf.projects.zmt.dao.LButcherCountMapper" >
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.LButcherCount" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="slaughterhouse_id" property="slaughterhouseId" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, slaughterhouse_id, number, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from l_butcher_count
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from l_butcher_count
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.LButcherCount" >
+    insert into l_butcher_count (id, slaughterhouse_id, number, 
+      create_time, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{slaughterhouseId,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jf.projects.zmt.model.LButcherCount" >
+    insert into l_butcher_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="slaughterhouseId != null" >
+        slaughterhouse_id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=VARCHAR},
+      <if test="slaughterhouseId != null" >
+        #{slaughterhouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jf.projects.zmt.model.LButcherCount" >
+    update l_butcher_count
+    <set >
+      <if test="slaughterhouseId != null" >
+        slaughterhouse_id = #{slaughterhouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jf.projects.zmt.model.LButcherCount" >
+    update l_butcher_count
+    set slaughterhouse_id = #{slaughterhouseId,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据屠宰场id获取当日数据 -->
+  <select id="findBySlaughterhouseId" resultType="com.jf.projects.zmt.model.LButcherCount">
+	  	SELECT
+			bc.id AS id,
+			bc.slaughterhouse_id AS slaughterhouseId,
+			bc.number AS number
+		FROM
+			l_butcher_count bc
+		WHERE
+			bc.slaughterhouse_id = #{slaughterId,jdbcType=VARCHAR}
+		AND to_days(bc.create_time) = to_days(now())
+  </select>
+  
+  <!-- 根据屠宰场id获取当日屠宰数量 -->
+  <select id="countToday" resultType="java.lang.Integer">
+  	SELECT lbc.number FROM l_butcher_count lbc
+	WHERE lbc.slaughterhouse_id = #{slaughterId,jdbcType=VARCHAR}
+	AND to_days(lbc.create_time) = to_days(now())
+  </select>
+  
+  <!-- 根据id批量删除 -->
+  <delete id="deleteByIds" parameterType="java.util.List" >
+    delete from l_butcher_count where id in
+    <foreach item="item" index="index" collection="ids"
+         open="(" separator="," close=")"> #{item}
+   	</foreach>
+  </delete>
+  
+</mapper>

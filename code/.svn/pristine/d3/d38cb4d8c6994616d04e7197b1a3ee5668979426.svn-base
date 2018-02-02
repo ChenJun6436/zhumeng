@@ -1,0 +1,5 @@
+ 
+#xml\u914d\u7f6e\u6587\u4ef6\u7269\u7406\u5730\u5740,\u533a\u7ea7\u6570\u636e
+xmlFile_address=D:/xmlFile/district_data.xml
+#\u5e02\u7ea7\u6570\u636e
+city_xmlFile_address=D:/xmlFile/city_data.xml

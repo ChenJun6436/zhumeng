@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.FarmsMapper">
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.Farms">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="farms_name" jdbcType="VARCHAR" property="farmsName" />
+    <result column="farmer_id" jdbcType="VARCHAR" property="farmerId" />
+    <result column="farms_adress" jdbcType="VARCHAR" property="farmsAdress" />
+    <result column="farms_type" jdbcType="INTEGER" property="farmsType" />
+    <result column="food" jdbcType="VARCHAR" property="food" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, farms_name, farmer_id, farms_adress, farms_type,food
+  </sql>
+  <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from farms
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from farms
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.Farms">
+    insert into farms
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="farmsName != null">
+        farms_name,
+      </if>
+      <if test="farmerId != null">
+        farmer_id,
+      </if>
+      <if test="farmsAdress != null">
+        farms_adress,
+      </if>
+      <if test="farmsType != null">
+        farms_type,
+      </if>
+      <if test="food != null">
+        food,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
+      <if test="farmsName != null">
+        #{farmsName,jdbcType=VARCHAR},
+      </if>
+      <if test="farmerId != null">
+        #{farmerId,jdbcType=VARCHAR},
+      </if>
+      <if test="farmsAdress != null">
+        #{farmsAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="farmsType != null">
+        #{farmsType,jdbcType=INTEGER},
+      </if>
+      <if test="food != null">
+         #{food,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.Farms">
+    update farms
+    <set>
+      <if test="farmsName != null">
+        farms_name = #{farmsName,jdbcType=VARCHAR},
+      </if>
+      <if test="farmerId != null">
+        farmer_id = #{farmerId,jdbcType=VARCHAR},
+      </if>
+      <if test="farmsAdress != null">
+        farms_adress = #{farmsAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="farmsType != null">
+        farms_type = #{farmsType,jdbcType=INTEGER},
+      </if>
+       <if test="food != null">
+        food = #{food,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+	<select id="findFarmsVos" resultType="com.jf.projects.zmt.vo.farms.FarmsInfo"
+	parameterType="java.lang.String">
+	SELECT
+	s_user.Id AS id,
+	s_user.village_id AS villageId,
+	s_user.district_id AS districtId,
+	s_user.province_id AS provinceId,
+	s_user.city_id AS cityId,
+	s_user.town_id AS townId,
+	s_department.`name` AS department,
+	s_role.`name` AS role,
+	s_user.login_name AS account,
+	s_user.`name` AS userName,
+	s_user.tel AS phone,
+	farms.farms_type AS farmType,
+	farms.food AS fooderName,
+	s_user.`status` status
+	FROM
+	farms
+	LEFT JOIN s_user ON s_user.Id=farms.farmer_id
+	LEFT JOIN s_department ON s_user.department_id = s_department.id
+	LEFT JOIN s_type ON s_user.type_id = s_type.Id
+	LEFT JOIN and_user_role ON and_user_role.user_id = s_user.Id
+	LEFT JOIN s_role ON s_role.Id = and_user_role.role_id
+
+	WHERE 1=1
+	<if test="farmType != null  ">
+		and farms.farms_type = #{farmType}
+	</if>
+	<if test="account != null and account != '' ">
+		and s_user.login_name = #{account,jdbcType=VARCHAR}
+	</if>
+	<if test="phone != null and phone != '' ">
+		and s_user.tel = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="typeId != null and typeId != '' ">
+		and s_type.id = #{typeId,jdbcType=VARCHAR}
+	</if>
+	<if test="departmentId != null and departmentId  != '' ">
+		and s_department.id = #{departmentId,jdbcType=VARCHAR}
+	</if>
+	<if test="roleId != null and roleId != '' ">
+		and and_user_role.role_id = #{roleId,jdbcType=VARCHAR}
+	</if>
+	<if test="keyWords != null and keyWords != '' ">
+		AND (s_user.login_name LIKE '%${keyWords}%'
+		OR s_user.`name`
+		LIKE '%${keyWords}%'
+		OR s_user.tel = #{keyWords})
+	</if>
+	LIMIT #{start},#{length}
+</select>
+
+
+<select id="countFarmsVos" resultType="long"
+	parameterType="java.lang.String">
+	SELECT
+	COUNT(s_user.Id)
+	FROM
+	farms
+	LEFT JOIN s_user ON s_user.Id=farms.farmer_id
+	LEFT JOIN s_department ON s_user.department_id = s_department.id
+	LEFT JOIN s_type ON s_user.type_id = s_type.Id
+	LEFT JOIN and_user_role ON and_user_role.user_id = s_user.Id
+	LEFT JOIN s_role ON s_role.Id = and_user_role.role_id
+	WHERE 1=1
+	<if test="farmType != null  ">
+		and farms.farms_type = #{farmType}
+	</if>
+	<if test="account != null and account != '' ">
+		and s_user.login_name = #{account,jdbcType=VARCHAR}
+	</if>
+	<if test="phone != null and phone != '' ">
+		and s_user.tel = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="typeId != null and typeId != '' ">
+		and s_type.id = #{typeId,jdbcType=VARCHAR}
+	</if>
+	<if test="departmentId != null and departmentId  != '' ">
+		and s_department.id = #{departmentId,jdbcType=VARCHAR}
+	</if>
+	<if test="roleId != null and roleId != '' ">
+		and and_user_role.role_id = #{roleId,jdbcType=VARCHAR}
+	</if>
+	<if test="keyWords != null and keyWords != '' ">
+		AND (s_user.login_name LIKE '${keyWords}%'
+		OR s_user.`name`
+		LIKE '${keyWords}%'
+		OR s_user.tel = #{keyWords})
+	</if>
+</select>
+<select id="findFarmsBykeywords" resultType="com.jf.projects.zmt.vo.farms.UserOfFarms" parameterType="java.lang.String">
+SELECT
+	s_user.Id AS id,
+	s_user.`name` AS userName,
+	s_user.tel AS phone
+	FROM
+	farms
+	LEFT JOIN s_user ON s_user.Id=farms.farmer_id
+	WHERE 
+	1=1
+	<if test="keyWords != null and keyWords != '' ">
+	AND ( s_user.`name`
+	LIKE #{keyWords}
+	OR s_user.tel LIKE #{keyWords})
+   </if>  
+</select>
+<select id="getFarmId" parameterType="java.lang.String" resultType="java.lang.String">
+select farms.id AS id
+from farms where farms.farmer_id=#{id}
+</select>
+
+
+<!-- app端查找某一个人建立的养殖户信息 -->
+<select id="appGetFarsmInfo" resultType="com.jf.projects.zmt.vo.farms.AppFarmsVo"
+	parameterType="java.lang.String">
+	SELECT
+	s_user.Id AS id,
+	DATE_FORMAT(s_user.create_time,'%Y/%m/%d')  AS createTime,
+	s_user.village_id
+	AS villageId,
+	s_user.district_id AS districtId,
+	s_user.province_id AS
+	provinceId,
+	s_user.city_id AS cityId,
+	s_user.town_id AS townId,
+	s_user.login_name AS account,
+	s_user.`name` AS
+	userName,
+	s_user.tel AS
+	phone,
+	farms.farms_type AS farmType,
+	farms.food AS fooderName,
+	s_user.`status` status
+	FROM
+	farms
+	LEFT JOIN
+	s_user ON
+	s_user.Id=farms.farmer_id
+	LEFT JOIN and_user_role ON
+	and_user_role.user_id = s_user.Id
+	LEFT JOIN s_role ON s_role.Id =
+	and_user_role.role_id
+	WHERE
+	s_user.`status`="enable"
+	AND
+	s_user.creator_id=#{id}
+	<if test="beginDate != null and beginDate != ''">
+		AND s_user.create_time <![CDATA[>=]]>
+		#{beginDate}
+	</if>
+	<if test="endDate != null and endDate != ''">
+		AND s_user.create_time <![CDATA[<=]]>#{endDate}
+	</if>
+	<if test="keyWords != null and keyWords != ''">
+	 AND ( s_user.`name`
+		LIKE '%${keyWords}%'
+		OR s_user.tel = #{keyWords})
+	</if>
+</select>
+
+<!--通过养殖户获取主键  -->
+<select id="appGetIdByFarmerId" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT farms.id FROM farms WHERE farms.farmer_id=#{id}
+</select>
+
+<!--通过养殖户获取养殖信息  -->
+<select id="appGetFarmInfo" resultMap="BaseResultMap"
+	parameterType="java.lang.String">
+	SELECT * FROM farms WHERE farms.farmer_id=#{id}
+</select>
+
+</mapper>

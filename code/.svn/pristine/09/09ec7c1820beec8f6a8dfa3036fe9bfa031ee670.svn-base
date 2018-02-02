@@ -1,0 +1,8 @@
+.isShow{
+	display:none;
+	
+}
+
+.x-modal-title + .x-modal-text,.x-modal-title{
+	color:#28282E;
+}

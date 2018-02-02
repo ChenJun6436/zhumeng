@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.footer .mint-tab-item {
+  padding: 0px; }
+.footer .f_font {
+  width: auto;
+  height: 12px;
+  padding-bottom: 5px; }
+.footer .f_img {
+  width: 22px;
+  height: 20px;
+  margin-top: 5px; }
+.footer .mint-tab-item-icon {
+  margin: 0px auto !important;
+  padding-left: .05rem; }
+
+.mint-tabbar > .mint-tab-item.is-selected {
+  background-color: #28282e !important; }
+
+.statusSelect {
+  position: relative; }
+  .statusSelect select {
+    z-index: 1;
+    left: 0;
+    margin-top: .4rem;
+    position: absolute;
+    width: 100% !important; }
+
+/*我的猪 start*/
+.msgbox-message {
+  color: #444444 !important;
+  font-size: .32rem;
+  line-height: .5rem; }
+  .msgbox-message .fontWei {
+    font-size: .4rem;
+    padding-bottom: 0px;
+    font-weight: bold; }
+
+.mint-msgbox-confirm {
+  color: #444444 !important; }
+
+/*我的猪 end*/
+
+/*# sourceMappingURL=myStyle.css.map */

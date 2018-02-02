@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.BrandMapper">
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.Brand">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="sign_status" jdbcType="INTEGER" property="signStatus" />
+    <result column="creater_id" jdbcType="VARCHAR" property="createrId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sign, sign_status, creater_id, create_time, update_time
+  </sql>
+  <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from brand
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from brand
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.Brand">
+    insert into brand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="signStatus != null">
+        sign_status,
+      </if>
+      <if test="createrId != null">
+        creater_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="signStatus != null">
+        #{signStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createrId != null">
+        #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.Brand">
+    update brand
+    <set>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="signStatus != null">
+        sign_status = #{signStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createrId != null">
+        creater_id = #{createrId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="activeBrand" parameterType="java.lang.String">
+  UPDATE brand  set brand.sign_status=1,brand.creater_id=#{userId},brand.create_time=#{creatDate} WHERE brand.sign=#{sign}
+  </update>
+  <select id="findBrandStatus" parameterType="java.lang.String" resultType="java.lang.Integer">
+  SELECT brand.sign_status as status FROM brand WHERE brand.sign=#{sign}
+  </select>
+  <delete id="deleteSign" parameterType="java.lang.String">
+  UPDATE brand SET brand.sign_status=0,brand.creater_id=NULL WHERE brand.sign=#{sign}
+  </delete>
+  <select id="findBrand" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from brand
+    where brand.sign=#{sign}
+  </select>
+
+	<!--app查找某一个人激活的生猪标签 -->
+	<select id="findAppBrandInfoByCreater" parameterType="java.lang.String"
+		resultType="com.jf.projects.zmt.vo.fileManager.AppBrandVo">
+		SELECT
+		brand.id as id,
+		brand.sign as sign,
+		DATE_FORMAT(brand.create_time,'%Y-%m-%d') AS
+		createTime
+		FROM
+		brand
+		LEFT JOIN pig_file AS pf ON brand.sign = pf.pig_id
+		LEFT JOIN
+		s_user AS sue ON sue.Id=pf.famer_id
+		WHERE
+		brand.sign_status=1
+		AND brand.creater_id=#{id}
+		<if test="beginDate != null and beginDate != ''">
+			AND brand.create_time <![CDATA[>=]]>
+			#{beginDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			AND brand.create_time <![CDATA[<=]]>#{endDate}
+		</if>
+		<if test="keyWords != null and keyWords != ''">
+			AND brand.sign LIKE '${keyWords}%'
+		</if>
+	</select>
+</mapper>

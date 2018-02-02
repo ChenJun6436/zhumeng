@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<title>地址管理</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!-- VENDOR CSS -->
+		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+		<link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="../assets/css/main.css">
+		<!--<link rel="stylesheet" href="src/css/user_list_product.css">-->
+		<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+		<link rel="stylesheet" href="../assets/css/demo.css">
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+		<!-- ICONS -->
+		<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+		<link rel="stylesheet" href="../assets/vendor/layer/layui.css">
+		<link rel="stylesheet" type="text/css" href="../src/css/navSidebar.css" />
+		<link rel="stylesheet" href="../src/css/index.css">
+	</head>
+
+	<body>
+		<!-- WRAPPER -->
+		<div id="wrapper">
+			<!-- NAVBAR -->
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div id="navbar-menu">
+						<div class="backUpper">
+							<a href="#" class="backUpper-toggle" data-toggle="backUpper" onclick="">
+								<img src="../src/images/navSidebar/back.png" class="back-img" alt="返回" />
+								<span>返回上一页</span></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" class="welcome-font">
+									<span class="admin-font"><i class="fa fa-user" aria-hidden="true"></i> <span class="admin-arrt">超级管理员</span>，</span> 欢迎您！
+								</a>
+							</li>
+							<li class="cut-off">|</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="$.loginOut()"><span>退出登录</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!-- END NAVBAR -->
+			<!-- LEFT SIDEBAR -->
+			<div id="sidebar-nav" class="sidebar">
+				<div class="brand">
+					<a href="index.html"><img src="../src/images/navSidebar/logo.png" alt="" class="img-responsive img-circle avatar"></a>
+				</div>
+				<div class="sidebar-scroll">
+					<nav>
+						<ul class="nav">
+							<li class="none">
+								<a href="../index.html"><span>首页</span></a>
+							</li>
+							<li class="none">
+								<a href="../filing_manage/filing_manage.html" class=""><span>建档管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../breed_manage/breed_manage.html" class=""><span>养殖管理</span></a>
+							</li>
+							<!--<li class="none">
+								<a href="../butcher_manage/butcher_manage.html" class=""><span>屠宰管理</span></a>
+							</li>-->
+							<li class="none">
+								<a href="#butcherPages" data-toggle="collapse" class="collapsed"><span>屠宰管理</span><i class="icon-submenu"></i> </a>
+								<div id="butcherPages" class="collapse">
+									<ul class="nav">
+										<li class="none">
+											<a href="../butcher_manage/butcher_manage.html" class="">屠宰场管理</a>
+										</li>
+										<li class="none">
+											<a href="../butcher_manage/entryOutDataSelsct.html" class="">屠宰场出入库数据</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="none">
+								<a href="../testing_center/testing_center.html" class=""><span>检验中心</span></a>
+							</li>
+							<li class="none">
+								<a href="../market_manage/market_manage.html" class=""><span>市场管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../account_manage/account_manage.html" class=""><span>账号管理</span></a>
+							</li>
+							<li class="none">
+								<a href="#subPages" data-toggle="collapse" class="active"><span>基础配置</span><i class="icon-submenu"></i> </a>
+								<div id="subPages" class="collapse in">
+									<ul class="nav">
+										<li class="none">
+											<a href="../basic_configuration/role management.html" class="">角色管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/address_manage.html" class="on"><span></span>地址管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/pig_breed_manage.html" class="">生猪品种管理</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- END LEFT SIDEBAR -->
+			<!-- MAIN -->
+			<div class="main main_container addressM">
+				<!-- MAIN CONTENT -->
+				<div class="main-content">
+					<!-- CONTAINER FLUID -->
+					<div class="container-fluid">
+						<!-- PANEL HEADLINE-->
+						<div class="locationNav">
+							<ul>
+								<li>
+									<a href="#">基础配置</a>
+								</li>
+								<li>
+									<a href="#" class="direction">》</a>
+								</li>
+								<li>
+									<a href="address_manage.html" class="on">地址管理</a>
+								</li>
+							</ul>
+						</div>
+						<div class="panel">
+							<div class="panel-head filing-searchAera">
+								<div class="pull-left notPadMrg">
+									<button class="btn addBtn none"><span class="glyphicon glyphicon-plus"></span> 新增地址</button>
+								</div>
+							</div>
+							<div class="panel-content">
+								<div class="row">
+									<div class="col-md-12 notPadMrg table-addressM">
+										<table id="tableAddressM" class="table table-hover table-striped tableAddressM" cellspacing="0">
+											<thead>
+												<tr>
+													<th class="serialNum">序号</th>
+													<th class="none">id</th>
+													<th>状态</th>
+													<th class="th-select" style="width:160px">
+														<select name="address" id="address">
+															<option value="">全部</option>
+														</select>
+													</th>
+													<th class="th-select" style="width:160px">
+														<select name="citys" id="citys">
+															<option value="">所有市</option>
+														</select>
+													</th>
+													<th class="th-select">
+														<select name="countys" id="countys">
+															<option value="">所有区/县</option>
+														</select>
+													</th>
+													<th class="th-select">
+														<select name="towns" id="towns">
+															<option value="">所有镇</option>
+														</select>
+													</th>
+													<th>所有乡</th>
+													<th  style="width:200px;padding: 0px">操作</th>
+												</tr>
+											</thead>
+											<tbody id="tbodyAddressM" class="tbodyAddressM">
+											</tbody>
+										</table>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- PANEL END-->
+					</div>
+					<!-- CONTAINER FLUID END -->
+				</div>
+			</div>
+			<!-- MAIN END -->
+		</div>
+		<!-- END WRAPPER -->
+
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/layer/layer.js"></script>
+		<script src="../assets/vendor/layer/layui.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
+		<script src="../assets/vendor/echarts/echarts.js"></script>
+		<script src="../assets/vendor/datatables/js/jquery.dataTables.js"></script>
+		<script src="../assets/vendor/datatables/js/dataTables.bootstrap.js"></script>
+		<script src="../src/js/allUrl.js"></script>
+		<script src="../src/js/Main.js"></script>
+		<script src="../src/js/address_manage.js"></script>
+	</body>
+
+</html>

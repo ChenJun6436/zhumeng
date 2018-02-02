@@ -1,0 +1,84 @@
+body,
+html {
+  font-size: 14px;
+  font-family: MicrosoftYaHei; }
+
+.entryOutData .data_list {
+  margin-top: 10px;
+  margin-bottom: 13px; }
+  .entryOutData .data_list .on {
+    color: #1FB5AD; }
+.entryOutData .newAddBuctNum .layerTitle {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 56px;
+  margin-top: 90px; }
+.entryOutData .newAddBuctNum input {
+  width: 279px;
+  height: 39px;
+  display: block;
+  margin: auto;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  margin-top: 28px; }
+.entryOutData .newAddBuctNum span {
+  position: absolute;
+  right: 170px;
+  top: 183px; }
+.entryOutData .numberStatistics {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #E3E5EB;
+  height: 90px; }
+  .entryOutData .numberStatistics span {
+    line-height: 90px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #777777; }
+.entryOutData .entry_listTable {
+  margin-top: 29px;
+  padding: 0px; }
+  .entryOutData .entry_listTable .listBtn {
+    padding: 0px; }
+    .entryOutData .entry_listTable .listBtn > ul li {
+      cursor: pointer;
+      float: left;
+      width: 141px;
+      height: 42px;
+      margin-right: 9px;
+      background-color: #AAAAAA;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      color: white;
+      text-align: center;
+      line-height: 42px; }
+    .entryOutData .entry_listTable .listBtn > ul .activeLi {
+      background-color: #1FB5AD; }
+  .entryOutData .entry_listTable .listContent {
+    padding: 0px;
+    background-color: white;
+    min-height: 660px; }
+    .entryOutData .entry_listTable .listContent .btnList {
+      height: 90px;
+      border-bottom: 1px solid #F0F2F7; }
+      .entryOutData .entry_listTable .listContent .btnList > ul {
+        float: right;
+        margin-top: 28px;
+        margin-right: 18px; }
+        .entryOutData .entry_listTable .listContent .btnList > ul li {
+          cursor: pointer;
+          float: left;
+          width: 111px;
+          height: 38px;
+          margin-right: 13px;
+          border-radius: 4px;
+          background-color: #1FBBA6;
+          color: white;
+          text-align: center;
+          line-height: 38px; }
+    .entryOutData .entry_listTable .listContent .entryDataContent {
+      padding: 0px 41px;
+      padding-top: 22px; }
+
+/*# sourceMappingURL=entryOutData.css.map */

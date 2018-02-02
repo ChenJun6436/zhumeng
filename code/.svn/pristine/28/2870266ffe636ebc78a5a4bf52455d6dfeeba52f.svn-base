@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.PigFlowMapper">
+	<resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.PigFlow">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="pig_id" jdbcType="VARCHAR" property="pigId" />
+		<result column="thing" jdbcType="VARCHAR" property="thing" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="creater_name" jdbcType="VARCHAR" property="createrName" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="create_id" jdbcType="VARCHAR" property="createId" />
+		<result column="userId" jdbcType="VARCHAR" property="userId" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, pig_id, thing, status, address, description,
+		creater_name,create_time,create_id,userId,type,remark
+	</sql>
+	<select id="findById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pig_flow
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="findLastByPigId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" />
+		FROM
+		pig_flow
+		WHERE
+		pig_flow.pig_id = #{pigId,jdbcType=VARCHAR}
+		AND pig_flow.type is not null
+		AND pig_flow.type != 3
+		ORDER BY
+		pig_flow.create_time DESC
+		LIMIT 1
+	</select>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from pig_flow
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+	
+	<insert id="insert" parameterType="com.jf.projects.zmt.model.PigFlow">
+		insert into pig_flow
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="pigId != null">
+				pig_id,
+			</if>
+			<if test="thing != null">
+				thing,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="createrName != null">
+				creater_name,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="createId != null">
+				create_id,
+			</if>
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=VARCHAR},
+			<if test="pigId != null">
+				#{pigId,jdbcType=VARCHAR},
+			</if>
+			<if test="thing != null">
+				#{thing,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="createrName != null">
+				#{createrName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	
+	<select id= "findAllByPigId" resultType = "com.jf.projects.zmt.vo.pigFlow.PigFlowVo">
+		select
+			flow.thing AS thing,
+			flow.`status` AS `status`,
+			flow.address AS address,
+			flow.description AS description,
+			flow.creater_name AS createrName,
+			flow.remark AS remark,
+			date_format(flow.create_time,'%Y-%m-%d') AS createTime
+			from pig_flow flow
+			where flow.pig_id = #{pigId,jdbcType=VARCHAR}
+		ORDER BY flow.create_time ASC
+	</select>
+	
+	<!-- 根据生猪id获取该生猪流程 -->
+	<select id= "findByPigId" resultType = "com.jf.projects.zmt.vo.pigFlow.PigFlowVo">
+		select
+			flow.thing AS thing,
+			flow.`status` AS `status`,
+			flow.address AS address,
+			flow.description AS description,
+			flow.creater_name AS createrName,
+			flow.remark AS remark,
+			date_format(flow.create_time,'%Y-%m-%d') AS createTime
+			from pig_flow flow
+			where flow.pig_id = #{pigId,jdbcType=VARCHAR}
+		ORDER BY flow.create_time ASC
+		LIMIT #{pageParam.start},#{pageParam.length}
+	</select>
+	
+	<!-- 统计条数 -->
+	<select id = "findtotal" resultType="java.lang.Long" 
+		parameterType = "com.jf.projects.zmt.vo.home.HomeSearchVo">
+  	SELECT COUNT(demp.pigId) FROM(
+	  	SELECT file.id AS pigId
+			FROM pig_file file
+			LEFT JOIN pig_breed breed ON file.pig_type = breed.id
+			LEFT JOIN farms f ON f.farmer_id = file.famer_id
+			LEFT JOIN slaughterhouse sl ON sl.id = file.slaughterhouse_id
+			LEFT JOIN market m ON m.id = file.market_id
+			LEFT JOIN s_user u ON u.Id = file.create_people_id
+		WHERE 1 = 1
+		<if test="type == 1">
+			and u.province_id = #{areaId}
+		</if>
+		<if test="type == 2">
+			and u.city_id = #{areaId}
+		</if>
+		<if test="type == 3">
+			and u.district_id = #{areaId}
+		</if>
+		<if test="type == 4">
+			and u.town_id = #{areaId}
+		</if>
+		<if test="type == 5">
+			and u.village_id = #{areaId}
+		</if>
+		<if test="breedId != null and breedId != '' ">
+			AND breed.id = #{breedId}
+		</if>
+		<if test="status != null and status != '' ">
+			AND file.pig_status = #{status}
+		</if>
+		<if test="farmId != null and farmId != '' ">
+			AND f.farms_type = #{farmId}
+		</if>
+		<if test="slaughterId != null and slaughterId != '' ">
+			AND file.slaughterhouse_id = #{slaughterId}
+		</if>
+		<if test="marketId != null and marketId != '' ">
+			AND file.market_id = #{marketId}
+		</if>
+		<if test="keywords != null and keywords != '' ">
+			AND file.pig_id LIKE concat(concat('%',#{keywords}),'%')
+		</if>
+		
+ 	) AS demp
+  </select>
+  <!-- 首页分页数据 -->
+  <select id="findPage" parameterType = "com.jf.projects.zmt.vo.home.HomeSearchVo"
+  	resultType="com.jf.projects.zmt.vo.home.HomePigVo">
+	  	SELECT
+			file.id AS pigId,
+			file.pig_id AS pigNo,
+			breed.`name` AS pigBreed,
+			file.pig_status AS status,
+			file.create_people_id AS createPersonId,
+			IFNULL(f.farms_name,'/') AS farmName,
+			IFNULL(sl.`name`,'/') AS slaughter,
+			IFNULL(m.`name`,'/') AS market
+			
+		FROM
+			pig_file file
+		LEFT JOIN pig_breed breed ON file.pig_type = breed.id
+		LEFT JOIN farms f ON f.farmer_id = file.famer_id
+		LEFT JOIN slaughterhouse sl ON sl.id = file.slaughterhouse_id
+		LEFT JOIN market m ON m.id = file.market_id
+		LEFT JOIN s_user u ON u.Id = file.create_people_id
+		WHERE 1 = 1
+		<if test="type == 1">
+			and u.province_id = #{areaId}
+		</if>
+		<if test="type == 2">
+			and u.city_id = #{areaId}
+		</if>
+		<if test="type == 3">
+			and u.district_id = #{areaId}
+		</if>
+		<if test="type == 4">
+			and u.town_id = #{areaId}
+		</if>
+		<if test="type == 5">
+			and u.village_id = #{areaId}
+		</if>
+		
+		<if test="breedId != null and breedId != '' ">
+			AND breed.id = #{breedId}
+		</if>
+		<if test="status != null and status != '' ">
+			AND file.pig_status = #{status}
+		</if>
+		<if test="farmId != null and farmId != '' ">
+			AND f.farms_type = #{farmId}
+		</if>
+		<if test="slaughterId != null and slaughterId != '' ">
+			AND file.slaughterhouse_id = #{slaughterId}
+		</if>
+		<if test="marketId != null and marketId != '' ">
+			AND file.market_id = #{marketId}
+		</if>
+		<if test="keywords != null and keywords != '' ">
+			AND file.pig_id LIKE concat(concat('%',#{keywords}),'%')
+		</if>
+		LIMIT #{start},#{length}
+  </select>
+  
+  <!-- 生猪详情统计条数 -->
+  <select id="countByPigId" resultType="java.lang.Long" parameterType="java.lang.String">
+  	SELECT COUNT(demp.id) FROM(
+	  	select
+			flow.id as id
+			from pig_flow flow
+			where flow.pig_id = #{pigId,jdbcType=VARCHAR}
+	) AS demp
+  </select>
+</mapper>

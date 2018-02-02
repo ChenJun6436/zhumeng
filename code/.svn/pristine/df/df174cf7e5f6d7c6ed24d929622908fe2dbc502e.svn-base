@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.PigFileMapper">
+	<resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.PigFile">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="pig_id" jdbcType="VARCHAR" property="pigId" />
+		<result column="famer_id" jdbcType="VARCHAR" property="famerId" />
+		<result column="pig_type" jdbcType="VARCHAR" property="pigType" />
+		<result column="mark" jdbcType="VARCHAR" property="mark" />
+		<result column="pig_status" jdbcType="INTEGER" property="pigStatus" />
+		<result column="create_people_id" jdbcType="VARCHAR" property="createPeopleId" />
+		<result column="slaughterhouse_id" jdbcType="VARCHAR" property="slaughterhouseId" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="market_id" jdbcType="VARCHAR" property="marketId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, pig_id, famer_id, pig_type, mark, pig_status,
+		create_people_id,
+		slaughterhouse_id,
+		create_time, update_time,market_id
+	</sql>
+	<select id="findById" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from pig_file
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<!-- 判断猪id是否存在 -->
+	 <select id="existPigId" parameterType="java.lang.String" resultType="boolean">
+	    select 
+	    count(pig_id)=0
+	    from pig_file
+	    where pig_id = #{pigId,jdbcType=VARCHAR}
+	 </select>
+	  
+	<delete id="delete" parameterType="java.lang.String">
+		delete from pig_file
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.jf.projects.zmt.model.PigFile">
+		insert into pig_file
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,
+			<if test="pigId != null">
+				pig_id,
+			</if>
+			<if test="famerId != null">
+				famer_id,
+			</if>
+			<if test="pigType != null">
+				pig_type,
+			</if>
+			<if test="mark != null">
+				mark,
+			</if>
+			<if test="pigStatus != null">
+				pig_status,
+			</if>
+			<if test="createPeopleId != null">
+				create_people_id,
+			</if>
+			<if test="slaughterhouseId != null">
+				slaughterhouse_id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="marketId != null">
+				market_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id,jdbcType=VARCHAR},
+			<if test="pigId != null">
+				#{pigId,jdbcType=VARCHAR},
+			</if>
+			<if test="famerId != null">
+				#{famerId,jdbcType=VARCHAR},
+			</if>
+			<if test="pigType != null">
+				#{pigType,jdbcType=VARCHAR},
+			</if>
+			<if test="mark != null">
+				#{mark,jdbcType=VARCHAR},
+			</if>
+			<if test="pigStatus != null">
+				#{pigStatus,jdbcType=INTEGER},
+			</if>
+			<if test="createPeopleId != null">
+				#{createPeopleId,jdbcType=VARCHAR},
+			</if>
+			<if test="slaughterhouseId != null">
+				#{slaughterhouseId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="marketId != null">
+				#{marketId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="update" parameterType="com.jf.projects.zmt.model.PigFile">
+		update pig_file
+		<set>
+			<if test="pigId != null">
+				pig_id = #{pigId,jdbcType=VARCHAR},
+			</if>
+			<if test="famerId != null">
+				famer_id = #{famerId,jdbcType=VARCHAR},
+			</if>
+			<if test="pigType != null">
+				pig_type = #{pigType,jdbcType=VARCHAR},
+			</if>
+			<if test="mark != null">
+				mark = #{mark,jdbcType=VARCHAR},
+			</if>
+			<if test="pigStatus != null">
+				pig_status = #{pigStatus,jdbcType=INTEGER},
+			</if>
+			<if test="createPeopleId != null">
+				create_people_id = #{createPeopleId,jdbcType=VARCHAR},
+			</if>
+			<if test="slaughterhouseId != null">
+				slaughterhouse_id = #{slaughterhouseId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="marketId != null">
+				market_id = #{marketId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<update id="updateStatus" parameterType="com.jf.projects.zmt.model.PigFile">
+		update pig_file
+		<set>
+				pig_status = #{pigStatus,jdbcType=INTEGER},
+				update_time = #{updateTime,jdbcType=TIMESTAMP}
+		</set>
+		where pig_id = #{pigId,jdbcType=VARCHAR}
+	</update>
+		
+	<update id="updateAllByPigId" parameterType="com.jf.projects.zmt.model.PigFile">
+		update pig_file
+		<set>
+			<if test="pigId != null">
+				pig_id = #{pigId,jdbcType=VARCHAR},
+			</if>
+			<if test="famerId != null">
+				famer_id = #{famerId,jdbcType=VARCHAR},
+			</if>
+			<if test="pigType != null">
+				pig_type = #{pigType,jdbcType=VARCHAR},
+			</if>
+			<if test="mark != null">
+				mark = #{mark,jdbcType=VARCHAR},
+			</if>
+			<if test="pigStatus != null">
+				pig_status = #{pigStatus,jdbcType=INTEGER},
+			</if>
+			<if test="createPeopleId != null">
+				create_people_id = #{createPeopleId,jdbcType=VARCHAR},
+			</if>
+			<if test="slaughterhouseId != null">
+				slaughterhouse_id = #{slaughterhouseId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="marketId != null">
+				market_id = #{marketId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where pig_id = #{pigId,jdbcType=VARCHAR}
+	</update>
+	<!-- 统计某一个用户建立的档案 -->
+	<select id="countFile" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT
+		count(*) as
+		totalNumber
+		FROM
+		pig_file
+		WHERE
+		pig_file.create_people_id=#{userId}
+	</select>
+	<!-- 统计某一个用户领养的生猪 -->
+	<select id="countFileOfFarmer" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT
+		count(*) as
+		totalNumber
+		FROM
+		pig_file
+		WHERE
+		pig_file.symbol=0 
+		AND
+		pig_file.famer_id=#{userId}
+	</select>
+	<select id="findFileByBuliderId" resultType="com.jf.projects.zmt.vo.fileManager.PigFileVo" parameterType="java.lang.String">
+		SELECT
+		brand.id as id,
+		brand.sign as sign,
+		pf.create_time as createTime, 
+		sue.`name` as name,
+		pf.famer_id as farmId,
+		pf.mark as remark
+		FROM brand
+		LEFT JOIN pig_file AS pf ON brand.sign = pf.pig_id
+		LEFT JOIN s_user AS sue ON sue.Id=pf.famer_id
+		WHERE
+		  brand.sign_status=1
+		<if test="userId != null">
+		AND  brand.creater_id=#{userId} 
+		</if>
+		<if test="sign != null">
+		AND brand.sign=#{sign}
+		</if>
+		LIMIT #{start},#{length}
+	</select>
+	<select id="countFileByBuliderId" resultType="long" parameterType="java.lang.String">
+		SELECT
+		COUNT(brand.id )
+		FROM brand
+		LEFT JOIN pig_file AS pf ON brand.sign = pf.pig_id
+		LEFT JOIN s_user AS sue ON sue.Id=pf.famer_id
+		WHERE
+		  brand.sign_status=1
+		<if test="userId != null">
+		AND  brand.creater_id=#{userId} 
+		</if>
+		<if test="sign != null">
+		AND brand.sign=#{sign}
+		</if>
+	</select>
+
+	<select id="findFileByFarmerId" resultType="com.jf.projects.zmt.vo.fileManager.FileRecordVo"
+		parameterType="java.lang.String">
+		SELECT
+		pig_file.id AS id,
+		pig_file.pig_id AS sign,
+		pig_breed.`name` AS pigType,
+		s_user.`name` AS bulider,
+		pig_file.pig_status AS statusType,
+		pig_file.create_time AS createTime
+		FROM
+	    pig_file 
+		LEFT JOIN s_user ON s_user.Id = pig_file.create_people_id
+		LEFT JOIN  pig_breed  ON pig_file.pig_type = pig_breed.id
+		WHERE
+		pig_file.symbol=0
+		<if test="userId != null and userId != '' ">
+	    AND  pig_file.famer_id = #{userId}
+	    </if>
+	    <if test="keyWords != null and keyWords != '' ">
+		AND(pig_file.pig_id= #{keyWords}
+		OR s_user.`name` LIKE '${keyWords}%')
+		</if>
+		LIMIT #{start},#{length}
+	</select>
+
+<select id="findPigByFarmerId" resultType="com.jf.projects.zmt.vo.fileManager.FileRecordVo"
+	parameterType="java.lang.String">
+	SELECT
+	pig_file.id AS id,
+	pig_file.pig_id AS sign,
+	pig_breed.`name` AS pigType,
+	s_user.`name` AS bulider,
+	pig_file.pig_status AS statusType,
+	pig_file.create_time AS createTime
+	FROM
+	pig_file
+	LEFT JOIN s_user ON s_user.Id = pig_file.create_people_id
+	LEFT JOIN pig_breed ON pig_file.pig_type = pig_breed.id
+	WHERE
+	pig_file.pig_status=0
+	<if test="userId != null and userId != '' ">
+		AND pig_file.famer_id = #{userId}
+	</if>
+</select>
+
+	<select id="countFileByFarmerId" resultType="long" parameterType="java.lang.String">
+		SELECT
+		COUNT(pig_file.id)
+		FROM
+		pig_file
+		LEFT JOIN s_user ON s_user.Id = pig_file.create_people_id
+		LEFT JOIN pig_breed ON pig_file.pig_type = pig_breed.id
+		WHERE
+		pig_file.symbol=0
+		<if test="userId != null and userId != '' ">
+			AND pig_file.famer_id = #{userId}
+		</if>
+		<if test="keyWords != null and keyWords != '' ">
+			AND(pig_file.pig_id= #{keyWords}
+			OR s_user.`name` LIKE
+			'${keyWords}%')
+		</if>
+	</select>
+	
+	<update id="deleteFileBySign" parameterType="java.lang.String">
+	update pig_file SET pig_file.symbol=1 WHERE pig_file.pig_id=#{sign}
+	</update>
+	<select id="findPigfileBySign" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * FROM pig_file WHERE pig_file.pig_id=#{sign} limit 1
+	</select>
+	
+	<!-- 根据区域和层级获取建档总数 -->
+	<select id ="countByArea" parameterType="java.lang.Integer"
+		resultType = "java.lang.Integer">
+		SELECT COUNT(file.pig_id) FROM pig_file file
+		LEFT JOIN s_user u ON u.Id = file.famer_id
+		where 1 = 1
+		<if test="type == 1">
+			and u.province_id = #{areaId}
+		</if>
+		<if test="type == 2">
+			and u.city_id = #{areaId}
+		</if>
+		<if test="type == 3">
+			and u.district_id = #{areaId}
+		</if>
+		<if test="type == 4">
+			and u.town_id = #{areaId}
+		</if>
+		<if test="type == 5">
+			and u.village_id = #{areaId}
+		</if>
+	</select>
+	
+	<!-- 根据区域和层级获取今日建档总数 -->
+	<select id ="countByAreaToday" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		SELECT COUNT(brand.sign) FROM brand
+		LEFT JOIN s_user u ON u.Id = brand.creater_id
+		where 1 = 1
+		AND brand.create_time IS NOT NULL AND brand.sign_status = 1
+		<if test="type == 1">
+			and u.province_id = #{areaId}
+		</if>
+		<if test="type == 2">
+			and u.city_id = #{areaId}
+		</if>
+		<if test="type == 3">
+			and u.district_id = #{areaId}
+		</if>
+		<if test="type == 4">
+			and u.town_id = #{areaId}
+		</if>
+		<if test="type == 5">
+			and u.village_id = #{areaId}
+		</if>
+		AND DATE_FORMAT(brand.create_time,'%y-%m-%d') = DATE_FORMAT(NOW(),'%y-%m-%d')
+	</select>
+	
+	<select id="countFilingNumberForYear" parameterType="java.lang.Integer"
+		resultType="com.jf.projects.zmt.vo.home.FilingNumberVo">
+		select 
+			sum(case month(brand.create_time) when '1' then 1 else 0 end) as jan,
+			sum(case month(brand.create_time) when '2' then 1 else 0 end) as feb,
+			sum(case month(brand.create_time) when '3' then 1 else 0 end) as mar,
+			sum(case month(brand.create_time) when '4' then 1 else 0 end) as apr,
+			sum(case month(brand.create_time) when '5' then 1 else 0 end) as may,
+			sum(case month(brand.create_time) when '6' then 1 else 0 end) as jun,
+			sum(case month(brand.create_time) when '7' then 1 else 0 end) as jul,
+			sum(case month(brand.create_time) when '8' then 1 else 0 end) as aug,
+			sum(case month(brand.create_time) when '9' then 1 else 0 end) as sept,
+			sum(case month(brand.create_time) when '10' then 1 else 0 end) as oct,
+			sum(case month(brand.create_time) when '11' then 1 else 0 end) as nov,
+			sum(case month(brand.create_time) when '12' then 1 else 0 end) as dece 
+		from brand 
+		LEFT JOIN s_user u ON u.Id = brand.creater_id
+		where year(brand.create_time)= DATE_FORMAT(NOW(), '%Y')
+		AND brand.create_time IS NOT NULL AND brand.sign_status = 1
+		<if test="type == 1">
+			and u.province_id = #{areaId}
+		</if>
+		<if test="type == 2">
+			and u.city_id = #{areaId}
+		</if>
+		<if test="type == 3">
+			and u.district_id = #{areaId}
+		</if>
+		<if test="type == 4">
+			and u.town_id = #{areaId}
+		</if>
+		<if test="type == 5">
+			and u.village_id = #{areaId}
+		</if>
+	</select>
+	
+	<select id="countInputNumberForYear" parameterType="java.lang.Integer"
+		resultType="com.jf.projects.zmt.vo.home.InputNumberVo">
+		select 
+			sum(case month(file.create_time) when '1' then 1 else 0 end) as jan,
+			sum(case month(file.create_time) when '2' then 1 else 0 end) as feb,
+			sum(case month(file.create_time) when '3' then 1 else 0 end) as mar,
+			sum(case month(file.create_time) when '4' then 1 else 0 end) as apr,
+			sum(case month(file.create_time) when '5' then 1 else 0 end) as may,
+			sum(case month(file.create_time) when '6' then 1 else 0 end) as jun,
+			sum(case month(file.create_time) when '7' then 1 else 0 end) as jul,
+			sum(case month(file.create_time) when '8' then 1 else 0 end) as aug,
+			sum(case month(file.create_time) when '9' then 1 else 0 end) as sept,
+			sum(case month(file.create_time) when '10' then 1 else 0 end) as oct,
+			sum(case month(file.create_time) when '11' then 1 else 0 end) as nov,
+			sum(case month(file.create_time) when '12' then 1 else 0 end) as dece 
+		from pig_file file
+		LEFT JOIN s_user u ON u.Id = file.famer_id
+		where year(file.create_time)= DATE_FORMAT(NOW(), '%Y')
+		<if test="type == 1">
+			and u.province_id = #{areaId}
+		</if>
+		<if test="type == 2">
+			and u.city_id = #{areaId}
+		</if>
+		<if test="type == 3">
+			and u.district_id = #{areaId}
+		</if>
+		<if test="type == 4">
+			and u.town_id = #{areaId}
+		</if>
+		<if test="type == 5">
+			and u.village_id = #{areaId}
+		</if>
+	</select>
+	
+	 <!--APP 端查找某一个养殖户领养的生猪  -->
+	<select id="appFindFileOfFamer" resultType="com.jf.projects.zmt.vo.farms.AppFileOfFamerVo"
+		parameterType="java.lang.String">
+		SELECT
+		pig_file.id AS id,
+		pig_file.pig_id AS sign,
+		pig_breed.`name` AS pigType,
+		pig_file.pig_status AS pigStatus,
+		DATE_FORMAT(pig_file.create_time,'%Y-%m-%d')  AS createTime
+		FROM
+	    pig_file 
+		LEFT JOIN  pig_breed  ON pig_file.pig_type = pig_breed.id
+		WHERE
+		pig_file.symbol=0
+		AND pig_file.pig_status=0 
+		OR pig_file.pig_status=1
+        AND pig_file.famer_id=#{id}
+        <if test="beginDate != null and beginDate != ''">
+			AND pig_file.create_time <![CDATA[>=]]>
+			#{beginDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			AND pig_file.create_time <![CDATA[<=]]>#{endDate}
+		</if>
+		<if test="sign != null and sign != ''">
+			AND pig_file.pig_id = #{sign}
+		</if>
+		<if test="pigType != null and pigType != ''">
+			AND pig_file.pig_type = #{pigType}
+		</if>
+		<if test="pigStatus != null ">
+			AND pig_file.pig_status = #{pigStatus}
+		</if>
+		</select>
+		
+		<!--查看该标签是否与生猪建立联系  -->
+		<select id="getPigFile" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT pig_file.pig_id FROM pig_file WHERE pig_file.pig_id=#{sign}
+		</select>
+		<!--app端改变生猪是查询时候可用  -->
+		<select id="appGetFile" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT * FROM pig_file WHERE pig_file.pig_id=#{sign} AND pig_file.famer_id=#{id}
+		</select>
+</mapper>

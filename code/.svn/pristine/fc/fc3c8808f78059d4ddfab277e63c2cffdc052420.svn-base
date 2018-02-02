@@ -1,0 +1,200 @@
+@charset "UTF-8";
+/*
+ * table鏍峰紡鐨勯噸鍐檚tart
+ */
+.none {
+  display: none !important; }
+
+.bolck {
+  display: block !important; }
+
+table > thead > tr > th {
+  text-align: center;
+  font-size: 14px !important;
+  color: #777777 !important;
+  border-bottom: 0px !important;
+  vertical-align: middle !important; }
+
+table > thead > tr {
+  background-color: #FBFBFB;
+  opacity: 1; }
+
+table > thead > tr > th {
+  height: 66px; }
+
+table > tbody > tr > td {
+  font-size: 14px !important;
+  height: 50px !important;
+  vertical-align: middle !important;
+  color: #566175 !important;
+  text-align: center;
+  border-top: 0px !important; }
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #FFFFFF; }
+
+.table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #FBFBFB; }
+
+.testCenterAll {
+  background-color: #F1F1F1; }
+
+.selectColorSet {
+  border: 0px;
+  background-color: #FBFBFB; }
+
+.headListColor {
+  color: #1FB5AD; }
+
+.pagination .active a {
+  background-color: #1FBBA6 !important;
+  border: 1px solid #1FBBA6 !important; }
+.pagination .active a:hover {
+  background-color: #1FBBA6 !important;
+  border: 1px solid #1FBBA6 !important; }
+
+.talbeDisabled {
+  font-size: 14px;
+  line-height: 31px;
+  color: #FA8564;
+  margin-right: 5px;
+  cursor: pointer; }
+
+.tableOperate {
+  font-size: 14px;
+  line-height: 31px;
+  color: #3C91DD;
+  margin-right: 5px;
+  margin-left: 5px;
+  cursor: pointer; }
+
+.layui-layer-btn0 {
+  background-color: #1FB5AD !important;
+  border: 1px solid #1FB5AD !important;
+  border-radius: 4px !important;
+  height: 32px; }
+
+.layui-layer-btn1 {
+  background-color: #BDBDBD !important;
+  border-radius: 4px !important;
+  height: 32px; }
+
+.layui-layer-setwin .layui-layer-ico {
+  background: url(../images/closeLayer.png) no-repeat !important; }
+.layui-layer-setwin a {
+  width: 40px !important;
+  height: 37px !important;
+  margin-top: -15px !important;
+  margin-right: -15px !important; }
+
+/*
+ * table鏍峰紡閲嶅啓end
+ */
+/*鍦板潃*/
+.info-mrgLeft {
+  margin: 25px 0 0 100px; }
+
+.permissionArea {
+  margin: 30px 0 0 55px; }
+  .permissionArea li span {
+    display: inline-block;
+    width: 33%;
+    font-family: MicrosoftYaHei;
+    font-size: 14px;
+    line-height: 31px;
+    color: #444444;
+    font-weight: 200; }
+    .permissionArea li span img {
+      width: 17px;
+      height: 17px;
+      margin-right: 12px;
+      vertical-align: middle; }
+
+/*
+ * 鏉冮檺閫夋嫨鐨勬牱寮弒tart
+ */
+.limitUl1 li {
+  margin-bottom: 20px; }
+.limitUl1 label {
+  width: 150px !important;
+  line-height: 0px !important; }
+  .limitUl1 label input {
+    font-size: 14px !important;
+    color: #444444 !important;
+    opacity: 1 !important;
+    margin-top: -5px; }
+.limitUl1 label:nth-child(2) {
+  width: 150px !important;
+  line-height: 0px !important; }
+.limitUl1 input {
+  width: 14px !important;
+  height: 13px !important; }
+
+#newAddPeoLimit li span {
+  display: inline-block;
+  width: 120px;
+  font-size: 14px;
+  line-height: 40px; }
+  #newAddPeoLimit li span img {
+    margin-right: 14px;
+    margin-top: -3px; }
+
+/*
+ * 鏉冮檺閫夋嫨鐨勬牱寮廵nd
+ */
+/*
+ * 鍖哄煙鏁扮殑閫夋嫨鏍峰紡  start
+ */
+.title {
+  color: #0077B3;
+  text-align: center;
+  margin: 20px 0; }
+
+ul.ztree {
+  margin-top: 10px !important;
+  border: none;
+  width: 100%;
+  height: 700px;
+  overflow: hidden; }
+
+.showTreebox {
+  z-index: 200;
+  margin-top: 5px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 12px 0px; }
+
+.ztree > li {
+  float: left;
+  height: 50px;
+  width: 220px; }
+
+.ztree li {
+  padding: 5px; }
+
+/*
+ * 鍖哄煙鏁扮殑閫夋嫨鏍峰紡  end
+ */
+th, td {
+  white-space: nowrap; }
+
+.dataTables_scrollBody::-webkit-scrollbar {
+  width: 4px;
+  height: 4px; }
+
+.dataTables_scrollBody::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2); }
+
+.dataTables_scrollBody::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1); }
+
+.dataTables_paginate {
+  float: right; }
+
+.dataTables_info {
+  margin-top: 25px; }
+
+/*# sourceMappingURL=main.css.map */

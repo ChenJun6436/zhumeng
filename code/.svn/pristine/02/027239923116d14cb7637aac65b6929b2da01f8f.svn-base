@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<title>角色管理</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!-- VENDOR CSS -->
+		<link rel="stylesheet" href="../assets/vendor/zTree/css/demo.css" />
+		<link rel="stylesheet" href="../assets/vendor/zTree/css/zTreeStyle.css" />
+		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+		<link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="../assets/css/main.css">
+		<!--<link rel="stylesheet" href="src/css/user_list_product.css">-->
+		<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+		<link rel="stylesheet" href="../assets/css/demo.css">
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+		<!-- ICONS -->
+		<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+		<!--<link rel="stylesheet" href="../assets/vendor/layer/layui.css">-->
+		<link rel="stylesheet" type="text/css" href="../src/css/navSidebar.css" />
+		<link rel="stylesheet" href="../src/css/test_market_account_config.css">
+		<link rel="stylesheet" href="../src/css/main.css" />
+	</head>
+
+	<body>
+		<!-- WRAPPER -->
+		<div id="wrapper">
+			<!-- NAVBAR -->
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div id="navbar-menu">
+						<div class="backUpper">
+							<a href="#" class="backUpper-toggle backLastPage" data-toggle="backUpper" data-className = "accountList">
+								<img src="../src/images/navSidebar/back.png" class="back-img" alt="返回" />
+								<span>返回上一页</span></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" class="welcome-font">
+									<span class="admin-font"><i class="fa fa-user" aria-hidden="true"></i> <span class="admin-arrt">超级管理员</span>，</span> 欢迎您！
+									
+								</a>
+							</li>
+							<li class="cut-off">|</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="$.loginOut()"><span>退出登录</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!-- END NAVBAR -->
+			<!-- LEFT SIDEBAR -->
+			<div id="sidebar-nav" class="sidebar">
+				<div class="brand">
+					<a href="index.html"><img src="../src/images/navSidebar/logo.png" alt="" class="img-responsive img-circle avatar"></a>
+				</div>
+				<div class="sidebar-scroll">
+					<nav>
+						<ul class="nav">
+							<li class="none">
+								<a href="../index.html"><span>首页</span></a>
+							</li>
+							<li class="none">
+								<a href="../filing_manage/filing_manage.html"><span>建档管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../breed_manage/breed_manage.html" class=""><span>养殖管理</span></a>
+							</li>
+							<!--<li class="none">
+								<a href="../butcher_manage/butcher_manage.html" class=""><span>屠宰管理</span></a>
+							</li>-->
+							<li class="none">
+								<a href="#butcherPages" data-toggle="collapse" class="collapsed"><span>屠宰管理</span><i class="icon-submenu"></i> </a>
+								<div id="butcherPages" class="collapse">
+									<ul class="nav">
+										<li class="none">
+											<a href="../butcher_manage/butcher_manage.html" class="">屠宰场管理</a>
+										</li>
+										<li class="none">
+											<a href="../butcher_manage/entryOutDataSelsct.html" class="">屠宰场出入库数据</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="none">
+								<a href="../testing_center/testing_center.html" class=""><span>检验中心</span></a>
+							</li>
+							<li class="none">
+								<a href="../market_manage/market_manage.html" class=""><span>市场管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../account_manage/account_manage.html" class=""><span>账号管理</span></a>
+							</li>
+							<li class="none">
+								<a href="#subPages" data-toggle="collapse" class="active"><span>基础配置</span><i class="icon-submenu"></i> </a>
+								<div id="subPages" class="collapse in">
+									<ul class="nav">
+										<li class="none">
+											<a href="../basic_configuration/role management.html" class="on"><span></span>角色管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/address_manage.html" class="">地址管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/pig_breed_manage.html" class="">生猪品种管理</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- END LEFT SIDEBAR -->
+			<!-- MAIN -->
+			<div class="main main_container">
+				<div class="testCenterAll" id="roleManagement">
+					<div class="col-md-12 headList1">
+						<span>基础配置  》</span>
+						<span class="headColor">角色管理</span>
+					</div>
+
+					<div class="rmHeadList col-md-12">
+					</div>
+					<div class="col-md-12 mainContent">
+						<!--头部搜索按钮 start-->
+						<div class="col-md-12 testHead">
+							<form class="form-inline">
+								<div class="form-group" style="float: right;">
+									<button type="button" class="btn searchBtn1 bumenManage">部门管理</button>
+									<button type="button" class="btn searchBtn1 newAddRole none">
+									<!--<img src="../src/images/3.png" alt="" />-->
+									+新建角色</button>
+								</div>
+							</form> 
+						</div>
+						<!--头部搜索按钮 end-->
+						<!--中间表格start-->
+						<div class="col-md-12 testCenterBox">
+							<table id="testCenterTable" class="table table-hover table-striped hover dataTable no-footer" width="100%">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>
+											<select name="" class="selectColorSet" id="headDepartmenSel">
+												<!--<option value="all">全部部门</option>
+												<option value="1">1</option>
+												<option value="2">2</option>-->
+											</select>
+										</th>
+										<th>
+											<select name="" id="headRoleSel" class="selectColorSet" >
+												<!--<option value="all">全部角色</option>
+												<option value="1">1</option>
+												<option value="2">2</option>-->
+											</select>
+										</th>
+										<th>账号数</th>
+										<th>可分配权限</th>
+										<th>创建时间</th>
+										<th>创建人</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<!--中间表格end-->
+					</div>
+
+				</div>
+
+				<!--新增类型 start-->
+				<div id="newAddType" style="display: none;">
+
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="">类型名称：</label>
+							<input type="text" class="form-control roleTypeName" id="" placeholder="请输入新增类型名称" maxlength="10">
+						</div>
+					</form>
+				</div>
+
+				<!--新增类型 end-->
+
+				<!--部门管理start-->
+
+				<div id="bumenManage" style="display: none;">
+					<div class="col-md-12 addDepartment">
+						<span class="newAddBumen none">+新增部门</span>
+					</div>
+					<div class="col-md-12 tableAll">
+						<table id="bumenTable" class="table table-hover table-striped hover dataTable no-footer" width="100%">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>编号</th>
+									<th>类型</th>
+									<th>部门名称</th>
+									<th>角色数</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+
+				</div>
+
+				<!--部门管理end-->
+
+				<!--新增部门 start-->
+				<div id="newAddDepartment" style="display: none;">
+					<form class="form-horizontal">
+						<div class="form-group firstDiv">
+							<label for="" class="col-md-4 control-label">所属类型：</label>
+							<div class="col-md-6">
+								<select name="" id="suoshuleixingSel"></select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-md-4 control-label">部门名称：</label>
+							<div class="col-md-6">
+								<input type="input" class="form-control bumenName" id="" placeholder="请输入部门的名称">
+							</div>
+						</div>
+					</form>
+
+				</div>
+				<!--新增部门 end-->
+
+				<!--新增角色 start-->
+				<div id="newAddjuese" style="display: none;">
+					<form class="form-horizontal">
+						<div class="form-group rowall">
+							<label for="" class="col-md-2 control-label">所属类型：</label>
+							<div class="col-md-10">
+								<span class="jueseTypeName"></span>
+								<!--<input type="email" class="form-control" id="" placeholder="Email">-->
+							</div>
+						</div>
+						<div class="form-group rowall">
+							<label for="" class="col-md-2 control-label">所属部门：</label>
+							<div class="col-md-10">
+								<select name="" id="jueseDapartment">
+
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group rowall">
+							<label for="" class="col-md-2 control-label">角色名称：</label>
+							<div class="col-md-10">
+								<input type="text" class="addRoleName"  placeholder="请输入新建角色的名称" maxlength="10"/>
+							</div>
+						</div>
+						<div class="form-group accountType">
+							<label for="" class="col-md-2 control-label">账号性质：</label>
+							<div class="col-md-10 " >
+								<input type="radio" name="accountType" checked="checked" value='bmadmin'/> 部门管理员
+								<input type="radio" name="accountType" value='1'/>普通用户
+							</div>
+						</div>
+						<div class="form-group rowall">
+							<label for="" class="col-md-2 control-label">可用权限：</label>
+							<div class="col-md-10 limitRole"></div>
+						</div>
+						
+						
+					</form>
+
+				</div>
+
+				<!--新增角色 end-->
+					<!--查看当前角色下的账号 start-->
+				<div class="curRoleOfAccount" style="display: none;">
+					<div class="col-md-12 headList1">
+						<span>基础配置  》</span>
+						<span>角色管理 》</span>
+						<span class="headColor">角色账号列表</span>
+					</div>
+					<!--中间表格start-->
+						<div class="col-md-12 roleAccount">
+							<table id="roleAccountTable" class="table table-hover table-striped hover dataTable no-footer" width="100%">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>状态</th>
+										<th>登录账号</th>
+										<th>名称/姓名</th>
+										<th>联系方式</th>
+										<th>部门</th>
+										<th>角色</th>
+										<th>创建人</th>
+										<th>创建时间</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+						<!--中间表格end-->
+			
+				
+			</div>
+			
+					
+					
+					
+					
+				</div>
+				
+				<!--查看当前角色下的账号 end-->
+
+		</div>
+		<!-- END WRAPPER -->
+
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/layer/layer.js"></script>
+		<script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="../assets/vendor/datatables/js/dataTables.bootstrap.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<!--<script src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>-->
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
+		<script src="../assets/vendor/zTree/js/jquery.ztree.core.js"></script>
+		<script src="../assets/vendor/zTree/js/jquery.ztree.excheck.js"></script>
+		<script src="../src/js/allUrl.js"></script>
+		<script src="../src/js/Main.js"></script>
+		<script src="../src/js/roleManagement.js"></script>
+
+	</body>
+
+</html>

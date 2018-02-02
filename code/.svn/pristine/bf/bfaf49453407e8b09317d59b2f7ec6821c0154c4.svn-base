@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>解决方案</title>
+
+		<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/vendor/layer/layui.css">
+		<link rel="stylesheet" href="src/css/navBar.css" />
+		<link rel="stylesheet" href="src/css/myStyle.css" />
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+			<!--头部start-->
+			<div class="navbar navbar-fixed-top navbar-inverse">
+				<div class="container">
+					<div class="nav-logo">
+						<a class="" href="index.html">
+							<img class="img-responsive" src="src/images/ic_logo.png" alt="猪码头" style="height: 100%;width: auto;" />
+						</a>
+					</div>
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navBar">    
+                <span class="icon-bar"></span>  
+                <span class="icon-bar"></span>  
+                <span class="icon-bar"></span>  
+              </button>
+					</div>
+					<div class="collapse navbar-collapse navbar-right" id="navBar">
+						<ul class="nav navbar-nav">
+							<li>
+								<a href="index.html">首页</a>
+							</li>
+							<li>
+								<a href="aboutZmt.html">关于猪码头</a>
+							</li>
+							<li class="active">
+								<a href="solution.html">解决方案</a>
+							</li>
+							<li class="sub-menu">
+								<a href="#">成功案例 <span class="triangle-down"></span></a>
+								<ul class="sub-menu-ul">
+									<li>
+										<a href="successfulCase/pigTraceabilitySystem.html">生猪溯源系统</a>
+									</li>
+									<li>
+										<a href="successfulCase/pigDirSir.html">猪产品电商平台</a>
+									</li>
+									<li>
+										<a href="successfulCase/pigFinancial.html">猪产业金融中心</a>
+									</li>
+									<li>
+										<a href="successfulCase/pigData.html">猪产业数据研究院</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="news.html">新闻动态</a>
+							</li>
+							<li>
+								<a href="contactUs.html">联系我们</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!--头部end-->
+			
+			<!--中间内容部start-->
+			<div class="main-content">
+				<div class="row solution_content">
+					<div class="row">
+						<img src="src/images/solution_banner.jpg" class="top_img_contactUs"/>
+					</div>
+					<div class="contactUs">
+						<h2 class="contact_font">解决方案</h2>
+						<p class="contact_font_gray">Solution</p>
+					</div>
+					<div class="container soultion_list">
+						
+							<div class="col-xs-6 col-sm-6 col-md-3 listBox">
+								<img src="src/images/solution/pic_1.png" style="width: 100%;" alt="" />
+								<p class="p_content">我们提供从前期规划、研发、施工到后期运营、维护的全程智慧农业解决方案。服务项目覆盖全国多省区，业务涉及智能农业监控、农业溯源、农业标准化生产等多个领域</p>
+								<p class="p_img"><a href="successfulCase/pigTraceabilitySystem.html" class="lookCaseBtn"></a></p>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-3 listBox">
+								<img src="src/images/solution/pic_2.png" alt="" style="width: 100%;" />
+								<p class="p_content">我们提供从前期规划、研发、施工到后期运营、维护的全程智慧农业解决方案。服务项目覆盖全国多省区，业务涉及智能农业监控、农业溯源、农业标准化生产等多个领域</p>
+								<p class="p_img"><a href="successfulCase/pigDirSir.html" class="lookCaseBtn"></a></p>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-3 listBox">
+								<img src="src/images/solution/pic_3.png" alt="" style="width: 100%;" />
+								<p class="p_content">我们提供从前期规划、研发、施工到后期运营、维护的全程智慧农业解决方案。服务项目覆盖全国多省区，业务涉及智能农业监控、农业溯源、农业标准化生产等多个领域</p>
+								<p class="p_img"><a href="successfulCase/pigFinancial.html" class="lookCaseBtn"></a></p>
+							</div>
+							<div class="col-xs-6 col-sm-6 col-md-3 listBox">
+								<img src="src/images/solution/pic_4.png" alt="" style="width: 100%;" />
+								<p class="p_content">我们提供从前期规划、研发、施工到后期运营、维护的全程智慧农业解决方案。服务项目覆盖全国多省区，业务涉及智能农业监控、农业溯源、农业标准化生产等多个领域</p>
+								<p class="p_img"><a href="successfulCase/pigData.html" class="lookCaseBtn"></a></p>
+							</div>
+						
+					</div>
+				</div>
+
+			</div>
+
+			<!--中间内容部end-->
+
+			<!--底部部分start-->
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
+							<div class="footer_box">
+								<ul class="row">
+									<li class="col-xs-6 col-sm-4 col-md-4 footer_max_box">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12">
+												<p class="footer_title"><span class="footer_title_left"></span>咨询电话：</p>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 impressum">
+												<i class="footer_icon footer_tel"></i>
+												<span class="footer_font bottom-tel"></span>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 impressum">
+												<i class="footer_icon footer_phone"></i>
+												<span class="footer_font bottom-phone"></span>
+											</div>
+										</div>
+										<p class="footer_title margin-top-20"><span class="footer_title_left"></span>公司地址：</p>
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 impressum">
+												<i class="footer_icon footer_address"></i>
+												<span class="footer_font bottom-addres"></span>
+											</div>
+										</div>
+									</li>
+									<li class="col-xs-6 col-sm-2 col-md-2 footer_min_box">
+										<p class="footer_title"><span class="footer_title_left"></span>成功案例：</p>
+										<p class="footer_font">猪溯源监管系统 </p>
+										<p class="footer_font">猪产品电商平台</p>
+										<p class="footer_font">猪产业金融中心</p>
+										<p class="footer_font">猪产业链数据研究院</p>
+
+									</li>
+									<li class="col-xs-6 col-sm-6 col-md-2">
+										<p class="footer_title"><span class="footer_title_left"></span>关于我们：</p>
+										<p class="footer_font">联系我们</p>
+									</li>
+									<li class="col-xs-6 col-sm-6 col-md-4">
+										<div class="row">
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<p class="footer_title bottom-wxName"></p>
+												<img class="footer_weixin footer_font" src=""></img>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<p class="footer_title bottom-wbName"></p>
+												<img class="footer_weibo footer_font" src="">
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12  margin-top-20">
+									<ul class="blogroll">
+
+									</ul>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<p class="footer_font text-center bottom-record"></p>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+			<!--底部部分end-->
+		</div>
+
+	</body>
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/layer/layer.js"></script>
+	<script src="src/js/allUrl.js"></script>
+	<script src="src/js/footer.js"></script>
+
+</html>

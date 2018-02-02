@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<title></title>
+		<style>
+			body {
+				margin: 0;
+				text-align: center;
+			}
+			video {
+				max-width: 1200px;
+				width: 100%;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<ul class="videoBox">
+			
+		</ul>-->
+		<video id="myPlayer" width="900" height="650" controls playsInline webkit-playsinline autoplay>
+			<source src="rtmp://rtmp.open.ys7.com/openlive/23c327c9f0f0410c894775254c150216" type="application/x-mpegURL"></source>
+			<source src="http://hls.open.ys7.com/openlive/23c327c9f0f0410c894775254c150216.m3u8" type="application/x-mpegURL"></source>
+		</video>
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../src/js/allUrl.js"></script>
+		<script src="../assets/vendor/video/ezuikit.js"></script>
+		<script>
+			var player = new EZUIPlayer('myPlayer');
+			var curButcherId = sessionStorage.getItem("curButcherId")
+			//后期正式开发时去后台请求video需要的src
+			//			$.ajax({
+			//				url:allUrl.getVideo,
+			//				type:"post",
+			//				data:{
+			//					slaughterhouseId:curButcherId
+			//				},
+			//				success:function(data){
+			//					var video = '';
+			//					$('.videoBox li').remove();
+			//					$.each(srcList,function(i,e){
+			//						video ='<li><video id="myPlayer'+i+'" width="500" height="500" poster="" controls playsInline webkit-playsinline autoplay><source src="'+e.rtmp+'" type="application/x-mpegURL"></source><source src="'+e.hls+'" type="application/x-mpegURL"></video></li>';
+			//						$('.videoBox').append(video);
+			//						new EZUIPlayer('myPlayer'+i);
+			//					})
+			//				}
+			//				
+			//			})
+		</script>
+	</body>
+
+</html>

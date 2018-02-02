@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jf.projects.zmt.dao.AndMarketUserMapper" >
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.AndMarketUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="market_id" property="marketId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="pig_id" property="pigId" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, market_id, create_time, update_time, pig_id, weight
+  </sql>
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from and_market_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+   <select id="existPigId" parameterType="java.lang.String" resultType="boolean">
+    select 
+    count(pig_id)>0
+    from and_market_user
+    where pig_id = #{pigId,jdbcType=VARCHAR}
+  </select>
+    <select id="findNumberById" resultType="long" parameterType="java.lang.String" >
+	  SELECT
+		count(id) AS count
+		FROM
+			and_market_user
+		WHERE
+		market_id= #{id,jdbcType=VARCHAR}
+		AND  and_market_user.pig_id  is not null
+	</select>
+	<select id="findPeopleNumByMarketId" resultType="long" parameterType="java.lang.String" >
+	
+			SELECT COUNT(*) from 
+			(
+			SELECT
+			user_id
+			FROM
+			and_market_user 
+			
+			WHERE   market_id=#{marketId,jdbcType=VARCHAR}
+			
+			AND pig_id IS NOT NULL
+			GROUP BY user_id
+			) AS tab
+	</select>
+	
+	 <select id="getMaketPersons" resultType="com.jf.projects.zmt.vo.OptionVo" parameterType="java.lang.String" >
+		SELECT
+		and_market_user.user_id AS `key`,
+		s_user.`name` AS `value`
+		FROM
+		and_market_user
+		LEFT JOIN s_user ON and_market_user.user_id = s_user.Id
+		WHERE and_market_user.market_id=#{marketId,jdbcType=VARCHAR}
+		AND  s_user.`status`='enable'
+		GROUP BY  and_market_user.user_id
+ 
+	</select>
+	
+	 <select id="findCountById" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select
+		COUNT(pig_id)
+		from and_market_user
+		where user_id  = #{id,jdbcType=VARCHAR}
+		AND  and_market_user.pig_id  is not null
+ 	 </select>
+ 	 
+ 	 <select id="findCountByUserId" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select
+		COUNT(id)
+		from and_market_user
+		where user_id  = #{userId,jdbcType=VARCHAR}
+		AND  and_market_user.pig_id  is not null
+ 	 </select>
+ 	 
+ 	 <!-- 根据人员统计市场 -->
+ 	 <select id="findCountByUser" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   		select
+		COUNT(id)
+		from and_market_user
+		where user_id  = #{userId,jdbcType=VARCHAR}
+ 	 </select>
+
+  
+    <sql id="Pid_List_last">
+   		FROM
+		and_market_user
+		LEFT JOIN pig_file ON and_market_user.pig_id = pig_file.pig_id
+		LEFT JOIN pig_breed ON pig_file.pig_type = pig_breed.id
+		LEFT JOIN s_user ON and_market_user.user_id = s_user.Id
+		WHERE and_market_user.user_id = #{id,jdbcType=VARCHAR}
+
+	 	<if test="pigBreed != null">
+        AND pig_breed.id= #{pigBreed,jdbcType=VARCHAR}
+      	</if>
+      	<if test="pigStatus != null">
+        AND 	pig_file.pig_status= #{pigStatus,jdbcType=VARCHAR}
+      	</if>
+	    <if test="pigId != null">
+        AND and_market_user.pig_id= #{pigId,jdbcType=VARCHAR}
+      	</if>
+      	<if test="startTime != null">
+        AND DATE_FORMAT(and_market_user.create_time,'%Y-%m-%d')   &gt;= #{startTime}
+      	</if>
+        <if test="endTime != null">
+        AND DATE_FORMAT(and_market_user.create_time,'%Y-%m-%d')   &lt;= #{endTime}
+      	</if>
+      	AND  and_market_user.pig_id  is not null
+      	
+      <!-- 	AND ( pig_file.pig_status = 7 ) -->
+	   
+   </sql>
+    <select id="findListByPid" parameterType="com.jf.projects.zmt.vo.BaseParam" resultType="com.jf.projects.zmt.vo.market.MarketPigVo">
+		SELECT
+		and_market_user.id AS id,
+		and_market_user.pig_id AS pigId,
+		pig_breed.`name` AS pigBreed,
+		and_market_user.weight,
+		pig_file.pig_status AS `status`,
+		and_market_user.create_time AS createTime,
+		s_user.name AS creatorName
+   		<include refid="Pid_List_last" />
+   		ORDER BY  and_market_user.create_time DESC
+   		LIMIT #{start,jdbcType=INTEGER},#{length,jdbcType=INTEGER}
+  	</select>
+  	    <select id="findList" parameterType="com.jf.projects.zmt.vo.BaseParam" resultType="com.jf.projects.zmt.vo.market.MarketPigVo">
+		SELECT
+		and_market_user.id AS id,
+		and_market_user.pig_id AS pigId,
+		pig_breed.`name` AS pigBreed,
+		and_market_user.weight,
+		pig_file.pig_status AS `status`,
+		and_market_user.create_time AS createTime,
+		s_user.name AS creatorName
+   		<include refid="Pid_List_last" />
+   		ORDER BY  and_market_user.create_time DESC
+
+  	</select>
+  	
+  	 <select id="findListCountByPid" parameterType="com.jf.projects.zmt.vo.BaseParam" resultType="java.lang.Long">
+		SELECT
+		count(and_market_user.id) AS count
+   		<include refid="Pid_List_last" />
+  	</select>
+    <select id="findUserOption" resultType="com.jf.projects.zmt.vo.OptionVo" parameterType="java.lang.String">
+  	SELECT
+	market.id AS `key`,
+	market.`name` AS `value`
+	FROM
+	and_market_user
+	LEFT JOIN market ON and_market_user.market_id = market.id
+	WHERE
+	and_market_user.user_id = #{userId}
+	GROUP BY  and_market_user.market_id
+
+  </select>
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from and_market_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.AndMarketUser" >
+    insert into and_market_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="marketId != null" >
+        market_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="pigId != null" >
+        pig_id,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=VARCHAR},
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null" >
+        #{marketId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pigId != null" >
+        #{pigId,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.AndMarketUser" >
+    update and_market_user
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="marketId != null" >
+        market_id = #{marketId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pigId != null" >
+        pig_id = #{pigId,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

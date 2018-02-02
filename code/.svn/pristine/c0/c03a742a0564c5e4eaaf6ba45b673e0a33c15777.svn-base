@@ -1,0 +1,866 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    li {
+        list-style: none;
+    }
+}
+.clear {
+    clear: both;
+}
+.main-content{
+    margin-top: 55px;
+    
+}
+.row{
+        padding: 0px;
+        margin: 0px;
+    }
+
+.container-fluid {
+    padding: 0;
+    margin: 0;
+}
+.padding-top-20 {
+    padding-top: 20px;
+}
+.container{
+    .row{
+        padding: 0px;
+    }
+}
+.noPad{
+     padding: 0px;
+}
+.noPadLeft{
+    padding-left: 0px;
+}
+@mixin fontSize($size, $color,$bold,$align) {
+    font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
+    font-size: $size;
+    color: $color;
+    text-align: $align;
+    font-weight: $bold;
+}
+@mixin boxShadow($shadow) {
+    /*这6个值分别是：left值 、top值、透明度、阴影外延宽度、颜色、向里凹陷（选填，默认为外延）*/
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -ms-box-shadow: $shadow;
+    -o-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+@mixin borderRadius($radius) {
+
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+/*联系我们--------------------------------------------------------------------------------------------------------------*/
+.top_img_contactUs {
+    width: 100%;
+    height: auto;
+}
+.aboutZmt,
+.contactUs,
+.index,
+.news {
+    margin: 6% auto;
+    h2 {
+        margin: 0 0 10px;
+    }
+}
+.contact_font {
+
+    @include fontSize(30px, #292929,bold,center);
+}
+.contact_font_gray {
+    @include fontSize(14px, #999999,500,center);
+}
+.map_box {
+    width: 100%;
+    height: 420px;
+    label {
+        max-width: none;
+    }
+}
+.company_infor_box {
+    width: 100%;
+    height: 420px;
+    li {
+        height: 45px;
+        text-align: left!important;
+        @include fontSize(16px, #292929,500,center);
+    }
+    i {
+        display: inline-block;
+        width: 29px;
+        height: 29px;
+        margin-right: 15px;
+        vertical-align: middle;
+        background: #1FB5AD;
+    }
+    .address_icon {
+        background: url(../images/ic_location.png)no-repeat;
+    }
+    .phone_icon {
+        background: url(../images/ic_phone.png)no-repeat;
+    }
+    .tel_icon {
+        background: url(../images/ic_call.png)no-repeat;
+    }
+    .email_icon {
+        background: url(../images/ic_email.png)no-repeat;
+    }
+    .QR_code_box {
+        height: 20px;
+        margin-top: 20px;
+        span {
+            display: inline-block;
+            height: 120px;
+            width: 120px;
+        }
+        .weixin {
+            margin-left: 15px;
+            background: palegoldenrod;
+        }
+        .QQ {
+            margin-left: 20px;
+            background: palegreen;
+        }
+    }
+}
+
+/*关于猪码头-------------------------------------------------------------------------------------------------------------*/
+#aboutZmt_content {
+    width: 100%;
+    margin-bottom: 6%;
+    p{
+        @include fontSize(14px, #666666,500,left);
+        line-height: 28px;
+        text-indent: 2em;
+    }
+    
+}
+
+/*新闻资讯--------------------------------------------------------------------------------------------------------------*/
+#newsTab {
+    & > li > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        @include fontSize(18px, #464646,500,center);
+        background: #F7F7F7;
+        border: 1px solid #F7F7F7;
+    }
+    & > li.active > a {
+        color: #FFFFFF;
+        border: 1px solid #1FB5AD;
+        background: #1FB5AD;
+    }
+}
+i{
+    font-style: normal;
+}
+
+.news_list {
+        border-bottom: 1px solid #DDDDDD;
+        padding: 15px 0;
+    .news_img {
+        float: left;
+        margin-right: 30px;
+        img {
+            width: 185px;
+//          height: 154px;
+        }
+
+    }
+    .news_title {
+        @include fontSize(18px,#292929,600,left);
+        line-height: 31px;
+    }
+    .news_details:hover,
+    .news_title:hover {
+        color: #3BBDB5;
+        cursor: pointer;
+    }
+    .time_gray {
+        @include fontSize(12px,#999999,500,left);
+        line-height: 31px;
+    }
+    .news_details {
+        @include fontSize(14px,#666666,500,left);
+        line-height: 28px;
+        text-align: right;
+    }
+}
+.news_list:last-child {
+    border-bottom: 1px solid#FFFFFF;
+}
+
+/*新闻详情--------------------------------------------------------------------------------------------------------------*/
+.news_details_title {
+    margin-top: 6%;
+    @include fontSize(34px,#404040,bold,center);
+}
+.news_details_share_box {
+    width: 275px;
+    margin: 15px auto 6%;
+    height: 20px;
+}
+.news_details_time {
+    width: 100px;
+    float: left;
+    @include fontSize(14px,#292929,500,center);
+}
+.news_details_content {
+    width:100%;
+    margin: 0 auto;
+    text-indent: 2em;
+    @include fontSize(14px,#666666,500,left);
+    img {
+        width: 500px;
+        height: 280px;
+        display: block;
+        margin: 30px auto;
+    }
+}
+
+/*首页----------------------------------------------------------------------------------------------------------------*/
+
+/*轮播器*/
+
+.carousel-inner .item img {
+    margin: 0 auto;
+}
+.carousel-indicators {
+    li {
+        display: none;
+    }
+}
+/*关于猪码头*/
+.index_aboutZmt_box {
+    width: 100%;
+    height: auto;
+    @include boxShadow(0 0 1px 1px rgba(227, 229, 235,.5));
+    @include borderRadius(5px);
+    background: #FFFFFF;
+    margin-top: -200px;
+    .index_aboutZmt {
+        width: 80%;
+        height: auto;
+        padding: 50px 0 20px;
+        margin: 50px auto;
+    }
+    .index_aboutZmt_title {
+        @include fontSize(30px, #292929,bold,center);
+        line-height: 51px;
+        margin-bottom: 10px;
+    }
+    .index_aboutZmt_content {
+        @include fontSize(14px, #666666,500,center);
+        line-height: 25px;
+    }
+    .index_aboutZmt_img {
+        width: 90%;
+        height: auto;
+    }
+    .aboutZmt_font_bg {
+        display: block;
+        width: 253px;
+        height: 89px;
+        margin: 20px auto;
+        background: url("../images/index/pic_2.png") no-repeat;
+    }
+}
+.success_case_bg{
+     width: 100%;
+    height: 320px;
+    margin-top:6%;
+     background: url(../images/index/pic_7.png)no-repeat;
+    background-size: 100% 100%;
+}
+.success_case_box {
+    width: 100%;
+    margin-top: -320px;
+//  margin-bottom: 10%;
+    .contact_font {
+        color: #FFFFFF;
+        padding-top: 50px;
+    }
+    .contact_font_gray {
+        color: #FFFFFF;
+    }
+}
+/*走马灯*/
+.marquee_control {
+    height: 42px;
+    width: 26px;
+    cursor: pointer;
+}
+.prev {
+    float: left;
+    @extend .marquee_control;
+    background: url(../images/index/ic_left_normal.png)no-repeat;
+}
+.next {
+    @extend .marquee_control;
+    float: right;
+    background: url(../images/index/ic_right_normal.png)no-repeat;
+}
+ .prev:hover {
+     background: url(../images/index/ic_left_hover.png)no-repeat;
+}
+.next:hover {
+    background: url(../images/index/ic_right_hover.png)no-repeat;
+}
+.Slide_box{
+     position:relative;
+     width: 100%;
+     margin-top:8%;
+     height: 320px;
+     overflow: hidden;
+     ul{
+        position:relative;
+        width:100%;
+        margin:0;
+        padding:0; 
+        li{
+            position:absolute;
+            list-style:none;
+            background:#FFFFFF;
+            width:35%;
+            height:auto;
+            top:0;
+            left:377px;
+            z-index:0;
+            cursor:pointer;
+            margin:0;
+            padding:0;
+            @include borderRadius(5px);
+            img{
+                @include boxShadow(0 1px 1px rgb(227, 229, 235));
+                @include borderRadius(5px);
+                width:100%;
+                vertical-align:middle;
+            }
+            .img_name {
+                @include fontSize(14px, #666666,500,center);
+                margin-top: 10px;
+            }
+        }
+     }
+}
+/*新闻动态*/
+.index_news_img{
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+    background: red;
+}
+.index_news_imgUrl,.index_news_id{
+    display: none;
+}
+.index_ne1px solid #1FB5ADws_box{
+    width: 100%;
+    .index_news_time{
+        
+    }
+}
+.index_news_box{
+    width: 100%;
+    margin-top: 20px;
+    p{
+        margin-bottom: 0px;
+    }
+    .index_news_time_box{
+        position: relative;
+        padding-top:30px;
+        @include fontSize(12px, #1FB5AD,500,center);
+    }
+    .circle{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 15px;
+        right: -10px;
+        z-index: 2;
+        background: #FFFFFF;
+        i{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #1FB5AD;
+            margin-top: 4px;
+            @include borderRadius(50%);
+        }
+    }
+   
+    .index_news_title{
+        cursor: pointer;
+        display:block;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        margin: 10px 0px 12px;
+        @include fontSize(18px, #292929,600,left);
+    }
+    .index_news_title:hover{
+        color: #1FB5AD;
+    }
+    .index_news_content{
+        padding-left: 20px;
+        border-left: 1px solid #1FB5AD;
+        z-index: 1;
+    }
+    .index_news_description{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        width: 100%;
+        top: 30px;
+        @include fontSize(14px, #666666,500,left);
+    }
+    
+}
+/*成功案例*/
+/*生猪溯源系统*/
+.case{
+    margin: 6% 0px;
+    .tabRoot{
+        width: 100%;
+        margin: 0px;
+        padding: 12px 0px;
+        border: 1px solid #E5E5E5;
+        @include fontSize(20px, #333333,600,center);
+    }
+    .case-nav{
+        li{
+            width: 100%;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            padding: 10px 0px;
+             @include fontSize(16px, #666666,500,center);
+            border: 1px solid #E5E5E5;
+            border-top: none;
+            background: #F7F7F7;
+            a{
+                 text-decoration: none;
+            }
+            a:hover{
+                 color: #1FB5AD;
+            }
+        }
+        .active{
+            background: #1FB5AD;
+             border: 1px solid #1FB5AD;
+            a{
+                color: #FFFFFF!important;
+            }
+           
+        }
+        
+    }
+    .case-title{
+         @include fontSize(30px, #404040,600,center);
+         margin-bottom: 30px;
+    }
+    .case-content{
+        width: 100%;
+        font-size: 14px;
+        img{
+            width: 80%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+    }
+    .case-list-id{
+        display: none;
+    }
+}    
+.index_more{
+        display:block;
+        width: 80px;
+        margin: 20px 0px;
+        float: right;
+        @include fontSize(14px, #292929,500,right);
+    }
+    .index_more:hover{
+        color:#1FB5AD ;
+    }
+    
+    
+///*解决方案*/
+.lookCaseBtn{
+    display: block;
+    width:165px;
+    margin: 0px auto;
+    background: url(../images/solution/pic_5.png)no-repeat#FFFFFF;
+    height: 80px;
+    
+}
+.index-news{
+    margin-bottom: 6%;
+}
+.ahoutZmt-title{
+    font-size: 16px;
+    color: #292929;
+    text-align: left;
+    font-weight: 600;
+    line-height: 31px;
+}
+.soultion_list{
+        margin-bottom: 6%;
+        .listBox{
+            .p_content{
+                @include fontSize(14px, #666666,500,left);
+                line-height: 28px;
+                padding: 24px 23px 32px 18px;
+                background-color: #FFFFFF;
+                margin-bottom: 0px;
+            }
+            .p_img{
+                background-color: white;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                padding-bottom: 17px;
+            }
+            .checkDetails{
+                display: inherit;
+                margin: auto;
+                margin-bottom: 17px;
+            }
+        }
+    } 
+    .solution_content{
+        background-color: #F5F5F5;
+       
+  }
+//.solution_box{
+//  .listBox{
+//      img{
+//          width: 100%;
+//      }
+//      .p_content{
+////          height: 200px;
+//          background: #FFFFFF;
+//          width: 100%;
+//      }
+//  }
+//}
+/*弹框  --------------------------------------------------------------------------------------------------------------------------------*/
+
+.layui-layer-btn0,
+.layui-layer-lan .layui-layer-title {
+    background: #1FB5AD!important;
+}
+/* 横向放置的手机及分辨率更小的设备  --------------------------------------------------------------------------------------------------------------*/
+
+@media (max-width:480px) {
+    #companyNews {
+        margin-top: 30px;
+        .news_img {
+
+            margin-right: 0;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+    }
+    /*首页 */
+    /*关于猪码头*/
+    .carousel-indicators {
+        width: 70px;
+        margin: 0 auto;
+        .active {
+            margin: 0 5px;
+        }
+    }
+    .index_aboutZmt_box {
+        width: 98%!important;
+        margin: 0 auto!important !important;
+        .index_aboutZmt {
+            width: 90%;
+            padding: 15px 0 30px;
+            margin: 30px auto;
+        }
+        .aboutZmt_font_bg {
+            width: 200px;
+            background-size: 100%;
+            height: 60px;
+        }
+
+    }
+    .index_aboutZmt_title {
+        @include fontSize(20px!important, #292929,bold,center);
+        line-height: 31px!important;
+    }
+    .success_case_bg{
+         height: 130px!important;
+    }
+    .success_case_box {
+        .contact_font {
+            padding-top: 30px;
+        }
+        margin-top: -130px!important;
+    }
+    .marquee_control {
+        height: 20px!important;
+        width: 10px!important;
+        background-size: 100% 100% !important;
+    }
+    .index{
+         h2{
+            margin-bottom: 5px;
+            padding-top: 15px!important;
+            font-size: 18px!important;
+         }
+         .contact_font_gray{
+             margin-bottom: 5px;
+             font-size: 12px!important;
+         }
+    }
+    .img_name{
+        margin-top: 2px!important;
+         font-size: 12px!important;
+    }
+    .index_news{
+        margin-top: 0px;
+    }
+    .index_news_img{
+        width: 100%!important;
+    }
+    .Slide_box{
+        height: 120px!important;
+    }
+    .index_news_box {
+        .col-xs-3{
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+    }
+    /*成功案例*/
+    /*生猪溯源系统*/
+    .case-title{
+        font-size: 20px!important;
+        margin-bottom: 15px!important;
+    }
+    .case-content{
+        font-size: 12px!important;
+    }
+}
+/*横向放置的手机和竖向放置的平板之间的分辨率 --------------------------------------------------------------------------------------------------------------*/
+
+@media (max-width: 767px) {
+    /*联系我们*/
+    .aboutZmt,
+    .contactUs,
+    .news {
+        margin: 10% auto;
+        h2 {
+            margin: 0;
+        }
+    }
+    .contact_font {
+        @include fontSize(20px, #292929,bold,center);
+    }
+    .company_infor_box,
+    .map_box {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 30px;
+        li {
+            font-size: 14px;
+            i {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    /*新闻资讯*/
+    #newsTab {
+        & {
+            margin: 0;
+        }
+        & > li {
+            width: 40%;
+            float: left;
+        }
+        & > li > a {
+            padding: 10px;
+            @include fontSize(14px, #464646,500,center);
+            background: #F7F7F7;
+            border: 1px solid #F7F7F7;
+        }
+        & > li:last-child {
+            margin-left: 10px;
+        }
+        & > li.active > a {
+
+            color: #FFFFFF;
+            border: 1px solid #1FB5AD;
+            background: #1FB5AD;
+        }
+    }
+    #companyNews {
+        margin-top: 30px;
+    }
+    /*新闻详情*/
+    .news_details_title {
+        margin-top: 10%;
+        @include fontSize(20px,#404040,bold,center);
+    }
+    .news_details_content {
+        width: 95%;
+        margin: 0 auto;
+        text-indent: 2em;
+        @include fontSize(14px,#666666,500,left);
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 30px 0;
+        }
+    }
+    /*首页*/
+    /*关于猪码头*/
+    .index_aboutZmt_box {
+        margin: 0px auto;
+        width: 85%;
+        margin-bottom: 10px;
+    }
+    .index_aboutZmt_title {
+        @include fontSize(22px!important, #292929,bold,center);
+        line-height: 31px!important;
+    }
+    .success_case_bg{
+         height: 220px;
+    }
+    .success_case_box {
+        @include fontSize(20px, #ffffff,bold,center);
+        margin-top: -220px;
+        .col-xs-1,
+        .col-xs-10 {
+            padding: 5px;
+        }
+    }
+    .marquee_control {
+        height: 30px;
+        width: 15px;
+        background-size: 100% 100%!important;
+    }
+    .index_news_img{
+        width: 80%;
+        display: block;
+        margin: 0px auto;
+    }
+    .marquee_inner_img_top {
+        margin-top: 2%;
+    }
+    .index_news_description{
+        
+         @include fontSize(12px,#666666,400,left);
+    }
+    .index_news_title{
+        margin: 0px 0px 10px;
+        @include fontSize(16px, #292929,600,left);
+    }
+    .Slide_box{
+        height:200px;
+    }
+    /*成功案例*/
+    /*生猪溯源系统*/
+   .case{
+       .xsPad{
+           padding: 0px!important;
+           margin-bottom: 30px;
+       }
+   }
+}
+
+/* 平板电脑和小屏电脑之间的分辨率 --------------------------------------------------------------------------------------------------------------*/
+
+@media (min-width:768px)and(max-width: 979px) {
+    /*新闻资讯--------------------------------------------------------------------------------------------------------------*/
+    #newsTab > li {
+        width: 100%;
+        @include fontSize(16px, #464646,500,center);
+        float: left;
+
+    }
+    #newsTab > li:last-child {
+        margin-left: 0;
+    }
+    .news {
+        .col-sm-10 {
+            width: 20%;
+        }
+        .col-sm-12 {
+            width: 78%;
+        }
+    }
+    #companyNews {
+        margin-top: 0;
+    }
+
+    /*新闻详情*/
+
+    .news_details_title {
+        margin-top: 8%;
+        @include fontSize(30px,#404040,bold,center);
+    }
+    /*首页*/
+    /*关于猪码头*/
+    .index_aboutZmt_box {
+        margin-top: -150px;
+    }
+    .Slide_box{
+        height: 210px;
+    }
+//  .marquee_inner_img {
+//
+//      width: 45%!important;
+//  }
+//  .marquee_inner_img:nth-child(2) {
+//      width: 55%!important;
+//      left: 22%!important;
+//  }
+    .marquee_inner_img_top {
+        margin-top: 2%;
+    }
+    .success_case_box {
+        height: 250px;
+        .col-xs-1,
+        .col-xs-10 {
+            padding: 5px;
+        }
+    }
+    
+}
+
+/* 中等屏幕（桌面显示器，大于等于 992px） --------------------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 992px) and(max-width: 1200px){
+    #newsTab {
+        & > li {
+            width: 100%;
+        }
+    }
+    .Slide_box{
+        height: 260px;
+    }
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px）--------------------------------------------------------------------------------------------------------------*/
+
+@media (min-width: 1200px) {}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>登录注册</title>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!-- VENDOR CSS -->
+		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+		<link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
+		<link rel="stylesheet" href="../src/css/index.css">
+	</head>
+
+	<body>
+		<div>
+
+		</div>
+		<div class="login-panel">
+
+			<div class="login-middle">
+				<div class="login-left">
+					<img src="../src/images/login/xiaozhulogo.png" alt="" class="logoImg">
+					<img src="../src/images/login/wenzi2.png" alt="" class="wenziImg">
+
+				</div>
+				<div class="login-right">
+					<h4 class="login-right-title">欢迎登录!</h4>
+					<form class="login">
+						<div class="input-group margin-top-25">
+							<span class="input-group-addon"><i class="user"></i></span>
+							<input class="form-control" id="username" placeholder="请输入账号" type="text" name="account" maxlength="15">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="lock"></i></span>
+							<input class="form-control" id="password" type="password" placeholder="请输入密码" name="password" maxlength="15">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="shield"></i></span>
+							<input class="form-control" id="captcha" type="text" name="code" placeholder="验证码">
+							<span class="input-group-addon code_span"><img id="code_img" src="" alt=""></span>
+						</div>
+					</form>
+
+					<form class="new-password none">
+						<div class="input-group margin-top-25">
+							<span class="input-group-addon"><i class="user"></i></span>
+							<input class="form-control" id="phone" name="tel" placeholder="请输入注册的手机号" maxlength="11" type="text">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="lock"></i></span>
+							<input class="form-control" id="new-password" name="password" type="password" maxlength="15" placeholder="请输入新密码">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="shield"></i></span>
+							<input class="form-control" id="security_code" name="checkCode" type="text" placeholder="输入验证码">
+							<span class="input-group-addon"><a href="#" class="send_code" id="send_code">发送验证码</a></span>
+						</div>
+					</form>
+					<button type="button" class="btn btn-block loginBtn" id="loginBtn">登录</button>
+					<a href="#" class="forget-password">忘记密码?</a>
+					<a href="#" class="back_login none">返回登录></a>
+				</div>
+			</div>
+
+		</div>
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/layer/layer.js"></script>
+		<script src="../assets/vendor/layer/layui.js"></script>
+		<script src="../assets/vendor/jquery/jquery.md5.js"></script>
+		<script src="../src/js/allUrl.js"></script>
+		<script src="../src/js/login.js"></script>
+	</body>
+
+</html>

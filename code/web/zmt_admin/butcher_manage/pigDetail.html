@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<title>生猪详情</title>
+		<meta charset="utf-8">
+
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+			<!-- PANEL HEADLINE-->
+			<div class="locationNav">
+				<ul>
+					<li>
+						<a>屠宰管理&nbsp;</a>
+					</li>
+					<li class="butcher_m">
+						<span class="direction">》</span>
+						<a href="#" class="butcher">屠宰场管理</a>
+					</li>
+					<li class="personnel">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="personnelArea">屠宰场人员</a>
+					</li>
+					<li class="details">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="detailsArea">生猪列表</a>
+					</li>
+					<li class="pig">
+						<span class="direction">&nbsp;》</span>
+						<a href="#" class="pigArea on">生猪详情</a>
+					</li>
+				</ul>
+			</div>
+			<div class="panel panelDefault">
+				<!--personnel_manage-->
+				<div class="panel panelDefault">
+					<!--pig_detail-->
+					<div class="pig_list">
+						<div class="pig_list_content">
+							<div class="pig_list_heade">
+								<div class="pig_infor">
+									<div class="pig-group">
+										<span class="pull-left">ID：</span>
+										<span class="pig-id"></span>
+									</div>
+									<div class="pig-group pull-left">
+										<span class="pull-left">品种：</span>
+										<span class="pig-type"></span>
+									</div>
+
+								</div>
+							</div>
+							<div class="pig_list_table">
+								<table id="pigListTable" class="table table-hover table-striped" cellspacing="0">
+									<thead>
+										<tr>
+											<th>序 号</th>
+											<th>事件</th>
+											<th>生猪状态</th>
+											<th>地址</th>
+											<th>描述</th>
+											<th>操作人</th>
+											<th>时间</th>
+											<th>备注</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--pig_detail end-->
+				</div>
+
+				<!--personnel_manage end-->
+
+			</div>
+			<!--panel end-->
+		</div>
+		<!--container-fluid end-->
+
+		<script src="../src/js/pigDetail.js"></script>
+	</body>
+
+</html>

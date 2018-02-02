@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.CheckoutMapper">
+
+  
+    <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.Checkout">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="operater_id" jdbcType="VARCHAR" property="operaterId" />
+    <result column="pig_id" jdbcType="VARCHAR" property="pigId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="check_type" jdbcType="INTEGER" property="checkType" />
+    <result column="quarantine_result" jdbcType="INTEGER" property="quarantineResult" />
+    <result column="is_dispose" jdbcType="INTEGER" property="isDispose" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="vaccine" jdbcType="VARCHAR" property="vaccine" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_time, update_time,operater_id, pig_id, type,check_type, quarantine_result, is_dispose, `describe`, 
+    remark, vaccine 
+  </sql>
+  <select id="findCount" resultType="com.jf.projects.zmt.vo.checkout.CheckoutVo" parameterType="java.util.List">
+		select
+		operater_id as operaterId,
+		count(id) as count
+		from checkout
+		where operater_id in 
+	
+		<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">  
+        #{item}  
+    	</foreach>  
+ </select>
+  <select id="findCountById" resultType="com.jf.projects.zmt.vo.checkout.CheckoutVo" parameterType="java.lang.String">
+		select
+		operater_id as operaterId,
+		count(id) as count
+		from checkout
+		where operater_id  = #{id,jdbcType=VARCHAR}
+ </select>
+ 
+  <select id="findListByPid" parameterType="com.jf.projects.zmt.vo.BaseParam" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from checkout
+	    where operater_id = #{id,jdbcType=VARCHAR}
+	    <if test="pigId != null">
+        AND pig_id= #{pigId,jdbcType=VARCHAR}
+      </if>
+	    
+	    LIMIT #{start},#{length}
+  </select>
+  
+  <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from checkout
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from checkout
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.Checkout">
+    insert into checkout
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+  
+     <if test="operaterId != null">
+        operater_id,
+      </if>
+      <if test="pigId != null">
+        pig_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="checkType != null">
+        check_type,
+      </if>
+      <if test="quarantineResult != null">
+        quarantine_result,
+      </if>
+      <if test="isDispose != null">
+        is_dispose,
+      </if>
+      <if test="describe != null">
+        `describe`,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="vaccine != null">
+        vaccine,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR}, 
+      <if test="operaterId != null">
+        #{operaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="pigId != null">
+        #{pigId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="checkType != null">
+        #{checkType,jdbcType=INTEGER},
+      </if>
+      <if test="quarantineResult != null">
+        #{quarantineResult,jdbcType=INTEGER},
+      </if>
+      <if test="isDispose != null">
+        #{isDispose,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccine != null">
+        #{vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.Checkout">
+    update checkout
+ 	<set>
+
+     <if test="operaterId != null">
+        operater_id = #{operaterId,jdbcType=VARCHAR},
+      </if>
+      <if test="pigId != null">
+        pig_id = #{pigId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+       type= #{type,jdbcType=INTEGER},
+      </if>
+      <if test="checkType != null">
+       check_type= #{checkType,jdbcType=INTEGER},
+      </if>
+      <if test="quarantineResult != null">
+        quarantine_result = #{quarantineResult,jdbcType=INTEGER},
+      </if>
+      <if test="isDispose != null">
+        is_dispose = #{isDispose,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null">
+        `describe` = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccine != null">
+        vaccine = #{vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<title>屠宰管理</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!-- VENDOR CSS -->
+		<link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../assets/vendor/linearicons/style.css">
+		<link rel="stylesheet" href="../assets/vendor/chartist/css/chartist-custom.css">
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="../assets/css/main.css">
+		<!--<link rel="stylesheet" href="src/css/user_list_product.css">-->
+		<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+		<link rel="stylesheet" href="../assets/css/demo.css">
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+		<!-- ICONS -->
+		<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon.png">
+		<link rel="stylesheet" href="../assets/vendor/layer/layui.css">
+		<link rel="stylesheet" type="text/css" href="../src/css/navSidebar.css" />
+		<link rel="stylesheet" href="../src/css/index.css">
+	</head>
+
+	<body>
+		<!-- WRAPPER -->
+		<div id="wrapper">
+			<!-- NAVBAR -->
+			<nav class="navbar navbar-default navbar-fixed-top">
+				<div class="container-fluid">
+					<div id="navbar-menu">
+						<div class="backUpper">
+							<a href="#" class="backUpper-toggle" data-toggle="backUpper" onclick="">
+								<img src="../src/images/navSidebar/back.png" class="back-img" alt="返回" />
+								<span>返回上一页</span></a>
+						</div>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" class="welcome-font">
+									<span class="admin-font"><i class="fa fa-user" aria-hidden="true"></i> <span class="admin-arrt">超级管理员</span>，</span> 欢迎您！
+								</a>
+							</li>
+							<li class="cut-off">|</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="$.loginOut()"><span>退出登录</span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<!-- END NAVBAR -->
+			<!-- LEFT SIDEBAR -->
+			<div id="sidebar-nav" class="sidebar">
+				<div class="brand">
+					<a href="index.html"><img src="../src/images/navSidebar/logo.png" alt="" class="img-responsive img-circle avatar"></a>
+				</div>
+				<div class="sidebar-scroll">
+					<nav>
+						<ul class="nav">
+							<li class="none">
+								<a href="../index.html"><span>首页</span></a>
+							</li>
+							<li class="none">
+								<a href="../filing_manage/filing_manage.html"><span>建档管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../breed_manage/breed_manage.html" class=""><span>养殖管理</span></a>
+							</li>
+							<li class="none">
+								<a href="#butcherPages" data-toggle="collapse" class="active"><span>屠宰管理</span><i class="icon-submenu"></i> </a>
+								<div id="butcherPages" class="collapse in">
+									<ul class="nav">
+										<li class="none">
+											<a href="../butcher_manage/butcher_manage.html" class="on"><span></span>屠宰场管理</a>
+										</li>
+										<li class="none">
+											<a href="../butcher_manage/entryOutDataSelsct.html" class="">屠宰场出入库数据</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<!--<li class="none">
+								<a href="../butcher_manage/butcher_manage.html" class="active"><span>屠宰管理</span></a>
+							</li>-->
+							<li class="none">
+								<a href="../testing_center/testing_center.html" class=""><span>检验中心</span></a>
+							</li>
+							<li class="none">
+								<a href="../market_manage/market_manage.html" class=""><span>市场管理</span></a>
+							</li>
+							<li class="none">
+								<a href="../account_manage/account_manage.html" class=""><span>账号管理</span></a>
+							</li>
+							<li class="none">
+								<a href="#subPages" data-toggle="collapse" class="collapsed"><span>基础配置</span><i class="icon-submenu"></i> </a>
+								<div id="subPages" class="collapse ">
+									<ul class="nav">
+										<li class="none">
+											<a href="../basic_configuration/role management.html" class="">角色管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/address_manage.html" class="">地址管理</a>
+										</li>
+										<li class="none">
+											<a href="../basic_configuration/pig_breed_manage.html" class="">生猪品种管理</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- END LEFT SIDEBAR -->
+			<!-- MAIN -->
+			<div class="main main_container">
+				<!-- MAIN CONTENT -->
+				<div class="main-content">
+					<!-- CONTAINER FLUID -->
+					<div class="container-fluid">
+						<!-- PANEL HEADLINE-->
+						<div class="locationNav">
+							<ul>
+								<li>
+									<a>屠宰管理&nbsp;</a>
+								</li>
+								<li class="butcher_m">
+									<span class="direction">》</span>
+									<a href="butcher_manage.html" class="butcher  on">屠宰场管理</a>
+								</li>
+								<!--<li class="entry_library_data none">
+									<span class="direction">&nbsp;》</span>
+									<a href="#" class="entry_library_data_area">屠宰场出入库数据</a>
+								</li>
+								<li class="personnel none">
+									<span class="direction">&nbsp;》</span>
+									<a href="#" class="personnelArea">屠宰场人员</a>
+								</li>
+								<li class="details none">
+									<span class="direction">&nbsp;》</span>
+									<a href="#" class="detailsArea">生猪列表</a>
+								</li>
+								<li class="pig none">
+									<span class="direction">&nbsp;》</span>
+									<a href="#" class="pigArea">生猪详情</a>
+								</li>-->
+							</ul>
+						</div>
+						<div class="panel panelDefault">
+							<div class="butcher_manage">
+								<div class="panel-head filing-searchAera">
+									<div class="pull-left notPadMrg">
+										<button class="btn addBtn butcherAdd none"><img src="../src/images/add.png"> 新增屠宰场</button>
+
+									</div>
+									<div class=" pull-right searchBar">
+										<div class="form-group pull-right">
+											<button class="btn searchBtn pull-right butccherdSearch"><img src="../src/images/seacher.png"/> 查询</button>
+											<input type="text" class="form-control search-input pull-right" name="searchVal" id="searchVal" maxlength="15" placeholder="名称/负责人/联系方式" />
+
+										</div>
+									</div>
+								</div>
+								<div class="panel-content">
+									<div class="row">
+										<div class="col-md-12 notPadMrg table-butcherM">
+											<table id="tableButcherM" class="table table-hover table-striped tableButcherM" cellspacing="0">
+												<thead>
+													<tr>
+														<th>序号</th>
+														<th class="none">id</th>
+														<th class="none">状态</th>
+														<th>名称</th>
+														<th>屠宰人员</th>
+														<th>负责人</th>
+														<th>联系方式</th>
+														<th>地址</th>
+														<th>建号人</th>
+														<th>建号时间</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- butcher_manage end -->
+							<!--personnel_manage-->
+							<!--<div class="personnel_manage none">
+								<div class="adminInfoArea">
+									<div class="personnel-info">
+										<div class="ainfo-group pull-left">
+											<span class="pull-left">名称：</span>
+											<span id="butcher_personnel_name"></span>
+										</div>
+										<div class="ainfo-group none">
+											<span class="pull-left">id：</span>
+											<span id="butcher_personnel_id"></span>
+										</div>
+										<div class="ainfo-group none">
+												<span class="pull-left">养殖管理员信息：</span>
+												<span class="rowData"></span>
+										</div>
+										<div class="ainfo-group pull-left">
+											<span class="pull-left">已屠宰数量：</span>
+											<span id="butcher_personnel_number"></span>
+										</div>
+										<div class="ainfo-group pull-left">
+											<span class="account-lable pull-left">状态：</span>
+											<p class="personnelTips">
+												<span id="butcher_personnel_status"></span>
+												<span class="butcherStatusBtn none"></span>
+											</p>
+										</div>
+										<div class="ainfo-group pull-left">
+											<span class="account-lable pull-left">负责人：</span>
+											<span id="butcher_personnel_principalName"></span>
+										</div>
+										<div class="ainfo-group pull-left">
+											<span class="account-lable pull-left">联系方式：</span>
+											<span id="butcher_personnel_phone"></span>
+										</div>
+										<div class="ainfo-group pull-left ainfo-group-width">
+											<span class=" pull-left">地址：</span>
+											<span id="butcher_personnel_address"></span>
+											<i class="personnelEditorBtn none"></i>
+										</div>
+									</div>
+									<img src="../src/images/public/ic_camera.png" class="camera"/>
+								</div>
+								<div class="personnel_manage_content">
+									<div class="personnel_manage-searchAera">
+										<div class="pull-left notPadMrg">
+											<button class="btn addBtn personnelAdd none"><img src="../src/images/add.png"> 新增人员</button>
+
+										</div>
+										<div class=" pull-right searchBar">
+											<div class="form-group pull-right">
+												<button class="btn searchBtn pull-right personnelSearch"><img src="../src/images/seacher.png"/> 搜索</button>
+												<input type="text" class="form-control search-input pull-right" name="personnelSearchVal" maxlength="15" id="personnelSearchVal" placeholder="姓名/联系方式" />
+
+											</div>
+										</div>
+									</div>
+									<div class="panel-content">
+										<table id="personnelTable" class="table table-hover table-striped" cellspacing="0">
+											<thead>
+												<tr>
+													<th>序号</th>
+													<th class="none">id</th>
+													<th class="none">状态</th>
+													<th>账号</th>
+													<th>姓名</th>
+													<th>联系方式</th>
+													<th>地址</th>
+													<th>屠宰数</th>
+													<th>建号时间</th>
+													<th>操作</th>
+												</tr>
+											</thead>
+
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+
+								</div>
+							</div>-->
+							<!--personnel_manage end-->
+							<!-- butcher_details -->
+							<!--<div class="butcher_details none">
+								<div class="adminInfoArea">
+									<div class="butcher-info">
+										<div class="ainfo-group pull-left">
+											<span class="pull-left">账号：</span>
+											<span id="butcher_details_account"></span>
+										</div>
+										<div class="ainfo-group none">
+											<span class="pull-left">id：</span>
+											<span id="butcher_details_userId"></span>
+										</div>
+										<div class="ainfo-group none">
+											<span class="pull-left">rowData：</span>
+											<span id="butcher_details_rowData"></span>
+										</div>
+										<div class="ainfo-group none">
+											<span class="pull-left">屠宰场id：</span>
+											<span id="butcher_details_slaughterhouseId"></span>
+										</div>
+										<div class="ainfo-group pull-left">
+											<span class="pull-left">已屠宰数量：</span>
+											<span id="butcher_details_number"></span>
+										</div>
+										<div class="ainfo-group pull-left">
+											<span class="account-lable pull-left">状态：</span>
+											<p class="tips">
+												<span id="butcher_details_status"></span>
+												<span class="statusBtn none"></span>
+											</p>
+										</div>
+										<div class="ainfo-group pull-left">
+											<span class="account-lable pull-left">名称：</span>
+											<span id="butcher_details_userName"></span>
+										</div>
+										<div class="ainfo-group pull-left">
+											<span class="account-lable pull-left">联系方式：</span>
+											<span id="butcher_details_phone"></span>
+										</div>
+										<div class="ainfo-group pull-left butcher_details_address">
+											<span class=" pull-left">地址：</span>
+											<span id="butcher_details_address"></span>
+											<i class="editorBtn none"></i>
+										</div>
+									</div>
+								</div>
+								<div class="butcher_details_content">
+									<div class="butcher_details-searchAera">
+										<div class="pull-left notPadMrg">
+											<button class="btn addBtn butcherDetailAdd none"><img src="../src/images/add.png"> 新增生猪</button>
+
+										</div>
+										<div class=" pull-right searchBar">
+											<div class="form-group pull-right">
+												<button class="btn searchBtn pull-right butcherDetailSearch"><img src="../src/images/seacher.png"/> 搜索</button>
+												<input type="text" class="form-control search-input pull-right" name="butcherDetailVal" maxlength="15" id="butcherDetailVal" placeholder="搜索ID" />
+
+											</div>
+										</div>
+									</div>
+									<div class="panel-content">
+										<table id="butcherBetailsTable" class="table table-hover table-striped butcherBetailsTable" cellspacing="0">
+											<thead>
+												<tr>
+													<th>序 号</th>
+													<th class="none">userId</th>
+													<th>ID</th>
+													<th>
+														<select name="butcher-type" id="butcher-type">
+															<option value="">所有品种</option>
+														</select>
+													</th>
+													<th>
+														<select name="butcher-status" id="butcher-status">
+															<option value="">所有状态</option>
+															<option value="0">正常</option>
+															<option value="1">死亡</option>
+															<option value="2">待屠宰录入</option>
+															<option value="3">待屠宰</option>
+															<option value="4">宰后待检验</option>
+															<option value="5">待销售</option>
+															<option value="6">已处理</option>
+															<option value="7">已销售</option>
+														</select>
+													</th>
+													<th>操 作</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>-->
+							<!-- butcher_details end -->
+							<!--Pig_list-->
+							<!--<div class="pig_list none">
+								<div class="pig_list_content">
+									<div class="pig_list_heade">
+										<div class="pig_infor">
+											<div class="pig-group">
+												<span class="pull-left">ID：</span>
+												<span class="pig-id"></span>
+											</div>
+											<div class="pig-group pull-left">
+												<span class="pull-left">品种：</span>
+												<span class="pig-type"></span>
+											</div>
+
+										</div>
+									</div>
+									<div class="pig_list_table">
+										<table id="pigListTable" class="table table-hover table-striped" cellspacing="0">
+											<thead>
+												<tr>
+													<th>序 号</th>
+													<th>事件</th>
+													<th>生猪状态</th>
+													<th>地址</th>
+													<th>描述</th>
+													<th>操作人</th>
+													<th>时间</th>
+													<th>备注</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>-->
+							<!--Pig_list end-->
+						</div>
+						<!-- PANEL END-->
+
+					</div>
+					<!-- CONTAINER FLUID END -->
+
+				</div>
+				<!-- END MAIN CONTENT -->
+
+			</div>
+			<!-- MAIN END-->
+			<!--<div class="slaughteredLayer">
+				<p class="slaughtered">您是否确认屠宰ID:<span class="slaughteredId"></span></p>
+			</div>
+			<div class="addPIgLayer none">
+				<div class="form-groud addPigIdArea">
+					<p>您确认要录入以下生猪？</p>
+					<input class="form-control addPig margin-top-25" maxlength="15" placeholder="请输入ID" />
+				</div>
+				<div class="info-default none margin-top-25 pidTypeArae">
+					<label class="select-label pull-left">生猪类型:</label>
+					<select class="selected form-control" name="pidTypeAdd" id="pidTypeAdd">
+						<option value="">全部</option>
+					</select>
+				</div>
+			</div>
+			<div class="salesLayer">
+				<p class="sales">您是否录入ID:<span class="salesId"></span></p>
+				<form class="entryArea none">
+					<div class="salesPigId">
+						<label class="pull-left">生猪ID:</label>
+						<input name="pigId" class="input-default pigId" readonly>
+
+					</div>
+					<div class="info-default suttleArea">
+						<label class="select-label pull-left">净&emsp;&emsp;重:</label>
+						<input type="number" name="suttle" class="form-control suttle" placeholder="精确到小数点后两位数" />
+						<span class="kg">kg</span>
+					</div>
+					<div class="clear"></div>
+					
+					<div class="info-default farmerSearch">
+						<label class="select-label pull-left margin-top-25">流向市场:</label>
+						<input class="selected form-control info-mrg pull-left farmer">
+						<a class="btn farmerBtn pull-right margin-top-25"><img src="../src/images/seacher.png"/> 搜索</a>
+						<ul class="farmersList none">
+							
+						</ul>
+					</div>
+					<div class="clear"></div>
+					<div class="info-default  margin-top-25">
+						<label class="select-label pull-left" id="departmentAdd">市场人员:</label>
+						<select class="selected form-control" name="salePigType" id="marketId">
+							<option value="">全部</option>
+						</select>
+					</div>
+					<div class="clear"></div>
+					<div class="info-default margin-top-10">
+						<span >名&emsp;&emsp;称:</span>
+						<span class="mrgLeft35" id="farmerName"></span>
+					</div>
+					<div class="info-default none">
+						<span >id:</span>
+						<span class="mrgLeft35" id="farmerId"></span>
+					</div>
+					<div class="info-default margin-top-10">
+						<span >联系电话:</span>
+						<span class="mrgLeft35" id="farmerPhone"></span>
+					</div>
+					<div class="info-default margin-top-10">
+						<span >地&emsp;&emsp;址:</span>
+						<span class="mrgLeft35" id="farmerAddress"></span>
+					</div>
+				</form>
+			</div>
+			<div class="addButcherLayer none">
+				<form class="addButcherForm">
+					<p class="basic-Info pull-left">基本信息</p>
+					<div class="clear"></div>
+					<div class="info-default">
+						<label class="select-label pull-left nomrg-top">屠宰场</label>
+						<input class="selected form-control info-mrg" name="name">
+					</div>
+					<div class="info-default">
+						<label class="select-label pull-left nomrg-top">负责人:</label>
+						<input class="selected form-control info-mrg" name="phone">
+					</div>
+					<div class="info-default">
+						<label class="select-label pull-left nomrg-top">联系方式:</label>
+						<input class="selected form-control info-mrg" name="phone">
+					</div>
+					<div class="info-default margin-top-25">
+						<label class="select-label pull-left nomrg-top" id="typeAdd">地&nbsp;&nbsp;址:</label>
+						<select class="selected form-control" name="address">
+						</select>
+						<select class="selected form-control info-mrgLeft" name="address">
+						</select>
+						<select class="selected form-control info-mrgLeft" name="address">
+						</select>
+						<select class="selected form-control info-mrgLeft" name="address">
+						</select>
+						<select class="selected form-control info-mrgLeft" name="address">
+						</select>
+					</div>
+				</form>
+
+			</div>
+			<div class="reportInputLayer">
+				<form id="reportInputFrom">
+					<div class="info-default">
+						<label class="select-label pull-left">检&ensp;验&ensp;员:</label>
+						<select class="selected form-control" name="userId" id="butcherInspectorList">
+							<option value="">全部</option>
+						</select>
+					</div>
+					<div class="info-default  margin-top-25">
+						<label class="select-label pull-left">检查结果:</label>
+						<div class="permission pull-left">
+							<img src="../src/images/public/choise3.png" class="quarantineChecked pull-left" />
+							<span>通过</span>
+							<input type="radio" class="input-default none" name="quarantineResult" value="1">
+						</div>
+						<div class="permission pull-left">
+							<img src="../src/images/public/choise2.png" class="quarantineChecked pull-left" />
+							<span>不通过</span>
+							<input type="radio" class="input-default none" name="quarantineResult" value="0">
+						</div>
+					</div>
+					<div class="info-default margin-top-25 isDispose none ">
+						<label class="select-label pull-left">处理方式:</label>
+						<div class="permission pull-left">
+							<img src="../src/images/public/choise3.png" class="isDisposeChecked pull-left" />
+							<span>处理</span>
+							<input type="radio" class="input-default none" name="isDispose" value="1">
+						</div>
+						<div class="permission pull-left">
+							<img src="../src/images/public/choise2.png" class="isDisposeChecked pull-left" />
+							<span>不处理</span>
+							<input type="radio" class="input-default none" name="isDispose" value="0">
+						</div>
+					</div>
+					<div class="info-default margin-top-25">
+						<label class="select-label pull-left nomrg-top">详情描述:</label>
+						<input class="selected form-control info-mrg describe" name="describe" placeholder="请描述处理结果">
+					</div>
+					<hr class="margin-top-25"/>
+					<div class="info-default">
+						<label class="select-label margin-top-10">备&ensp;&ensp;&ensp;&ensp;注:</label>
+						<textarea class="form-control remark" placeholder="选填......" name="remark"  maxlength="255"></textarea> 
+					</div>
+				</form>
+				
+			</div>-->
+		</div>
+		<!-- END WRAPPER -->
+
+		<!-- Javascript -->
+		<script src="../assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../assets/vendor/layer/layer.js"></script>
+		<script src="../assets/vendor/layer/layui.js"></script>
+		<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="../assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+		<script src="../assets/scripts/klorofil-common.js"></script>
+		<script src="../assets/vendor/echarts/echarts.js"></script>
+		<script src="../assets/vendor/datatables/js/jquery.dataTables.js"></script>
+		<script src="../assets/vendor/datatables/js/dataTables.bootstrap.js"></script>
+		<script src="../src/js/allUrl.js"></script>
+		<script src="../src/js/Main.js"></script>
+		<script src="../src/js/manage.js"></script>	
+		<script src="../src/js/butcher_manage.js"></script>
+	</body>
+
+</html>

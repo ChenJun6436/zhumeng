@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.projects.zmt.dao.SUserMapper">
+  <resultMap id="BaseResultMap" type="com.jf.projects.zmt.model.SUser">
+    <id column="Id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="district_id" jdbcType="INTEGER" property="districtId" />
+    <result column="town_id" jdbcType="INTEGER" property="townId" />
+    <result column="village_id" jdbcType="INTEGER" property="villageId" />
+    <result column="creator_id" jdbcType="VARCHAR" property="creatorId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    Id, name, login_name, password, tel, type_id, department_id, create_time, update_time, 
+    status,province_id,city_id,district_id,town_id,village_id,creator_id
+  </sql>
+  
+	<sql id="Base_User_fields">
+		  SELECT
+		s_department.`name` as departmentName,
+		s_type.`name` as typeName,
+		s_user.login_name as account,
+		s_user.id as userId,
+		s_user.`name` as userName,
+		s_user.tel as phone,
+		s_user.status as status,
+		s_user.province_id as provinceId,
+		s_user.city_id as cityId,
+		s_user.district_id as districtId,
+		s_user.town_id as townId,
+		s_user.village_id as villageId
+	</sql>
+	<sql id="Base_User_table">
+		FROM
+		s_user
+		LEFT JOIN s_department ON s_user.department_id = s_department.id
+		LEFT JOIN s_type ON s_user.type_id = s_type.Id 
+		LEFT JOIN and_user_role ON and_user_role.user_id = s_user.Id
+			   
+	</sql>
+	<sql id="Base_User_where">
+		 where 1=1 
+	    <if test="account != null">
+	      and  s_user.login_name = #{account,jdbcType=VARCHAR}
+	    </if>
+	    <if test="phone != null">
+	      and s_user.tel = #{phone,jdbcType=VARCHAR}
+	    </if>
+	    <if test="key != null">
+	      and (s_user.login_name = #{key,jdbcType=VARCHAR} or s_user.tel = #{key,jdbcType=VARCHAR}  or  s_user.name like    '%${key}%' )
+	    </if>
+	    <if test="typeId != null">
+	      and  s_type.id = #{typeId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="departmentId != null">
+	      and s_department.id = #{departmentId,jdbcType=VARCHAR}
+	    </if>
+	     <if test="roleId != null">
+	      and and_user_role.role_id = #{roleId,jdbcType=VARCHAR}
+	    </if>
+	</sql>
+	<sql id="Base_Count">
+		  SELECT
+		count(s_user.id)
+  	    <include refid="Base_User_table" />
+ 		<include refid="Base_User_where" />
+	 
+	</sql>
+     
+    <select id="findUserCountByKey" parameterType="java.lang.String"  resultType="java.lang.Long">
+	    <include refid="Base_Count" />
+   </select>
+  <!-- 检验中心用户列表 -->
+   <select id="findUserByKey" parameterType="java.lang.String" resultType="com.jf.projects.zmt.vo.user.UserVo">
+	    <include refid="Base_User_fields" />
+	     <include refid="Base_User_table" />
+	      <include refid="Base_User_where" />
+	       LIMIT #{start},#{length}
+   </select>
+     <!-- 市场中心用户列表 -->
+   <select id="findMarketUserByKey" parameterType="java.lang.String" resultType="com.jf.projects.zmt.vo.market.MarketVo">
+	    <include refid="Base_User_fields" />
+	     <include refid="Base_User_table" />
+		LEFT JOIN and_market_user ON and_market_user.user_id = s_user.id
+	      <include refid="Base_User_where" />      
+	     and and_market_user.market_id= #{id,jdbcType=VARCHAR}
+	      GROUP BY  s_user.id  
+	      LIMIT #{start},#{length}
+   </select>
+      <!-- 市场中心用户总条数 -->
+   <select id="findMarketUserCountByKey" parameterType="java.lang.String"  resultType="java.lang.Long">
+   	    		  SELECT
+	COUNT(t.count)
+FROM
+	(
+	    		  SELECT
+		count(s_user.id) AS count
+  	  <include refid="Base_User_table" />
+		LEFT JOIN and_market_user ON and_market_user.user_id = s_user.id
+	      <include refid="Base_User_where" />      
+	     and and_market_user.market_id= #{id,jdbcType=VARCHAR}
+	     GROUP BY
+			s_user.id
+	) AS t
+	    
+   </select>
+   <!-- 屠宰场用户列表 -->
+      <select id="findSlaughterHouseUserByKey" parameterType="java.lang.String" resultType="com.jf.projects.zmt.vo.slaughterhouse.SlaughterhouseVo">
+	    <include refid="Base_User_fields" />
+	       ,`user`.`name` AS creatorName,
+	        s_user.create_time AS createTime
+	     <include refid="Base_User_table" />
+	 	 LEFT JOIN s_user AS `user` ON s_user.creator_id = `user`.Id
+	 	 LEFT JOIN and_slaughterhouse_user ON and_slaughterhouse_user.user_id = s_user.id
+		 LEFT JOIN pig_file ON and_slaughterhouse_user.pig_id = pig_file.pig_id
+	 	 
+	     <include refid="Base_User_where" />    
+	       AND and_slaughterhouse_user.slaughterhouse_id= #{id,jdbcType=VARCHAR}
+	  
+	      GROUP BY  s_user.id  
+	      LIMIT #{start},#{length}
+   </select>
+	        <!-- 屠宰场用户总条数 -->
+   <select id="findSlaughterHouseUserCountByKey" parameterType="java.lang.String"  resultType="java.lang.Long">
+	    		  
+	    		  SELECT
+	COUNT(t.count) 
+FROM
+	(
+	    		  SELECT
+		count(s_user.id) AS count
+		<include refid="Base_User_table" />
+	 	 LEFT JOIN s_user AS `user` ON s_user.creator_id = `user`.Id
+	 	 LEFT JOIN and_slaughterhouse_user ON and_slaughterhouse_user.user_id = s_user.id
+		 LEFT JOIN pig_file ON and_slaughterhouse_user.pig_id = pig_file.pig_id
+	 	 
+	     <include refid="Base_User_where" />    
+	       AND and_slaughterhouse_user.slaughterhouse_id= #{id,jdbcType=VARCHAR}
+	GROUP BY
+			s_user.id
+	) AS t
+	    
+  	 
+   </select>
+	  
+<!-- 根据用户账号获取用户信息 --> 
+  <select id="findByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from s_user
+    where tel = #{account} or login_name = #{account}
+    limit 1
+  </select>
+  
+  
+  <!-- 获取用户登录信息 --> 
+  <select id="findUserLoginInfo" parameterType="java.lang.String" resultType="com.jf.projects.zmt.vo.user.LoginUserInfoVo">
+    select t.id as userId,t.name,t.login_name as loginName,t.tel,t.type_id as typeId,
+    t.department_id as departmentId,s_department.name as departmentName,s_type.name as typeName,
+    and_user_role.role_id as roleId,s_department.code as departmentCode
+    from s_user t
+        LEFT JOIN s_department ON t.department_id = s_department.id
+		LEFT JOIN s_type ON t.type_id = s_type.Id 
+		LEFT JOIN and_user_role ON and_user_role.user_id = t.Id
+    where t.tel = #{account} or t.login_name = #{account}
+    limit 1
+  </select>
+
+	<!-- 获取用户类型部门角色信息 -->
+	<select id="findUserInfoByUserId" parameterType="java.lang.String"
+		resultType="com.jf.projects.zmt.vo.account.UserInfoVO">
+		select t.type_id as typeId,s_type.name as typeName,
+		t.department_id as departmentId,s_department.name as departmentName,
+		and_user_role.role_id as roleId,s_role.name as roleName
+		from s_user t
+		LEFT JOIN s_department ON t.department_id = s_department.id
+		LEFT JOIN s_type ON t.type_id = s_type.Id
+		LEFT JOIN and_user_role ON and_user_role.user_id = t.Id
+		LEFT JOIN s_role ON
+		and_user_role.role_id = s_role.Id
+		where t.id= #{userId}
+		limit 1
+	</select>
+  
+  <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from s_user
+    where Id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+    delete from s_user
+    where Id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jf.projects.zmt.model.SUser">
+    insert into s_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      Id,
+      <if test="name != null">
+        name,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="departmentId != null">
+        department_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      province_id,
+      city_id,
+      district_id,
+      town_id,
+      village_id,
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      #{provinceId,jdbcType=INTEGER},
+      #{cityId,jdbcType=INTEGER},
+      #{districtId,jdbcType=INTEGER},
+      #{townId,jdbcType=INTEGER},
+      #{villageId,jdbcType=INTEGER},
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.jf.projects.zmt.model.SUser">
+    update s_user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null">
+        department_id = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+       province_id = #{provinceId,jdbcType=INTEGER},
+       city_id = #{cityId,jdbcType=INTEGER},
+       district_id = #{districtId,jdbcType=INTEGER},
+       town_id = #{townId,jdbcType=INTEGER},
+       village_id = #{villageId,jdbcType=INTEGER},
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=VARCHAR}
+  </update>
+ 
+	<update id="forbidOrStart" parameterType="java.lang.String">
+		update s_user set
+		s_user.`status`=#{status}
+		WHERE s_user.Id=#{userId}
+	</update>
+
+
+	<!--分页条件查询建档者 -->
+	<select id="findBuidersInfo" resultType="com.jf.projects.zmt.vo.fileManager.BuildersVo">
+    SELECT
+	s_user.Id AS id,
+	s_user.village_id AS villageId,
+	s_user.district_id AS districtId,
+	s_user.province_id AS provinceId,
+	s_user.city_id AS cityId,
+	s_user.town_id AS townId,
+	s_department.`name` AS department,
+	s_user.login_name AS account,
+	s_user.`name` AS NAME,
+	s_user.tel AS phone,
+	s_user.`status` AS status,
+	s_role.`name` AS role,
+	temp.total AS
+	archivesNumber
+	FROM
+	s_user
+	LEFT JOIN s_department ON s_user.department_id = s_department.id
+	LEFT JOIN s_type ON s_user.type_id = s_type.Id
+	LEFT JOIN and_user_role ON and_user_role.user_id = s_user.Id
+	LEFT JOIN s_role ON s_role.Id = and_user_role.role_id
+	LEFT JOIN (
+	SELECT
+	brand.creater_id AS id,
+	count(brand.creater_id) AS total 
+	FROM
+	brand
+	where brand.sign_status=1
+	GROUP BY
+	brand.creater_id
+	) AS temp ON temp.id = s_user.Id
+	WHERE s_department.code='dp0001'
+	<if test="account != null">
+		and s_user.login_name = #{account,jdbcType=VARCHAR}
+	</if>
+
+	<if test="phone != null">
+		and s_user.tel = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="typeId != null">
+		and s_type.id = #{typeId,jdbcType=VARCHAR}
+	</if>
+	<if test="departmentId != null">
+		and s_department.id = #{departmentId,jdbcType=VARCHAR}
+	</if>
+	<if test="roleId != null">
+		and and_user_role.role_id = #{roleId,jdbcType=VARCHAR}
+	</if>
+	<if test="keyWords != null and keyWords != '' ">
+		AND (s_user.login_name LIKE '%${keyWords}%'
+		OR s_user.`name`
+		LIKE '%${keyWords}%'
+		OR s_user.tel = #{keyWords})
+	</if>
+	LIMIT #{start},#{length}
+</select>
+
+<select id="findBuiderNumber" resultType="java.lang.Long"
+	parameterType="java.lang.String">
+    SELECT
+	COUNT(s_user.Id)
+	FROM
+	s_user
+	LEFT JOIN s_department ON s_user.department_id = s_department.id
+	LEFT JOIN s_type ON s_user.type_id = s_type.Id
+	LEFT JOIN and_user_role ON and_user_role.user_id = s_user.Id
+	LEFT JOIN s_role ON s_role.Id = and_user_role.role_id
+	LEFT JOIN (
+	SELECT
+	brand.creater_id AS id,
+	count(brand.creater_id) AS total
+	FROM
+	brand
+	where brand.sign_status=1
+	GROUP BY
+	brand.creater_id
+	) AS temp ON temp.id = s_user.Id
+	WHERE
+    s_department.code='dp0001'
+	<if test="account != null">
+		and s_user.login_name = #{account,jdbcType=VARCHAR}
+	</if>
+
+	<if test="phone != null">
+		and s_user.tel = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="typeId != null">
+		and s_type.id = #{typeId,jdbcType=VARCHAR}
+	</if>
+	<if test="departmentId != null">
+		and s_department.id = #{departmentId,jdbcType=VARCHAR}
+	</if>
+	<if test="roleId != null">
+		and and_user_role.role_id = #{roleId,jdbcType=VARCHAR}
+	</if>
+	<if test="keyWords != null and keyWords != '' ">
+		AND (s_user.login_name LIKE '%${keyWords}%'
+		OR s_user.`name`
+		LIKE '%${keyWords}%'
+		OR s_user.tel = #{keyWords})
+	</if>
+</select>
+	<!-- 账户管理分页查询 -->
+	<select id="findPageByUser" parameterType="com.jf.projects.zmt.vo.account.AccountSearchVo"
+		resultType="com.jf.projects.zmt.vo.account.AccountVo">
+		SELECT u.Id AS Id,u.`status` AS `status`,u.login_name AS account,u.`name` AS `name`, 
+			u.tel AS phone,DATE_FORMAT(u.create_time,'%Y-%m-%d') AS createTime,us.`name` AS creator,
+			role.`name` AS roleName,dep.`name` AS departmentName,role.Id AS roleId
+			
+			FROM s_user u
+			LEFT JOIN s_user us ON us.Id = u.creator_id
+			LEFT JOIN and_user_role aur ON aur.user_id = u.Id
+			LEFT JOIN s_role role ON role.Id = aur.role_id
+			LEFT JOIN s_department dep ON dep.id = role.department_id
+			LEFT JOIN s_type type ON type.Id = dep.type_id
+		WHERE 1 = 1
+		<if test="typeId != null and typeId != '' ">
+	      AND type.Id = #{typeId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="departmentId != null and departmentId != '' ">
+	      AND dep.id = #{departmentId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="roleId != null and roleId != '' ">
+	      AND role.Id = #{roleId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="keywords != null and keywords != '' ">
+	      AND (u.login_name LIKE #{keywords} 
+			   OR u.`name` LIKE #{keywords} 
+			   OR u.tel LIKE #{keywords})
+	    </if>
+	    ORDER BY u.create_time DESC
+	    LIMIT #{start},#{length}
+	</select>
+	<!--通过Id查找用户名字和地址 -->
+	<select id="findUserInfoByUerId" resultType="com.jf.projects.zmt.vo.user.UserInfoVo">
+		SELECT
+		sue.id AS id,
+		sue.`name` AS `name`
+		FROM
+		s_user sue
+		WHERE
+		sue.Id = #{userId}
+	</select>
+	<!-- 账户管理数量统计 -->
+	<select id="findTotal" resultType="java.lang.Long" 
+		parameterType="com.jf.projects.zmt.vo.account.AccountSearchVo">
+		SELECT COUNT(aa.id) FROM(
+			SELECT u.Id AS Id,u.`status` AS `status`,u.login_name AS account,u.`name` AS `name`, 
+			u.tel AS phone,DATE_FORMAT(u.create_time,'%Y-%m-%d') AS createTime,us.`name` AS creator,
+			role.`name` AS roleName,dep.`name` AS departmentName,role.Id AS roleId
+			
+			FROM s_user u
+			LEFT JOIN s_user us ON us.Id = u.creator_id
+			LEFT JOIN and_user_role aur ON aur.user_id = u.Id
+			LEFT JOIN s_role role ON role.Id = aur.role_id
+			LEFT JOIN s_department dep ON dep.id = role.department_id
+			LEFT JOIN s_type type ON type.Id = dep.type_id
+		WHERE 1 = 1
+		<if test="typeId != null and typeId != '' ">
+	      AND type.Id = #{typeId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="departmentId != null and departmentId != '' ">
+	      AND dep.id = #{departmentId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="roleId != null and roleId != '' ">
+	      AND role.Id = #{roleId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="keywords != null and keywords != '' ">
+	      AND (u.login_name LIKE #{keywords} 
+			   OR u.`name` LIKE #{keywords} 
+			   OR u.tel LIKE #{keywords})
+	    </if>
+		) AS aa
+	</select>
+	
+	<!-- 根据用户获取用户信息 -->
+	<select id="findInfoById" resultType = "com.jf.projects.zmt.vo.account.AccountInfoVo"
+			parameterType="java.lang.String">
+		SELECT
+			role.type_id AS typeId,
+			role.department_id AS departmentId,
+			role.Id AS roleId,
+			u.login_name AS account,
+			u.`password` AS `password`,
+			u.province_id as provinceId,
+			u.city_id as cityId,
+			u.district_id as districtId,
+			u.town_id as townId,
+			u.village_id as villageId,
+			u.`name` AS `name`,
+			u.tel AS tel
+		FROM
+			s_user u
+		LEFT JOIN and_user_role aur ON aur.user_id = u.Id
+		LEFT JOIN s_role role ON role.id = aur.role_id
+		WHERE 1 = 1 AND u.Id = #{id,jdbcType=VARCHAR}
+	
+	</select>
+	
+	<!-- 根据电话号码获取用户，判断电话号码是否已存在 -->
+	<select id="findUserByTel" parameterType="java.lang.String" resultMap="BaseResultMap">
+	 	select 
+	    	<include refid="Base_Column_List" />
+	    from s_user u
+	    WHERE u.tel = #{tel,jdbcType=VARCHAR}
+	    <if test="userId != null and userId != '' ">
+	       AND u.Id != #{userId,jdbcType=VARCHAR}
+	    </if>
+	    LIMIT 1
+	</select>
+	
+	<!-- 根据创建人查找用户 -->
+	<select id="findUserByCreateId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	 	select 
+	    	<include refid="Base_Column_List" />
+	    from s_user u
+	    WHERE u.creator_id = #{createId,jdbcType=VARCHAR}
+	    LIMIT 1
+	</select>
+</mapper>

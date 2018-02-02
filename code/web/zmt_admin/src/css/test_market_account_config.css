@@ -1,0 +1,785 @@
+/*
+ * pig_breed_manage.html  start
+ */
+.text-gary {
+  color: #CCCCCC; }
+
+ul li {
+  list-style: none; }
+
+.isGrey {
+  color: #CCCCCC; }
+
+.main_container {
+  background-color: #F1F1F1; }
+  .main_container .pigBreedList {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px; }
+  .main_container .headListColor1 {
+    font-size: 14px;
+    line-height: 31px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #1FB5AD; }
+  .main_container .pigBreedManAll {
+    min-height: 800px;
+    background-color: white;
+    margin-left: 20px;
+    margin-right: 20px; }
+    .main_container .pigBreedManAll .addBreedBtn {
+      height: 90px;
+      border: 1px solid #F0F2F7;
+      opacity: 1;
+      display: block;
+      margin-bottom: 20px; }
+      .main_container .pigBreedManAll .addBreedBtn a {
+        display: inline-block;
+        width: 153px;
+        height: 38px;
+        font-size: 14px;
+        line-height: 38px;
+        color: #FFFFFF;
+        background-color: #1FB5AD;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 29px;
+        margin-bottom: 25px; }
+      .main_container .pigBreedManAll .addBreedBtn #pig_breed_manageTable {
+        margin-top: 20px; }
+    .main_container .pigBreedManAll #pig_breed_manageTable_wrapper #pig_breed_manageTable_info,
+    .main_container .pigBreedManAll #pig_breed_manageTable_wrapper #pig_breed_manageTable_paginate {
+      display: none; }
+  .main_container .addInput {
+    margin-top: 30px;
+    margin-left: 22px;
+    margin-bottom: 20px; }
+  .main_container #newAddchecekPeo {
+    overflow-y: scroll;
+    height: 700px; }
+    .main_container #newAddchecekPeo .contentBox {
+      margin-top: 50px;
+      margin-bottom: 20px; }
+      .main_container #newAddchecekPeo .contentBox input,
+      .main_container #newAddchecekPeo .contentBox select {
+        width: 279px;
+        height: 39px;
+        background-color: #FFFFFF;
+        border: 1px solid #CCCCCC;
+        border-radius: 4px; }
+      .main_container #newAddchecekPeo .contentBox .zhongxian {
+        display: inline-block;
+        width: 279px;
+        border-top: 1px dashed #CCCCCC;
+        opacity: 1;
+        padding-top: 5px; }
+      .main_container #newAddchecekPeo .contentBox .baseMag {
+        margin-bottom: -15px !important;
+        margin-top: -18px; }
+      .main_container #newAddchecekPeo .contentBox .newAddLeft {
+        opacity: 1; }
+        .main_container #newAddchecekPeo .contentBox .newAddLeft .leftForm {
+          margin-left: 83px; }
+        .main_container #newAddchecekPeo .contentBox .newAddLeft label {
+          font-size: 14px;
+          line-height: 56px;
+          opacity: 1;
+          color: #444444;
+          margin-right: 36px; }
+      .main_container #newAddchecekPeo .contentBox .newAddRight {
+        border-left: 1px dashed #CCCCCC;
+        min-height: 610px; }
+        .main_container #newAddchecekPeo .contentBox .newAddRight .rightForm {
+          padding-left: 38px; }
+          .main_container #newAddchecekPeo .contentBox .newAddRight .rightForm .form-group {
+            margin-bottom: 10px !important; }
+          .main_container #newAddchecekPeo .contentBox .newAddRight .rightForm .areaFirst {
+            margin-left: 4.5%; }
+        .main_container #newAddchecekPeo .contentBox .newAddRight label {
+          font-size: 14px;
+          line-height: 56px;
+          opacity: 1;
+          color: #444444; }
+        .main_container #newAddchecekPeo .contentBox .newAddRight select {
+          margin-bottom: 26px; }
+
+/*
+ * pig_breed_manage.html  end
+ */
+/*
+ * testing_center.html  start
+ */
+.testCenterAll {
+  margin-left: 30px;
+  margin-right: 13px; }
+  .testCenterAll .jinayanCenterDel {
+    background-color: white;
+    margin-bottom: 20px;
+    height: 122px; }
+    .testCenterAll .jinayanCenterDel div ul {
+      margin-top: 20px;
+      margin-bottom: 20px; }
+      .testCenterAll .jinayanCenterDel div ul li {
+        font-size: 16px;
+        color: #777777;
+        font-weight: bold; }
+    .testCenterAll .jinayanCenterDel div label, .testCenterAll .jinayanCenterDel div span {
+      font-size: 16px;
+      color: #777777;
+      font-weight: bold; }
+  .testCenterAll .testCenterBox {
+    margin-top: 20px; }
+    .testCenterAll .testCenterBox .updateRole {
+      margin-left: 5px;
+      margin-right: 5px; }
+    .testCenterAll .testCenterBox .updateRole,
+    .testCenterAll .testCenterBox .lookDetails {
+      font-size: 14px;
+      color: #3C91DD;
+      cursor: pointer; }
+    .testCenterAll .testCenterBox .delRole {
+      color: #FA8564;
+      cursor: pointer; }
+  .testCenterAll .resetPass {
+    cursor: pointer; }
+  .testCenterAll .headList {
+    margin-top: 10px;
+    margin-bottom: 14px; }
+    .testCenterAll .headList span {
+      font-size: 14px;
+      line-height: 31px;
+      color: #1FB5AD; }
+  .testCenterAll .mainContent {
+    min-height: 670px;
+    background-color: #FFFFFF;
+    padding-left: 0px;
+    padding-right: 0px; }
+  .testCenterAll .testHead {
+    margin-top: 29px;
+    border-bottom: 1px solid #F0F2F7;
+    opacity: 1;
+    padding-bottom: 23px; }
+    .testCenterAll .testHead .newAddTestPeople {
+      display: inline-block;
+      width: 153px;
+      height: 38px;
+      font-size: 14px;
+      line-height: 38px;
+      color: #FFFFFF;
+      background-color: #1FB5AD;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+      outline: none;
+      border: 0px; }
+    .testCenterAll .testHead #shaixuanSel {
+      width: 183px;
+      height: 39px;
+      border-radius: 4px;
+      opacity: 1;
+      border: 1px solid #E3E5EB;
+      background-color: #FFFFFF;
+      margin-right: 28px; }
+    .testCenterAll .testHead #testing_search {
+      width: 376px;
+      height: 39px;
+      border: 1px solid #E3E5EB;
+      background-color: #FFFFFF;
+      opacity: 1;
+      border-radius: 4px; }
+    .testCenterAll .testHead input::-webkit-input-placeholder {
+      font-size: 16px;
+      line-height: 31px;
+      color: #DDDDDD;
+      padding-left: 11px; }
+    .testCenterAll .testHead .searchBtn {
+      width: 74px;
+      height: 38px;
+      background-color: #1FBBA6;
+      color: #FFFFFF;
+      border-radius: 4px;
+      opacity: 1;
+      margin-left: 25px; }
+      .testCenterAll .testHead .searchBtn img {
+        margin-left: -10px; }
+  .testCenterAll #testCenterCheckDetails .detailsMsg {
+    margin-top: 20px; }
+  .testCenterAll #testCenterCheckDetails .detailsTable {
+    margin-top: 20px; }
+    .testCenterAll #testCenterCheckDetails .detailsTable .newAddReport {
+      display: inline-block;
+      width: 120px;
+      height: 40px;
+      line-height: 40px;
+      color: white;
+      background-color: #ED4D4D;
+      text-align: center;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      margin-bottom: 20px; }
+  .testCenterAll #addRepot .reportForm {
+    margin-top: 20px; }
+
+.testCenterDetails {
+  background-color: #F1F1F1; }
+  .testCenterDetails .tableOperate {
+    cursor: pointer; }
+  .testCenterDetails .tableOperate1 {
+    cursor: pointer; }
+  .testCenterDetails .headList2 {
+    margin-top: 10px;
+    margin-bottom: 14px; }
+    .testCenterDetails .headList2 span {
+      font-size: 14px;
+      color: #666666;
+      line-height: 31px; }
+    .testCenterDetails .headList2 .nowselected {
+      color: #1FB5AD; }
+  .testCenterDetails .detailsTop {
+    height: 122px;
+    background-color: white; }
+    .testCenterDetails .detailsTop .firstLine {
+      margin-top: 10px; }
+      .testCenterDetails .detailsTop .firstLine li {
+        font-size: 16px;
+        line-height: 48px;
+        color: #777777;
+        font-weight: bold; }
+    .testCenterDetails .detailsTop .secondLine {
+      margin-top: -12px; }
+      .testCenterDetails .detailsTop .secondLine label {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 48px;
+        color: #777777; }
+      .testCenterDetails .detailsTop .secondLine input, .testCenterDetails .detailsTop .secondLine span {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 48px;
+        color: #777777; }
+  .testCenterDetails .tdetailsContent {
+    min-height: 665px;
+    background-color: white;
+    margin-top: 18px;
+    padding-left: 0px;
+    padding-right: 0px; }
+    .testCenterDetails .tdetailsContent .detailsSearch {
+      margin-top: 28px;
+      padding-bottom: 23px;
+      border-bottom: 1px solid #F0F2F7;
+      padding-left: 20px;
+      padding-right: 20px; }
+      .testCenterDetails .tdetailsContent .detailsSearch a {
+        display: inline-block;
+        width: 116px;
+        height: 38px;
+        background-color: #1FB5AD;
+        color: #FFFFFF;
+        font-size: 14px;
+        line-height: 38px;
+        border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        border: 0px; }
+      .testCenterDetails .tdetailsContent .detailsSearch span {
+        float: right; }
+        .testCenterDetails .tdetailsContent .detailsSearch span input {
+          width: 376px;
+          height: 39px;
+          border-radius: 4px;
+          border: 1px solid #CCCCCC;
+          outline: none; }
+        .testCenterDetails .tdetailsContent .detailsSearch span button {
+          width: 74px;
+          height: 38px;
+          line-height: 31px;
+          border-radius: 4px;
+          border: 1px solid #1FBBA6;
+          background-color: #1FBBA6;
+          color: white;
+          margin-left: 25px; }
+    .testCenterDetails .tdetailsContent .testdetailsTable {
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-top: 20px; }
+      .testCenterDetails .tdetailsContent .testdetailsTable #testCenterDetalSlect {
+        border: 0px;
+        outline: 0px;
+        background-color: #FBFBFB; }
+
+#reportLayer {
+  margin-top: 30px; }
+
+#reportYesLayer .firstUl {
+  margin-top: 40px; }
+#reportYesLayer .lastUl {
+  padding-left: 17px; }
+#reportYesLayer .fengexian {
+  padding-left: 32px; }
+  #reportYesLayer .fengexian span {
+    display: inline-block;
+    width: 272px;
+    border-bottom: 1px dashed #444444;
+    margin-left: 11px; }
+#reportYesLayer ul {
+  margin-bottom: 22px; }
+  #reportYesLayer ul li {
+    font-size: 14px;
+    color: #444444; }
+#reportYesLayer .radio label {
+  margin-left: 20px; }
+#reportYesLayer .radio select {
+  width: 199px;
+  height: 39px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  margin-left: 19px; }
+
+.testCenterDetailsEdit form input {
+  width: 220px;
+  height: 36px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px; }
+.testCenterDetailsEdit form .firstOne {
+  margin-top: 20px; }
+.testCenterDetailsEdit form label {
+  font-size: 14px;
+  color: #444444; }
+.testCenterDetailsEdit form select {
+  width: 220px;
+  height: 36px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px; }
+.testCenterDetailsEdit form .selectSty {
+  margin-left: 24%; }
+
+#reportYesNextLayer1 form {
+  margin-top: 40px; }
+
+#reportYesNextLayer2 .radioSel {
+  margin-top: 40px;
+  padding-left: 55px; }
+  #reportYesNextLayer2 .radioSel p {
+    margin-bottom: 27px; }
+    #reportYesNextLayer2 .radioSel p label {
+      font-weight: none;
+      font-size: 14px;
+      color: #444444; }
+    #reportYesNextLayer2 .radioSel p .radio1 {
+      margin-left: 22px; }
+    #reportYesNextLayer2 .radioSel p .radio2 {
+      margin-left: 59px; }
+  #reportYesNextLayer2 .radioSel .miaoshuSty label {
+    margin-left: 10px; }
+  #reportYesNextLayer2 .radioSel .miaoshuSty input {
+    width: 270px;
+    height: 38px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px; }
+  #reportYesNextLayer2 .radioSel .beizhuxian {
+    margin-left: 10px; }
+    #reportYesNextLayer2 .radioSel .beizhuxian span {
+      display: inline-block;
+      width: 288px;
+      border-bottom: 1px dashed #444444;
+      margin-left: 11px; }
+  #reportYesNextLayer2 .radioSel .beizhu textarea {
+    width: 350px;
+    height: 101px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    margin-left: 10px; }
+
+#newAddArea #newAddArea1 {
+  margin-left: 5%; }
+
+.layui-layer-page .layui-layer-content {
+  overflow: hidden !important; }
+
+/*
+ * testing_center.html  end
+ */
+/*
+ * 
+ * market_manage.html  start
+ */
+#marketList {
+  padding: 0px 20px 0px 20px; }
+  #marketList .curLocation {
+    color: #1FB5AD; }
+  #marketList .marketListBody {
+    min-height: 810px;
+    background-color: white;
+    margin-top: 20px;
+    padding-left: 0px;
+    padding-right: 0px; }
+    #marketList .marketListBody .marketListHead {
+      padding: 29px 20px 23px 20px;
+      border-bottom: 1px solid #F0F2F7; }
+      #marketList .marketListBody .marketListHead .newAddMarket {
+        width: 154px;
+        height: 38px;
+        border: 1px solid #1FB5AD;
+        border-radius: 4px;
+        background-color: #1FB5AD;
+        color: white;
+        line-height: 38px; }
+      #marketList .marketListBody .marketListHead .marketListSearch {
+        float: right; }
+        #marketList .marketListBody .marketListHead .marketListSearch input {
+          width: 376px;
+          height: 39px;
+          border: 1px solid #CCCCCC;
+          border-radius: 4px; }
+        #marketList .marketListBody .marketListHead .marketListSearch button {
+          width: 97px;
+          height: 38px;
+          background-color: #1FBBA6;
+          border: 1px solid #1FBBA6;
+          color: white;
+          border-radius: 4px;
+          margin-left: 20px; }
+    #marketList .marketListBody #shichangManageList {
+      margin-top: 20px;
+      padding-left: 20px;
+      padding-right: 20px; }
+
+.newAddMarketLayer .marketBaseMsg label {
+  margin-left: 11%; }
+.newAddMarketLayer .marketBaseMsg select, .newAddMarketLayer .marketBaseMsg input {
+  width: 279px;
+  height: 39px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px; }
+.newAddMarketLayer .marketBaseMsg div {
+  margin-bottom: 15px;
+  margin-top: 15px; }
+.newAddMarketLayer .marketBaseMsg select {
+  display: block;
+  margin-left: 23%;
+  margin-bottom: 15px; }
+.newAddMarketLayer .marketBaseMsg .firstSel {
+  margin-top: -34px; }
+
+#marketManageAll .headList1 {
+  margin-top: 10px;
+  margin-bottom: 14px; }
+  #marketManageAll .headList1 span:last-child {
+    font-size: 14px;
+    line-height: 31px;
+    color: #1FB5AD; }
+
+#reportYesLayer .breedWeight {
+  margin-left: 50px; }
+#reportYesLayer p {
+  margin-top: 20px;
+  color: #444444; }
+  #reportYesLayer p input {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 215px;
+    height: 39px; }
+#reportYesLayer p:first-child {
+  font-size: 16px;
+  font-weight: bold; }
+
+.testCenterDetails1 {
+  background-color: #F1F1F1; }
+  .testCenterDetails1 .headList2 {
+    margin-top: 10px;
+    margin-bottom: 14px; }
+    .testCenterDetails1 .headList2 span {
+      font-size: 14px;
+      color: #666666;
+      line-height: 31px; }
+    .testCenterDetails1 .headList2 .nowselected {
+      color: #1FB5AD; }
+  .testCenterDetails1 .tdetailsContent {
+    min-height: 790px;
+    background-color: white;
+    margin-top: 5px;
+    padding-left: 0px;
+    padding-right: 0px; }
+    .testCenterDetails1 .tdetailsContent .detailsSearch {
+      margin-top: 28px;
+      padding-bottom: 23px;
+      border-bottom: 1px solid #F0F2F7;
+      padding-left: 20px;
+      padding-right: 20px; }
+      .testCenterDetails1 .tdetailsContent .detailsSearch span {
+        margin-right: 100px;
+        font-size: 16px;
+        color: #777777; }
+    .testCenterDetails1 .tdetailsContent .testdetailsTable {
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-top: 20px; }
+      .testCenterDetails1 .tdetailsContent .testdetailsTable #testCenterDetalSlect {
+        border: 0px;
+        outline: 0px;
+        background-color: #FBFBFB; }
+
+.accountType div {
+  margin-top: 7px; }
+  .accountType div input:last-child {
+    margin-left: 30px; }
+  .accountType div input {
+    margin-right: 5px; }
+.accountType label {
+  font-size: 14px;
+  color: #444444;
+  font-weight: lighter; }
+
+/*
+ * 
+ * market_manage.html  end
+ */
+/*
+ * 
+ * market_manage.html  start
+ */
+.none {
+  display: none; }
+
+#accountManageAll .edit,
+#accountManageAll .del,
+#accountManageAll .resetPass {
+  color: #3C91DD;
+  cursor: pointer;
+  margin-right: 5px; }
+#accountManageAll .headList1 {
+  margin-top: 20px; }
+  #accountManageAll .headList1 .colorSty {
+    font-size: 14px;
+    color: #1FB5AD; }
+#accountManageAll .mainContent {
+  margin-top: 20px; }
+
+#newAddAcount {
+  overflow-y: scroll;
+  height: 650px; }
+  #newAddAcount .contentBox {
+    margin-top: 50px;
+    margin-bottom: 20px; }
+    #newAddAcount .contentBox input,
+    #newAddAcount .contentBox select {
+      width: 279px;
+      height: 39px;
+      background-color: #FFFFFF;
+      border: 1px solid #CCCCCC;
+      border-radius: 4px; }
+    #newAddAcount .contentBox .zhongxian {
+      display: inline-block;
+      width: 279px;
+      border-top: 1px dashed #CCCCCC;
+      opacity: 1;
+      padding-top: 5px; }
+    #newAddAcount .contentBox .baseMag {
+      margin-bottom: -15px !important;
+      margin-top: -22px; }
+    #newAddAcount .contentBox .newAddLeft {
+      opacity: 1; }
+      #newAddAcount .contentBox .newAddLeft .leftForm {
+        margin-left: 83px; }
+      #newAddAcount .contentBox .newAddLeft label {
+        font-size: 14px;
+        line-height: 56px;
+        opacity: 1;
+        color: #444444;
+        margin-right: 36px; }
+    #newAddAcount .contentBox .rightForm {
+      padding-left: 38px;
+      min-height: 550px;
+      border-left: 1px dashed #CCCCCC; }
+      #newAddAcount .contentBox .rightForm label {
+        font-size: 14px;
+        line-height: 56px;
+        opacity: 1;
+        color: #444444;
+        margin-right: 36px; }
+
+/*
+ * 
+ * market_manage.html  end
+ */
+/*
+ * 
+ * role management.html  start
+ */
+#roleManagement .headList1 {
+  padding-left: 0px;
+  font-size: 14px;
+  color: #666666;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 31px; }
+#roleManagement .headColor {
+  color: #1FB5AD; }
+#roleManagement .rmHeadList {
+  padding-left: 0px; }
+  #roleManagement .rmHeadList ul li {
+    float: left;
+    min-width: 141px;
+    height: 42px;
+    line-height: 42px;
+    margin-right: 9px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #AAAAAA;
+    background-color: #AAAAAA;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    color: white;
+    padding: 0px 20px 0px 20px; }
+    #roleManagement .rmHeadList ul li img {
+      position: absolute;
+      right: 0; }
+  #roleManagement .rmHeadList .active1 {
+    border: 1px solid #1FB5AD;
+    background-color: #1FB5AD; }
+#roleManagement .mainContent {
+  min-height: 700px; }
+  #roleManagement .mainContent .searchBtn1 {
+    width: 111px;
+    height: 38px;
+    border: 1px solid #1FBBA6;
+    background-color: #1FBBA6;
+    border-radius: 4px;
+    margin-right: 13px;
+    color: white; }
+
+#newAddType form {
+  margin-top: 62px;
+  margin-left: 36px;
+  margin-bottom: 40px; }
+  #newAddType form input {
+    width: 279px;
+    height: 39px;
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    border-radius: 4px; }
+
+#bumenManage .addDepartment {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+#bumenManage .addDepartment,
+#bumenManage .tableAll {
+  padding-right: 40px;
+  padding-left: 40px; }
+#bumenManage .newAddBumen {
+  display: inline-block;
+  width: 111px;
+  height: 38px;
+  border: 1px solid #1FBBA6;
+  border-radius: 4px;
+  background-color: #1FBBA6;
+  color: white;
+  text-align: center;
+  float: right;
+  line-height: 38px;
+  cursor: pointer; }
+#bumenManage #bumenTable .bumenDel {
+  margin-left: 15px;
+  color: #FA8564;
+  cursor: pointer; }
+#bumenManage #bumenTable .buemnEdit {
+  color: #3C91DD;
+  cursor: pointer; }
+#bumenManage #bumenTable .disabledSel {
+  border: 0px;
+  outline: 0px;
+  box-shadow: none; }
+#bumenManage #bumenTable_info {
+  display: none; }
+#bumenManage #bumenTable_paginate {
+  display: none; }
+
+#newAddDepartment select,
+#newAddDepartment input {
+  width: 279px;
+  height: 39px;
+  border: 1px solid #CCCCCC;
+  background-color: white;
+  border-radius: 4px; }
+#newAddDepartment .firstDiv {
+  margin-top: 60px;
+  margin-bottom: 45px; }
+
+#newAddjuese form {
+  margin-top: 20px; }
+  #newAddjuese form .rowall {
+    margin-top: 30px; }
+    #newAddjuese form .rowall span {
+      display: inline-block;
+      padding-top: 6px; }
+    #newAddjuese form .rowall select,
+    #newAddjuese form .rowall input {
+      width: 279px;
+      height: 39px;
+      border: 1px solid #CCCCCC;
+      border-radius: 4px; }
+    #newAddjuese form .rowall label {
+      font-size: 14px;
+      color: #444444;
+      font-weight: lighter; }
+
+/*
+ * 
+ * role management.html  end
+ */
+/*
+ * 
+ * account_manage.html  start
+ */
+.curRoleOfAccount {
+  padding: 20px; }
+  .curRoleOfAccount .headList1 {
+    margin: 20px 20px; }
+    .curRoleOfAccount .headList1 .headColor {
+      color: #1FBBA6; }
+
+.layui-layer-lan .layui-layer-title {
+  background-color: #1FB5AD !important; }
+
+.layui-layer-lan .layui-layer-btn {
+  text-align: center !important; }
+
+.showTreeboxDfl {
+  position: relative;
+  background: #FBFBFB;
+  left: 30px;
+  z-index: 99999; }
+
+.showTreeboxDfl > li {
+  line-height: 25px; }
+
+.overflow-y {
+  overflow-y: scroll;
+  height: 500px; }
+
+.overflow-y::-webkit-scrollbar {
+  width: 4px;
+  height: 4px; }
+
+.overflow-y::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2); }
+
+.overflow-y::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1); }
+
+/*
+ * 
+ * account_manage.html  end
+ */
+
+/*# sourceMappingURL=test_market_account_config.css.map */

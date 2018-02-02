@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>关于猪码头</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/vendor/layer/layui.css">
+		<link rel="stylesheet" type="text/css" href="src/css/myStyle.css" />
+		<link rel="stylesheet" href="src/css/navBar.css"/>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="navbar navbar-fixed-top navbar-inverse">
+				<div class="container">
+					<div class="nav-logo">
+						<a class="" href="index.html">
+							<img class="img-responsive" src="src/images/ic_logo.png" alt="猪码头" style="height: 100%;width: auto;" />
+						</a>
+					</div>
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navBar">    
+			                <span class="icon-bar"></span>  
+			                <span class="icon-bar"></span>  
+			                <span class="icon-bar"></span>  
+			              </button>
+					</div>
+					<div class="collapse navbar-collapse navbar-right" id="navBar">
+						<ul class="nav navbar-nav">
+							<li>
+								<a href="index.html">首页</a>
+							</li>
+							<li class="active">
+								<a href="aboutZmt.html">关于猪码头</a>
+							</li>
+							<li>
+								<a href="solution.html">解决方案</a>
+							</li>
+							<li class="sub-menu">
+								<a href="#">成功案例 <span class="triangle-down"></span></a>
+								<ul class="sub-menu-ul">
+									<li>
+										<a href="successfulCase/pigTraceabilitySystem.html">生猪溯源系统</a>
+									</li>
+									<li>
+										<a href="successfulCase/pigDirSir.html">猪产品电商平台</a>
+									</li>
+									<li>
+										<a href="successfulCase/pigFinancial.html">猪产业金融中心</a>
+									</li>
+									<li>
+										<a href="successfulCase/pigData.html">猪产业数据研究院</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="news.html">新闻动态</a>
+							</li>
+							<li>
+								<a href="contactUs.html">联系我们</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="main-content">
+				<div class="row">
+					<img src="src/images/aboutZmt_banner.jpg" class="top_img_contactUs" />
+				</div>
+				<div class="container">
+					<div class="aboutZmt">
+						<div class="contactUs">
+							<h2 class="contact_font">关于猪码头</h2>
+							<p class="contact_font_gray">About zhumatou</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div id="aboutZmt_content">
+								<h2 class="ahoutZmt-title">企业介绍：</h2>
+								<p>花生酥缔造者黄老五先生于2015年8月投资创立了住梦网络科技股份有限公司；由西南财经大学经济信息工程学院院长霍伟东先生担任高级顾问，电子科技大学信息与软件工程学院院长秦志光担任高级技术顾问。</p>
+								<p>畜禽溯源和监管平台猪码头作为住梦公司重点打造项目，坚持以市场为导向，以服务人民群众为核心。项目以生猪监管作为切入点，逐步实现畜禽全监管。</p>
+								<br/>
+								<h2 class="ahoutZmt-title">关于猪码头：</h2>
+								<p>猪码头提供生猪产业链追溯平台的信息化技术解决方案，是结合物联网、云技术、大数据和LBS地理信息等技术，通过通讯网络和平台应用，利用RFID和二维码喷墨等设备技术，实现生猪养殖。检疫、屠宰、加工、物流、销售等全过程的无缝跟踪和监管，打通消费者、企业和政府之间的信息壁垒，实现生猪产业的转型升级和其他更多后续市场的拓展。</p>
+								<p>借助互联网，逐步打通生猪产业链上的各个环节，同时帮助猪产业与其他外部机构实现连接和跨界融合。打破了产业链条割裂、单一产业单打独斗的局面，无缝连接行业对接外部，变外部产业链为内部生态链，形成一个“互联网+猪业”的大平台和生态圈。</p>
+								<br/>
+								<h2 class="ahoutZmt-title">我们的愿景：</h2>
+								<p>我们将通过一只专业化的团队去推动互联网+猪业的发展，为消费者、政府部门、市场提供一个透明、安全的生态环境。</p>
+								<br/>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--container end-->
+				<div class="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
+							<div class="footer_box">
+								<ul class="row">
+									<li class="col-xs-6 col-sm-4 col-md-4 footer_max_box">
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12">
+												<p class="footer_title"><span class="footer_title_left"></span>咨询电话：</p>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 impressum">
+												<i class="footer_icon footer_tel"></i>
+												<span class="footer_font bottom-tel"></span>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 impressum">
+												<i class="footer_icon footer_phone"></i>
+												<span class="footer_font bottom-phone"></span>
+											</div>
+										</div>
+										<p class="footer_title margin-top-20"><span class="footer_title_left"></span>公司地址：</p>
+										<div class="row">
+											<div class="col-xs-12 col-sm-12 col-md-12 impressum">
+												<i class="footer_icon footer_address"></i>
+												<span class="footer_font bottom-addres"></span>
+											</div>
+										</div>
+									</li>
+									<li class="col-xs-6 col-sm-2 col-md-2 footer_min_box">
+										<p class="footer_title"><span class="footer_title_left"></span>成功案例：</p>
+										<p class="footer_font">猪溯源监管系统 </p>
+										<p class="footer_font">猪产品电商平台</p>
+										<p class="footer_font">猪产业金融中心</p>
+										<p class="footer_font">猪产业链数据研究院</p>
+
+									</li>
+									<li class="col-xs-6 col-sm-6 col-md-2">
+										<p class="footer_title"><span class="footer_title_left"></span>关于我们：</p>
+										<p class="footer_font">联系我们</p>
+									</li>
+									<li class="col-xs-6 col-sm-6 col-md-4">
+										<div class="row">
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<p class="footer_title bottom-wxName"></p>
+												<img class="footer_weixin footer_font" src=""></img>
+											</div>
+											<div class="col-xs-6 col-sm-6 col-md-6">
+												<p class="footer_title bottom-wbName"></p>
+												<img class="footer_weibo footer_font" src="">
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12  margin-top-20">
+									<ul class="blogroll">
+
+									</ul>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12">
+									<p class="footer_font text-center bottom-record"></p>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div><!--底部部分end-->
+			</div>
+			<!--main-content end-->
+			
+		</div>
+		<!--container end-->
+
+	</body>
+	<!--script-->
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<!--<script src="src/js/aboutZmt.js"></script>-->
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/layer/layer.js"></script>
+	<script src="src/js/allUrl.js"></script>
+	<script src="src/js/footer.js"></script>
+</html>
