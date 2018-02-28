@@ -35,12 +35,21 @@
 						</el-form-item>
 				</el-col>
 				<el-col :span="16" >
-					 <quillEditor ref="myTextEditor" v-model.trim="content" :config="editorOption"></quillEditor>
-					
+					<quillEditor ref="myTextEditor" v-model.trim="content" :config="editorOption" @change="onEditorChange($event)"></quillEditor>
+					<el-upload style="display: none;"
+					  class="avatar-uploader"
+					  :action="coverUrl"
+					  :show-file-list="false"
+					  ref="up"
+					  :on-success="handleSuccess"
+					  :before-upload="beforeUpload"
+					  >
+					  <input id="upload" />
+					</el-upload>
 				</el-col>
 			</el-row>
 				<div class="button-item">
-					<el-button @click='publish' class='publishBtn'>发布</el-button>
+					<el-button @click='publish' class='publishBtn' :disabled='isDisabled'  type="primary">发布</el-button>
 				  	<el-button @click='caseCenter' class='cancelBtn'>取消</el-button>
 				</div>
 			</el-form>
@@ -48,7 +57,7 @@
 		
 	</div>
 	<!--main-content end-->
-	</div>
+	
 	<!--case_box end-->
 
 </template>
@@ -56,7 +65,9 @@
 <script>
 	import server from '../../server/myServer';
 	import imgUrl from './../../assets/images/ic_addpic.png';
+	import baseUrl from '../../server/baseUrl';
 	import { quillEditor } from 'vue-quill-editor';
+	import $ from 'jquery'  
 	import 'quill/dist/quill.core.css'
 	import 'quill/dist/quill.snow.css'
 	import 'quill/dist/quill.bubble.css'
@@ -68,11 +79,12 @@
 				imgUrl: '',
 				labelPosition: 'top',
 				rowId:'',
+				isDisabled:false,
 				editorOption: {
                     // something config
                	},
                content:'',
-               coverUrl:'http://192.168.5.154:8080/zmt-ow/upload/file',
+               coverUrl:'http://zmtwebsiteht.zhumatou.cn/upload/file',
              	ruleForm: {
              	 	name: ''
              	 	
@@ -97,9 +109,9 @@
 			},
 			//上传封面图片
 			handleAvatarSuccess(res, file) {
-				this.imgUrl = res.data
+				this.imgUrl = baseUrl+res.data
 			},
-			beforeAvatarUpload(file, a, b) {
+			beforeAvatarUpload(file) {
 				const isLt2M = file.size / 1024 / 1024 < 2;
 				const isJPG = (file.type == 'image/jpeg'||file.type == 'image/png'||file.type == 'image/jpg')
 				if(!isJPG){
@@ -114,10 +126,39 @@
 			},
 			onEditorChange({ editor, html, text }) {
                 this.content = html;
-            },
+           },
+          
+           //点击图片触发事件  
+			imgClick() {
+				$('#upload').click();
+			},
+			beforeUpload(file){
+				const isLt3M = file.size / 1024 / 1024 < 3;
+				const isJPG = (file.type == 'image/jpeg'||file.type == 'image/png'||file.type == 'image/jpg')
+				if(!isJPG){
+					this.$msg('上传图片只能是 JPG/JPEG/PNG格式!', 'error', 'center')
+					
+				};
+				if(!isLt3M) {
+					this.$msg('上传图片大小不能超过 3MB!', 'error', 'center');
+				}
+				
+				return isJPG && isLt3M;
+			},
+			//成功回调  
+            handleSuccess(res, file, fileList) {  
+            
+                if(res.code == 200) {  
+                	var index=9999999999999999999999999999999999999999999
+                    this.$refs.myTextEditor.quill.insertEmbed(index, 'image', baseUrl+res.data);
+                } else {  
+                  this.$msg('上传图片失败!', 'error', 'center');
+                }   
+            },  
             //发布
 			publish(formName){
 				var me = this;
+				
 				if(!this.imgUrl){
 					this.$msg('请上传封面图片', 'error', 'center');
 					return false;
@@ -128,34 +169,48 @@
 						this.$msg('请输入新闻内容', 'error', 'center');
 						return false;
 					}else{
+						const loading = this.$loading({
+				          lock: true,
+				          text: 'Loading',
+				          spinner: 'el-icon-loading',
+				          background: 'rgba(0, 0, 0, 0.7)'
+				        });
+						me.isDisabled=true;
+						let formData =this.ruleForm;   
+						formData.imgUrl=this.imgUrl;
+						let caseTypeId=JSON.parse(localStorage.getItem("caseTypeId")); 
+						formData.aanvraagTypeId=caseTypeId;
+						formData.content=this.content;
+						let alertMsg='新增案例成功'
+						if(this.rowId){
+							formData.id=this.rowId;
+							alertMsg='修改案例成功'
+						}
+							setTimeout(() => {
+								server()._addCase(formData).then(function(res) {
+									loading.close();
+									var Data = res.data;
+									if(Data.success) {
+										me.$msg(alertMsg, 'success', 'center')
+										me.$router.push({ path: '/Main/caseList' });
+										me.isDisabled=false;
+									} else {
+										me.$msg(Data.message, 'error', 'center');
+										me.isDisabled=false;
+									}
+								});
+							 }, 1000)
+        				};
 						
-						　let formData =this.ruleForm;   
-							formData.imgUrl=this.imgUrl;
-							formData.content=this.content
-							let alertMsg='新增成功'
-							if(this.rowId){
-								formData.id=this.rowId;
-								formData.type=='公司新闻'?formData.type=1:formData.type=2
-								alertMsg='修改成功'
-							}
-							server()._addcase(formData).then(function(res) {
-								var Data = res.data;
-								if(Data.success) {
-									me.$msg(alertMsg, 'success', 'center')
-									me.$router.push({ path: '/Main/caseCenter' });
-								} else {
-									me.$msg(Data.message, 'error', 'center')
-								}
-							});
 					}
 		            
-		          } 
+		           
         		});
 			}
 		},
 		computed: {
             editor() {
-                return this.$refs.myTextEditor.quillEditor;
+                return this.$refs.myTextEditor.quill;
             }
        },
 		components: {
@@ -163,10 +218,9 @@
 		},
 		mounted() {
 			let me =this;
-//			this.rowData=JSON.parse(localStorage.getItem("caseEditorData")); 
 			this.rowId=this.$route.query.id;
 			if(this.rowId){
-				server()._getcaseDetails({id:this.rowId}).then(function(res) {
+				server()._getCaseDetails({id:this.rowId}).then(function(res) {
 					var Data = res.data;
 					if(Data.success) {
 						me.content=Data.data.content;
@@ -178,6 +232,11 @@
 					}
 				});
 			}
+			me.uploadList = me.$refs.up.fileList;
+			//给img video按键绑定事件  
+			me.$refs.myTextEditor.quill.getModule('toolbar').addHandler('image', me.imgClick)
+			me.$refs.myTextEditor.quill.getModule('toolbar').addHandler('video', me.imgClick)
+			
 			
 		},
 
@@ -197,7 +256,8 @@
 		.nav {
 			height: 45px;
 			line-height: 45px;
-			@include fontSet(14px, #666666, 500) font-size: 14px;
+			@include fontSet(14px, #666666, 500);
+			font-size: 14px;
 			li {
 				float: left;
 				/*color: #666666;*/
@@ -280,6 +340,7 @@
 			}
 			.button-item{
 				text-align: right;
+				margin-top: 30px;
 				.el-button{
 					padding: 10px 35px;
 					border: none;

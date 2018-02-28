@@ -7,7 +7,7 @@
 			</div>
 			<el-row class="tac">
 				<el-col :span="24">
-					<el-menu default-active="2" class="el-menu-vertical-demo" background-color="#32323A" text-color="#95A0AA" active-text-color="#FEFFFF">
+					<el-menu :default-active="nowName" class="el-menu-vertical-demo" background-color="#32323A" text-color="#95A0AA" active-text-color="#FEFFFF">
 						<router-link to="/Main/PictureManage">
 							<el-menu-item index="2">
 								<i class="el-icon-picture"></i>
@@ -73,11 +73,36 @@
 		name: "Main",
 		data() {
 			return {
-				msg: "主页框架"
+				msg: "主页框架",
+				nowName:'2',
+//				curRouter:'/Main/PictureManage'
 			}
 		},
+		watch:{
+	      '$route':'isTab'
+	    },
+	    created(){
+	    	this.isTab()
+	    	
+	    },
 		methods: {
+			isTab(){
+				 let routerName = this.$route.name;
+				 if(routerName ==='PictureManage'){
+				 	this.nowName = '2'
+				 	this.curRouter = '/Main/PictureManage'
+				 }else if(routerName ==='NewsCenter'){
+				 	this.nowName = '1-1'
+				 	this.curRouter = '/Main/NewsCenter'
+				 }else if(routerName ==='CaseCenter'){
+				 	this.nowName = '1-2'
+				 	this.curRouter = '/Main/CaseCenter'
+				 }else if(routerName ==='BasicConfiguration'){
+				 	this.nowName = '3'
+				 	this.curRouter = '/Main/BasicConfiguration'
+				 }
 
+			},
 			//退出登录
 			layout() {
 				let me = this;

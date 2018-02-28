@@ -12,7 +12,7 @@ $(document).ready(function() {
 		    bm.centerAndZoom(ggPoint, 12);
 		    var markergg = new BMap.Marker(ggPoint);
 		    bm.addOverlay(markergg); //添加谷歌marker
-		    var labelgg = new BMap.Label("住梦网络科技股份有限公司",{offset:new BMap.Size(20,0)});
+		    var labelgg = new BMap.Label("住梦网络科技股份有限公司",{offset:new BMap.Size(20,-10)});
 		    markergg.setLabel(labelgg); //添加谷歌label
 	    	setTimeout(function(){
 					bm.setZoom(18);   

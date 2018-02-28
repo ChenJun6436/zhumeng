@@ -1,6 +1,7 @@
 
 //
-var domain = "http://192.168.5.154:8080/zmt-ow/";
+//var domain = "http://192.168.5.154:8080/";
+var  domain ='http://zmtwebsiteht.zhumatou.cn/'
 var allUrl ={
 	
 	//首页banner案例图片查询
@@ -26,5 +27,6 @@ var allUrl ={
 	getAllNewsMsg:domain+"websit/news/byType",
 	//请求新闻的详情内容
 	getNewsDetailsMsg:domain+"news/findDetails",
+	domain:domain,
 	
 }

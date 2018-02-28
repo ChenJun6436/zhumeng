@@ -87,7 +87,6 @@
 			},
 			//删除新闻
 			handleDelete(index,row){
-				debugger;
 				var me = this;
 				server()._deleteNews({id:row.id}).then(function(res) {
 					var Data = res.data;
@@ -116,7 +115,6 @@
 					if(Data.success) {
 						me.tableData = Data.list
 						me.recordsTotal=Data.recordsTotal;
-						console.log(me.tableData)
 					} else {
 						me.$msg(Data.message, 'error', 'center')
 					}
@@ -163,6 +161,9 @@
 				overflow: hidden;
 				text-overflow:ellipsis;
 				white-space: nowrap;
+			}
+			.el-pagination{
+				padding: 20px 35px;
 			}
 			.add-btn {
 				color: #FFFFFF;
@@ -223,6 +224,9 @@
 				cursor: pointer;
 				background: none;
 				border: none;
+			}
+			.el-pagination.is-background .el-pager li.active{
+				background-color:#1FB5AD;
 			}
 		}
 	}

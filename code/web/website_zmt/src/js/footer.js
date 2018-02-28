@@ -6,7 +6,8 @@ $(document).ready(function() {
 	$.ajax({
 		type: "post",
 		async: true, //同步执行
-//		dataType: 'json',
+		dataType: 'json',
+		crossDomain: true == !(document.all),
 		url: allUrl.homeFooter,
 		success: function(dataAll) {
 			if(dataAll.code == 200) {
@@ -26,10 +27,33 @@ $(document).ready(function() {
 				if(bottomData){
 					var bottomArr=["tel","phone","addres","record","wxName","wbName"];
 					$.each(bottomArr,function(index,data){
-						$('.bottom-'+data).text(bottomData[data])
+						if(data=='phone'){
+							var bottomPhone = bottomData[data];
+							var newstr="";
+						    for(var i=0;i<bottomPhone.length;i++){
+						    	if(i==2||i==6){
+						    		newstr+=bottomPhone[i]+'-';
+						    	}else{
+						    		newstr+=bottomPhone[i]
+						    	}
+						    }
+							$('.bottom-phone').text(newstr);
+							
+						}else{
+							$('.bottom-'+data).text(bottomData[data])
+						}
+						
 					});
-					$('.footer_weibo').attr('src',bottomData.wbImg);
-					$('.footer_weixin').attr('src',bottomData.wxImg);
+					var domainUrl=(bottomData.wbImg).split('/');
+						
+						if(domainUrl[0]=="http:"){
+							$('.footer_weibo').attr('src',bottomData.wbImg);
+							$('.footer_weixin').attr('src',bottomData.wxImg);
+						}else{
+							$('.footer_weibo').attr('src',allUrl.domain+bottomData.wbImg);
+							$('.footer_weixin').attr('src',allUrl.domain+bottomData.wxImg);
+						}
+					
 				};
 				
 				//底部:友情链接
@@ -40,6 +64,8 @@ $(document).ready(function() {
 						lis+='<li><a href="'+data.url+'">'+data.name+'</a></li>'
 					});
 					$('.blogroll').append(lis);
+				}else{
+					$('.blogroll').css('display','none')
 				}
 			} else {
 				layer.alert(dataAll.message, {
@@ -47,5 +73,28 @@ $(document).ready(function() {
 				});
 			}
 		}
+	});
+	//导航
+	
+	$(document).on('click','.navbar-toggle,.sub-menu',function(){
+		navBar()
+		
+	});
+	function navBar(){
+		var flag=$('#navBar').attr('aria-expanded');
+		if(flag){
+			var navBarHei = $('#navBar').height();
+			var windowHei = $(window).height();
+			if(navBarHei>windowHei){
+				$('#navBar').addClass('navBarSet');
+			}
+			$('#navBar>.navbar-nav').addClass('navBoxShadow');
+		}else{
+			$('#navBar>.navbar-nav').removeClass('navBoxShadow');
+			$('#navBar').removeClass('navBarSet');
+		}
+	};
+	$(window).resize(function(){ 
+		navBar();
 	});
 });

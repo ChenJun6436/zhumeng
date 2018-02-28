@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta charset="UTF-8">
+		<title>新闻动态</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="assets/vendor/pagination/css/pagination.css" />
+		<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/vendor/layer/layui.css" />
+		
+		<link rel="stylesheet" type="text/css" href="src/css/myStyle.css" />
+		<link rel="stylesheet" href="src/css/navBar.css" />
+	</head>
+	<body>
+		
+			<div class="m-style M-box3"></div>
+			
+       
+	</body>
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/pagination/js/jquery.pagination.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendor/layer/layui.js"></script>
+	<script src="src/js/allUrl.js"></script>
+	<script src="src/js/news.js"></script>
+	<script src="src/js/footer.js"></script>
+		
+		<script type="text/javascript">
+			$(function () {
+            
+            $('.M-box3').pagination({
+                pageCount: 10,
+                jump: true,
+                coping: true,
+                homePage: '首页',
+                endPage: '末页',
+                prevContent: '上页',
+                nextContent: '下页',
+                callback: function (api) {
+                    console.log(api.getCurrent())
+                }
+            });
+
+            
+        });
+		</script>
+	</script>
+</html>

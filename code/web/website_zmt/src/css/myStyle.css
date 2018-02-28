@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.BMapLabel {
+  padding: 10px !important; }
+
 * {
   margin: 0;
   padding: 0; }
@@ -11,6 +14,9 @@ ul li {
 
 .main-content {
   margin-top: 55px; }
+
+.margin-bottom-20 {
+  margin-bottom: 20px; }
 
 .row {
   padding: 0px;
@@ -32,6 +38,20 @@ ul li {
 .noPadLeft {
   padding-left: 0px; }
 
+.navBarSet {
+  height: 200px;
+  overflow-y: scroll; }
+
+.navBoxShadow {
+  border-bottom: 1px solid #CCCCCC;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -webkit-box-shadow: #CCCCCC 2px 5px 20px 2px;
+  -moz-box-shadow: #CCCCCC 2px 5px 20px 2px;
+  -ms-box-shadow: #CCCCCC 2px 5px 20px 2px;
+  -o-box-shadow: #CCCCCC 2px 5px 20px 2px;
+  box-shadow: #CCCCCC 2px 5px 20px 2px; }
+
 /*联系我们--------------------------------------------------------------------------------------------------------------*/
 .top_img_contactUs {
   width: 100%;
@@ -40,12 +60,12 @@ ul li {
 .aboutZmt,
 .contactUs,
 .index,
-.news {
+.news, .solution {
   margin: 6% auto; }
   .aboutZmt h2,
   .contactUs h2,
   .index h2,
-  .news h2 {
+  .news h2, .solution h2 {
     margin: 0 0 10px; }
 
 .contact_font {
@@ -96,17 +116,8 @@ ul li {
     background: url(../images/ic_email.png) no-repeat; }
   .company_infor_box .QR_code_box {
     height: 20px;
-    margin-top: 20px; }
-    .company_infor_box .QR_code_box span {
-      display: inline-block;
-      height: 120px;
-      width: 120px; }
-    .company_infor_box .QR_code_box .weixin {
-      margin-left: 15px;
-      background: palegoldenrod; }
-    .company_infor_box .QR_code_box .QQ {
-      margin-left: 20px;
-      background: palegreen; }
+    margin-top: 20px;
+    margin-left: 15px; }
 
 /*关于猪码头-------------------------------------------------------------------------------------------------------------*/
 #aboutZmt_content {
@@ -122,9 +133,16 @@ ul li {
     text-indent: 2em; }
 
 /*新闻资讯--------------------------------------------------------------------------------------------------------------*/
+.padRight {
+  padding-left: 0px;
+  padding-right: 30px; }
+
+#newsTab > li {
+  width: 100%; }
 #newsTab > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
+  display: block;
   font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
   font-size: 18px;
   color: #464646;
@@ -140,21 +158,35 @@ ul li {
 i {
   font-style: normal; }
 
+.impressum-box {
+  margin-bottom: 6%; }
+
 .news_list {
-  border-bottom: 1px solid #DDDDDD;
-  padding: 15px 0; }
+  width: 100%; }
   .news_list .news_img {
     float: left;
-    margin-right: 30px; }
+    width: 25%;
+    padding: 15px 0 30px 0; }
     .news_list .news_img img {
-      width: 185px; }
+      width: 100%;
+      height: 100%; }
+  .news_list .news_content {
+    float: right;
+    width: 70%;
+    padding: 15px 0 20px 0; }
+  .news_list .news_id {
+    display: none; }
   .news_list .news_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
     font-size: 18px;
     color: #292929;
     text-align: left;
     font-weight: 600;
-    line-height: 31px; }
+    line-height: 31px;
+    cursor: pointer; }
   .news_list .news_details:hover,
   .news_list .news_title:hover {
     color: #3BBDB5;
@@ -166,6 +198,24 @@ i {
     text-align: left;
     font-weight: 500;
     line-height: 31px; }
+  .news_list .news_description {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: -o-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    -o-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-line-clamp: 3;
+    -moz-line-clamp: 3;
+    -ms-line-clamp: 3;
+    -o-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    min-height: 30px; }
   .news_list .news_details {
     font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
     font-size: 14px;
@@ -173,13 +223,51 @@ i {
     text-align: left;
     font-weight: 500;
     line-height: 28px;
-    text-align: right; }
+    text-align: right;
+    cursor: pointer;
+    margin-top: 20px; }
 
 .news_list:last-child {
   border-bottom: 1px solid #FFFFFF; }
 
+/*分页*/
+.m-style a {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border: 1px solid #e2e2e2; }
+
+.m-style .active {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  background: #3BBDB5 !important;
+  border: 1px solid #3BBDB5; }
+
+.jump-btn:hover, .jump-btn {
+  width: 50px !important;
+  text-decoration: none;
+  background: none !important;
+  border: none !important; }
+
+.jump-ipt {
+  width: 50px !important;
+  height: 25px; }
+
+.m-style .next, .m-style .prev {
+  font-size: 14px;
+  width: 25px !important;
+  height: 25px !important;
+  line-height: 25px !important; }
+
+.jump-btn:hover, .m-style a:hover {
+  color: #3BBDB5 !important;
+  text-decoration: none;
+  background: none !important; }
+
 /*新闻详情--------------------------------------------------------------------------------------------------------------*/
 .news_details_title {
+  word-break: break-all;
   margin-top: 6%;
   font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
   font-size: 34px;
@@ -263,7 +351,8 @@ i {
     line-height: 25px; }
   .index_aboutZmt_box .index_aboutZmt_img {
     width: 90%;
-    height: auto; }
+    height: auto;
+    margin-top: 35px; }
   .index_aboutZmt_box .aboutZmt_font_bg {
     display: block;
     width: 253px;
@@ -310,8 +399,8 @@ i {
 .Slide_box {
   position: relative;
   width: 100%;
-  margin-top: 8%;
-  height: 320px;
+  padding-top: 8%;
+  height: 420px;
   overflow: hidden; }
   .Slide_box ul {
     position: relative;
@@ -337,11 +426,11 @@ i {
       border-radius: 5px; }
       .Slide_box ul li img {
         /*这6个值分别是：left值 、top值、透明度、阴影外延宽度、颜色、向里凹陷（选填，默认为外延）*/
-        -webkit-box-shadow: 0 1px 1px #e3e5eb;
-        -moz-box-shadow: 0 1px 1px #e3e5eb;
-        -ms-box-shadow: 0 1px 1px #e3e5eb;
-        -o-box-shadow: 0 1px 1px #e3e5eb;
-        box-shadow: 0 1px 1px #e3e5eb;
+        -webkit-box-shadow: #F4F4F4 2px 5px 20px 2px;
+        -moz-box-shadow: #F4F4F4 2px 5px 20px 2px;
+        -ms-box-shadow: #F4F4F4 2px 5px 20px 2px;
+        -o-box-shadow: #F4F4F4 2px 5px 20px 2px;
+        box-shadow: #F4F4F4 2px 5px 20px 2px;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         -ms-border-radius: 5px;
@@ -360,11 +449,10 @@ i {
 /*新闻动态*/
 .index_news_img {
   width: 100%;
-  height: 100%;
-  margin-top: 10px;
-  background: red; }
+  max-height: 290px;
+  margin-top: 10px; }
 
-.index_news_imgUrl, .index_news_id {
+.index_news_imgUrl, .index_news_id, .index_case_id, .aanvraagTypeId {
   display: none; }
 
 .index_ne1px solid #1FB5ADws_box {
@@ -419,11 +507,18 @@ i {
   .index_news_box .index_news_content {
     padding-left: 20px;
     border-left: 1px solid #1FB5AD;
-    z-index: 1; }
+    z-index: 1;
+    padding-bottom: 30px; }
   .index_news_box .index_news_description {
+    display: -moz-box;
     display: -webkit-box;
+    display: box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    -moz-box-orient: vertical;
+    -moz-line-clamp: 3;
+    box-orient: vertical;
+    line-clamp: 3;
     overflow: hidden;
     width: 100%;
     top: 30px;
@@ -435,6 +530,38 @@ i {
 
 /*成功案例*/
 /*生猪溯源系统*/
+#solution-box {
+  margin-bottom: 6%; }
+
+.figure {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* Firefox */
+  -webkit-box-sizing: border-box;
+  /* Safari */
+  width: 90%;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 8px; }
+  .figure img {
+    width: 100%; }
+  .figure .figcaption {
+    margin: 30px 10px 0px 10px;
+    font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
+    font-size: 14px;
+    color: #666666;
+    text-align: left;
+    font-weight: 500;
+    padding: 0px 10px; }
+    .figure .figcaption p {
+      line-height: 25px;
+      overflow: hidden; }
+  .figure .caseBtn {
+    width: 90%;
+    display: block;
+    margin: 0px auto;
+    padding: 20px 0px; }
+
 .case {
   margin: 6% 0px; }
   .case .tabRoot {
@@ -447,12 +574,10 @@ i {
     color: #333333;
     text-align: center;
     font-weight: 600; }
+  .case .tab-content {
+    margin-left: 55px; }
   .case .case-nav li {
     width: 100%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    padding: 10px 0px;
     font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
     font-size: 16px;
     color: #666666;
@@ -462,7 +587,12 @@ i {
     border-top: none;
     background: #F7F7F7; }
     .case .case-nav li a {
-      text-decoration: none; }
+      text-decoration: none;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 10px 0px; }
     .case .case-nav li a:hover {
       color: #1FB5AD; }
   .case .case-nav .active {
@@ -502,6 +632,10 @@ i {
 .index_more:hover {
   color: #1FB5AD; }
 
+.solution-box img {
+  width: 100%;
+  height: auto; }
+
 .lookCaseBtn {
   display: block;
   width: 165px;
@@ -518,31 +652,6 @@ i {
   text-align: left;
   font-weight: 600;
   line-height: 31px; }
-
-.soultion_list {
-  margin-bottom: 6%; }
-  .soultion_list .listBox .p_content {
-    font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
-    font-size: 14px;
-    color: #666666;
-    text-align: left;
-    font-weight: 500;
-    line-height: 28px;
-    padding: 24px 23px 32px 18px;
-    background-color: #FFFFFF;
-    margin-bottom: 0px; }
-  .soultion_list .listBox .p_img {
-    background-color: white;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding-bottom: 17px; }
-  .soultion_list .listBox .checkDetails {
-    display: inherit;
-    margin: auto;
-    margin-bottom: 17px; }
-
-.solution_content {
-  background-color: #F5F5F5; }
 
 /*弹框  --------------------------------------------------------------------------------------------------------------------------------*/
 .layui-layer-btn0,
@@ -619,7 +728,7 @@ i {
     width: 100% !important; }
 
   .Slide_box {
-    height: 120px !important; }
+    height: 160px !important; }
 
   .index_news_box .col-xs-3 {
     padding-left: 0px;
@@ -632,7 +741,37 @@ i {
     margin-bottom: 15px !important; }
 
   .case-content {
-    font-size: 12px !important; } }
+    font-size: 12px !important; }
+
+  /*解决方案*/
+  .figcaption {
+    margin: 25px 5px 0px 5px !important;
+    padding: 0px !important; }
+
+  .caseBtn {
+    width: 100%;
+    display: block;
+    margin: 0px auto;
+    padding: 20px 0px; }
+
+  .news_list .news_title {
+    font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
+    font-size: 16px;
+    color: #292929;
+    text-align: left;
+    font-weight: 600;
+    line-height: 25px; }
+  .news_list .news_details {
+    margin-top: 10px; }
+  .news_list .time_gray {
+    line-height: 20px; }
+  .news_list .news_img {
+    padding: 0px !important; }
+  .news_list .news_content {
+    padding: 0px 0px 5px 0px !important; }
+
+  .navBarSet {
+    height: 160px !important; } }
 /*横向放置的手机和竖向放置的平板之间的分辨率 --------------------------------------------------------------------------------------------------------------*/
 @media (max-width: 767px) {
   /*联系我们*/
@@ -663,6 +802,11 @@ i {
       .company_infor_box li i,
       .map_box li i {
         margin-right: 10px; }
+    .company_infor_box .company_infor_li,
+    .map_box .company_infor_li {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
 
   /*新闻资讯*/
   #newsTab {
@@ -686,11 +830,12 @@ i {
     border: 1px solid #1FB5AD;
     background: #1FB5AD; }
 
-  #companyNews {
+  #companyNews, #tradeNews {
     margin-top: 30px; }
 
   /*新闻详情*/
   .news_details_title {
+    word-break: break-all;
     margin-top: 10%;
     font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
     font-size: 20px;
@@ -712,6 +857,11 @@ i {
       height: auto;
       display: block;
       margin: 30px 0; }
+
+  .news_list .news_img {
+    padding: 0px 0px 10px 0px; }
+  .news_list .news_content {
+    padding: 0px 0px 10px 0px; }
 
   /*首页*/
   /*关于猪码头*/
@@ -771,13 +921,25 @@ i {
     font-weight: 600; }
 
   .Slide_box {
-    height: 200px; }
+    height: 250px; }
 
   /*成功案例*/
   /*生猪溯源系统*/
   .case .xsPad {
     padding: 0px !important;
-    margin-bottom: 30px; } }
+    margin-top: 30px; }
+  .case .tab-content {
+    margin-left: 0px; }
+
+  /*底部*/
+  .about-us {
+    margin-top: 20px; }
+
+  .code {
+    margin-top: 20px; }
+
+  .bottom-tel {
+    white-space: nowrap; } }
 /* 平板电脑和小屏电脑之间的分辨率 --------------------------------------------------------------------------------------------------------------*/
 @media (min-width: 768px) and (max-width: 979px) {
   /*新闻资讯--------------------------------------------------------------------------------------------------------------*/
@@ -803,6 +965,7 @@ i {
 
   /*新闻详情*/
   .news_details_title {
+    word-break: break-all;
     margin-top: 8%;
     font-family: "Microsoft YaHei","Helvetica Neue",Helvetica,"Hiragino Sans GB",Arial,sans-serif;
     font-size: 30px;
@@ -816,7 +979,14 @@ i {
     margin-top: -150px; }
 
   .Slide_box {
-    height: 210px; }
+    height: 280px;
+    padding-top: 10%; }
+
+  .success_case_bg {
+    height: 280px; }
+
+  .success_case_box {
+    margin-top: -280px; }
 
   .marquee_inner_img_top {
     margin-top: 2%; }
@@ -825,14 +995,27 @@ i {
     height: 250px; }
     .success_case_box .col-xs-1,
     .success_case_box .col-xs-10 {
-      padding: 5px; } }
+      padding: 5px; }
+
+  .tabRoot {
+    font-size: 18px !important; }
+
+  /*底部*/
+  .about-us {
+    margin-top: 20px; }
+
+  .code {
+    margin-top: 20px; } }
 /* 中等屏幕（桌面显示器，大于等于 992px） --------------------------------------------------------------------------------------------------------------*/
 @media (min-width: 992px) and (max-width: 1200px) {
   #newsTab > li {
     width: 100%; }
 
   .Slide_box {
-    height: 260px; } }
+    height: 320px; }
+
+  .tabRoot {
+    font-size: 17px !important; } }
 /* 大屏幕（大桌面显示器，大于等于 1200px）--------------------------------------------------------------------------------------------------------------*/
 
 /*# sourceMappingURL=myStyle.css.map */

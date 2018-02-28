@@ -6,6 +6,7 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
+import 'babel-polyfill'
 //import { Msg} from './msg'
 
 import {msg} from './server/directive'
@@ -21,6 +22,7 @@ Vue.prototype.$msg = msg
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: { App }
+//render:h=>h(App)
+template: '<App/>',
+components: { App }
 })

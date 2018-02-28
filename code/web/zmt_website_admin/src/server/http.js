@@ -62,7 +62,8 @@ function checkCode (res) {
 }
 
 
-const baseURL = 'http://192.168.5.154:8080'
+const baseURL = 'http://zmtht.zhumatou.com'
+//const baseURL = 'http://192.168.5.154:8080/'
 export const get = function (url, data) { 
   return axios({
       method: 'get',

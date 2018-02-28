@@ -15,7 +15,7 @@
 				</el-table-column>
 				<el-table-column label="名称">
 					<template slot-scope="scope">
-						<span class="caseList-titlt">{{ scope.row.title}}</span>
+						<span class="caseList-titlt">{{ scope.row.name}}</span>
 					</template>
 				</el-table-column>
 				<el-table-column label="发布时间">
@@ -71,7 +71,7 @@
 		methods: {
 			//返回案例中心
 			caseCenter(){
-				this.$router.push({path:'/Main/NewsCenter'});
+				this.$router.push({path:'/Main/CaseCenter'});
 			},
 			//新增案例
 			addBtn(){
@@ -82,19 +82,36 @@
 				this.cur=val;
 		    	this.getData();
 			},
+			//编辑案例
+			handleEdit(index,row) {
+				this.$router.push({ name: 'CaseEditor',query:{id:row.id}});
+			},
+			//删除案例
+			handleDelete(index,row){
+				var me = this;
+				server()._deleteCase({id:row.id}).then(function(res) {
+					var Data = res.data;
+					if(Data.success) {
+						me.$msg('删除成功', 'success', 'center')
+						me.getData();
+					} else {
+						me.$msg(Data.message, 'error', 'center')
+					}
+				});
+			},
 			getData(){
 		    	let me = this;
+		    	let caseTypeId=JSON.parse(localStorage.getItem("caseTypeId")); 
 				let caseListTableData={
 					page:me.cur,
 					size:me.curPage,
-					aanvraagTypeId:me.rowId
+					aanvraagTypeId:caseTypeId
 				};
 				server()._getCaseList(caseListTableData).then(function(res) {
 					var Data = res.data;
 					if(Data.success) {
-						me.caseListTable = Data.data
+						me.caseListTable = Data.list
 						me.recordsTotal=Data.recordsTotal;
-						console.log(me.tableData)
 					} else {
 						me.$msg(Data.message, 'error', 'center')
 					}
@@ -199,6 +216,12 @@
 				cursor: pointer;
 				background: none;
 				border: none;
+			}
+			.el-pagination.is-background .el-pager li.active{
+				background-color:#1FB5AD;
+			}
+			.el-pagination{
+				padding: 20px 35px;
 			}
 		}
 	}

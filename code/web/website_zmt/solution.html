@@ -4,30 +4,29 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>解决方案</title>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/vendor/layer/layui.css">
+		<link rel="stylesheet" href="assets/vendor/layer/layui.css" />
+		<link rel="stylesheet" type="text/css" href="src/css/myStyle.css" />
 		<link rel="stylesheet" href="src/css/navBar.css" />
-		<link rel="stylesheet" href="src/css/myStyle.css" />
 	</head>
 
-	<body>
-
+	<body style="background: #F5F5F5;">
 		<div class="container-fluid">
-			<!--头部start-->
 			<div class="navbar navbar-fixed-top navbar-inverse">
 				<div class="container">
 					<div class="nav-logo">
 						<a class="" href="index.html">
 							<img class="img-responsive" src="src/images/ic_logo.png" alt="猪码头" style="height: 100%;width: auto;" />
 						</a>
+
 					</div>
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navBar">    
-                <span class="icon-bar"></span>  
-                <span class="icon-bar"></span>  
-                <span class="icon-bar"></span>  
-              </button>
+		                <span class="icon-bar"></span>  
+		                <span class="icon-bar"></span>  
+		                <span class="icon-bar"></span>  
+		              </button>
 					</div>
 					<div class="collapse navbar-collapse navbar-right" id="navBar">
 						<ul class="nav navbar-nav">
@@ -68,94 +67,123 @@
 				</div>
 			</div>
 
-			<!--头部end-->
-			
-			<!--中间内容部start-->
 			<div class="main-content">
-				<div class="row solution_content">
-					<div class="row">
-						<img src="src/images/solution_banner.jpg" class="top_img_contactUs"/>
-					</div>
-					<div class="contactUs">
+				<div class="row">
+					<img src="src/images/solution/banner.jpg" class="top_img_contactUs" />
+				</div>
+				<div class="container">
+					<div class="news">
 						<h2 class="contact_font">解决方案</h2>
 						<p class="contact_font_gray">Solution</p>
 					</div>
-					<div class="container soultion_list">
-						
-							<div class="col-xs-6 col-sm-6 col-md-3 listBox">
-								<img src="src/images/solution/pic_1.png" style="width: 100%;" alt="" />
-								<p class="p_content">我们提供从前期规划、研发、施工到后期运营、维护的全程智慧农业解决方案。服务项目覆盖全国多省区，业务涉及智能农业监控、农业溯源、农业标准化生产等多个领域</p>
-								<p class="p_img"><a href="successfulCase/pigTraceabilitySystem.html" class="lookCaseBtn"></a></p>
-							</div>
-							<div class="col-xs-6 col-sm-6 col-md-3 listBox">
-								<img src="src/images/solution/pic_2.png" alt="" style="width: 100%;" />
-								<p class="p_content">我们提供从前期规划、研发、施工到后期运营、维护的全程智慧农业解决方案。服务项目覆盖全国多省区，业务涉及智能农业监控、农业溯源、农业标准化生产等多个领域</p>
-								<p class="p_img"><a href="successfulCase/pigDirSir.html" class="lookCaseBtn"></a></p>
-							</div>
-							<div class="col-xs-6 col-sm-6 col-md-3 listBox">
-								<img src="src/images/solution/pic_3.png" alt="" style="width: 100%;" />
-								<p class="p_content">我们提供从前期规划、研发、施工到后期运营、维护的全程智慧农业解决方案。服务项目覆盖全国多省区，业务涉及智能农业监控、农业溯源、农业标准化生产等多个领域</p>
-								<p class="p_img"><a href="successfulCase/pigFinancial.html" class="lookCaseBtn"></a></p>
-							</div>
-							<div class="col-xs-6 col-sm-6 col-md-3 listBox">
-								<img src="src/images/solution/pic_4.png" alt="" style="width: 100%;" />
-								<p class="p_content">我们提供从前期规划、研发、施工到后期运营、维护的全程智慧农业解决方案。服务项目覆盖全国多省区，业务涉及智能农业监控、农业溯源、农业标准化生产等多个领域</p>
-								<p class="p_img"><a href="successfulCase/pigData.html" class="lookCaseBtn"></a></p>
-							</div>
-						
+					<div class="row" id='solution-box'>
+						<div class="col-xs-6 col-sm-6  col-md-3 col-lg-3 noPad margin-bottom-20">
+							<figure class="figure">
+								<img src="src/images/solution/pic_1.png" alt="生猪溯源系统" class="solution-img" />
+								<figcaption class="figcaption">
+									<p title="通过互联网技术结合物联网、云技术、大数据和LBS地理信息等技术，用普通智能手机替换掉原来的手持扫码设备，实现生猪养殖、检疫、屠宰、加工、物流、销售等全过程的无缝跟踪和监管。">
+										通过互联网技术结合物联网、云技术、大数据和LBS地理信息等技术，用普通智能手机替换掉原来的手持扫码设备， 实现生猪养殖、检疫、屠宰、加工、物流、销售等全过程的无缝跟踪和监管。
+									</p>
+									<a href="successfulCase/pigTraceabilitySystem.html">
+										<img src="src/images/solution/pic_5.png" class="caseBtn" />
+									</a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col-xs-6 col-sm-6  col-md-3 col-lg-3 noPad margin-bottom-20">
+							<figure class="figure">
+								<img src="src/images/solution/pic_2.png" alt="猪产品电商平台" class="solution-img" />
+								<figcaption class="figcaption">
+									<p class="p-figcaption" title="猪码头电商中心为猪产业链用户提供一个交易平台，为用户提供便利、快捷的购物体验，以饲料，兽药，猪肉产品为突破口逐步打造全品类猪产业链电商交易平台">
+										猪码头电商中心为猪产业链用户提供一个交易平台，为用户提供便利、快捷的购物体验，以饲料，兽药， 猪肉产品为突破口逐步打造全品类猪产业链电商交易平台。
+									</p>
+									<a href="successfulCase/pigDirSir.html">
+										<img src="src/images/solution/pic_5.png" class="caseBtn" />
+									</a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col-xs-6 col-sm-6  col-md-3 col-lg-3 noPad">
+							<figure class="figure">
+								<img src="src/images/solution/pic_3.png" alt="猪产业金融中心" class="solution-img" />
+								<figcaption class="figcaption">
+									<p title="农业发展离不开金融服务，平台将有效地降低信息不对称，介入农资消费，经销商资金周转，致力于解决三农“融资贵、融资难”等问题，满足现代农业发展中的资金缺口">
+										农业发展离不开金融服务，平台将有效地降低信息不对称，介入农资消费，经销商资金周转， 致力于解决三农“融资贵、融资难”等问题，满足现代农业发展中的资金缺口。
+									</p>
+									<a href="successfulCase/pigFinancial.html"><img src="src/images/solution/pic_5.png" class="caseBtn" /></a>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col-xs-6 col-sm-6  col-md-3 col-lg-3 noPad">
+							<figure class="figure">
+								<img src="src/images/solution/pic_4.png" alt="猪产业数据研究院" class="solution-img" />
+								<figcaption class="figcaption">
+									<p title="通过对大量数据的采集、分析，我们建立了自己的猪产业链数据平台，为政府提供疫情预警、行情预测、风险把控等行业报告，用多样化的数据提升行业效率，推动行业发展。">
+										通过对大量数据的采集、分析，我们建立了自己的猪产业链数据平台，为政府提供疫情预警、行情预测、 风险把控等行业报告，用多样化的数据提升行业效率，推动行业发展。
+									</p>
+									<a href="successfulCase/pigData.html"><img src="src/images/solution/pic_5.png" class="caseBtn" /></a>
+								</figcaption>
+							</figure>
+						</div>
 					</div>
+
 				</div>
-
-			</div>
-
-			<!--中间内容部end-->
-
-			<!--底部部分start-->
-			<div class="footer">
+				<!--main-content end-->
+				<div class="footer">
 				<div class="container">
 					<div class="row">
-						<div class="col-xs-12 col-sm-12  col-md-12 col-lg-12">
+						<div class="col-xs-12 col-sm-12  col-md-12 col-lg-12 noPad">
 							<div class="footer_box">
 								<ul class="row">
 									<li class="col-xs-6 col-sm-4 col-md-4 footer_max_box">
 										<div class="row">
-											<div class="col-xs-12 col-sm-12 col-md-12">
-												<p class="footer_title"><span class="footer_title_left"></span>咨询电话：</p>
+											<div class="col-xs-12 col-sm-12 col-md-12 noPad">
+												<p class="footer_title"><span class="footer_title_left"></span>咨询电话</p>
 											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6 impressum">
+											<div class="col-xs-6 col-sm-6 col-md-6 impressum noPad">
 												<i class="footer_icon footer_tel"></i>
 												<span class="footer_font bottom-tel"></span>
 											</div>
-											<div class="col-xs-6 col-sm-6 col-md-6 impressum">
+											<div class="col-xs-6 col-sm-6 col-md-6 impressum noPad">
 												<i class="footer_icon footer_phone"></i>
 												<span class="footer_font bottom-phone"></span>
 											</div>
 										</div>
-										<p class="footer_title margin-top-20"><span class="footer_title_left"></span>公司地址：</p>
+										<p class="footer_title margin-top-20"><span class="footer_title_left"></span>公司地址</p>
 										<div class="row">
-											<div class="col-xs-12 col-sm-12 col-md-12 impressum">
+											<div class="col-xs-12 col-sm-12 col-md-12 impressum noPad">
 												<i class="footer_icon footer_address"></i>
 												<span class="footer_font bottom-addres"></span>
 											</div>
 										</div>
 									</li>
 									<li class="col-xs-6 col-sm-2 col-md-2 footer_min_box">
-										<p class="footer_title"><span class="footer_title_left"></span>成功案例：</p>
-										<p class="footer_font">猪溯源监管系统 </p>
-										<p class="footer_font">猪产品电商平台</p>
-										<p class="footer_font">猪产业金融中心</p>
-										<p class="footer_font">猪产业链数据研究院</p>
+										<p class="footer_title"><span class="footer_title_left"></span>成功案例</p>
+										<p>
+											<a href="successfulCase/pigTraceabilitySystem.html" class="footer_font">猪溯源监管系统 </a>
+										</p>
+										<p>
+											<a href="successfulCase/pigDirSir.html" class="footer_font">猪产品电商平台</a>
+										</p>
+										<p>
+											<a href="successfulCase/pigFinancial.html" class="footer_font">猪产业金融中心</a>
+										</p>
+										<p>
+											<a href="successfulCase/pigData.html" class="footer_font">猪产业链数据研究院</a>
+										</p>
 
 									</li>
 									<li class="col-xs-6 col-sm-6 col-md-2">
-										<p class="footer_title"><span class="footer_title_left"></span>关于我们：</p>
-										<p class="footer_font">联系我们</p>
+										<p class="footer_title about-us"><span class="footer_title_left"></span>关于我们</p>
+										<p>
+											<a href="contactUs.html" class="footer_font">联系我们</a>
+										</p>
 									</li>
-									<li class="col-xs-6 col-sm-6 col-md-4">
-										<div class="row">
+									<li class="col-xs-6 col-sm-6 col-md-4 ">
+										<div class="row code">
 											<div class="col-xs-6 col-sm-6 col-md-6">
 												<p class="footer_title bottom-wxName"></p>
-												<img class="footer_weixin footer_font" src=""></img>
+												<img class="footer_weixin footer_font" src="" />
 											</div>
 											<div class="col-xs-6 col-sm-6 col-md-6">
 												<p class="footer_title bottom-wbName"></p>
@@ -168,7 +196,7 @@
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-12  margin-top-20">
 									<ul class="blogroll">
-
+										<span class="footer_font">友情链接：</span>
 									</ul>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12">
@@ -183,14 +211,18 @@
 				</div>
 
 			</div>
-			<!--底部部分end-->
-		</div>
 
+			<!--底部部分end-->
+			</div>
+			<!--container end-->
+		</div>
 	</body>
+	<!--script-->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets/vendor/layer/layer.js"></script>
 	<script src="src/js/allUrl.js"></script>
+	<script src="src/js/solution.js"></script>
 	<script src="src/js/footer.js"></script>
 
 </html>

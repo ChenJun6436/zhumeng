@@ -43,7 +43,9 @@ export default {
   },
   methods: {
   	handleCheck(insex,row){
-  		this.$router.push({ name: 'CaseList',query:{id:row.id}});
+  		localStorage.setItem('caseTypeId', JSON.stringify(row.id));
+  		this.$router.push({ path: '/Main/CaseList' });
+//		this.$router.push({ name: 'CaseList',query:{id:row.id}});
   	}
   },
   created() {

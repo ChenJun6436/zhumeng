@@ -1,5 +1,7 @@
 @charset "utf-8";
-
+.BMapLabel{
+    padding: 10px!important;
+}
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +17,9 @@ ul {
 .main-content{
     margin-top: 55px;
     
+}
+.margin-bottom-20{
+    margin-bottom:20px;
 }
 .row{
         padding: 0px;
@@ -54,6 +59,20 @@ ul {
     -o-box-shadow: $shadow;
     box-shadow: $shadow;
 }
+.navBarSet{
+    height:200px;
+    overflow-y:scroll;
+}
+.navBoxShadow{
+    border-bottom: 1px solid #CCCCCC;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    -webkit-box-shadow: #CCCCCC 2px 5px 20px 2px;
+    -moz-box-shadow: #CCCCCC 2px 5px 20px 2px;
+    -ms-box-shadow: #CCCCCC 2px 5px 20px 2px;
+    -o-box-shadow: #CCCCCC 2px 5px 20px 2px;
+    box-shadow: #CCCCCC 2px 5px 20px 2px;
+}
 @mixin borderRadius($radius) {
 
     -webkit-border-radius: $radius;
@@ -70,7 +89,7 @@ ul {
 .aboutZmt,
 .contactUs,
 .index,
-.news {
+.news,.solution {
     margin: 6% auto;
     h2 {
         margin: 0 0 10px;
@@ -121,20 +140,28 @@ ul {
     .QR_code_box {
         height: 20px;
         margin-top: 20px;
-        span {
-            display: inline-block;
-            height: 120px;
-            width: 120px;
-        }
-        .weixin {
-            margin-left: 15px;
-            background: palegoldenrod;
-        }
-        .QQ {
-            margin-left: 20px;
-            background: palegreen;
-        }
-    }
+        margin-left: 15px;
+}
+//      span {
+//          display: inline-block;
+//          height: 120px;
+//          width: 120px;
+//      }
+//      .weixin {
+////          margin-left: 15px;
+//          img{
+//              height: 120px;
+//              width: 120px;
+//          }
+//      }
+//      .QQ {
+//          margin-left: 20px;
+//          img{
+//              height: 120px;
+//              width: 120px;
+//          }
+//      }
+//  }
 }
 
 /*关于猪码头-------------------------------------------------------------------------------------------------------------*/
@@ -150,10 +177,19 @@ ul {
 }
 
 /*新闻资讯--------------------------------------------------------------------------------------------------------------*/
+.padRight{
+    padding-left: 0px;
+    padding-right: 30px;
+}
 #newsTab {
+    & > li{
+        width: 100%;
+    }
     & > li > a {
         padding-top: 10px;
         padding-bottom: 10px;
+        display: block;
+        
         @include fontSize(18px, #464646,500,center);
         background: #F7F7F7;
         border: 1px solid #F7F7F7;
@@ -167,22 +203,43 @@ ul {
 i{
     font-style: normal;
 }
-
+.impressum-box{
+    margin-bottom: 6%;
+}
 .news_list {
-        border-bottom: 1px solid #DDDDDD;
-        padding: 15px 0;
+//      border-bottom: 1px solid #DDDDDD;
+//      padding: 15px 0;
+
+    width: 100%;
     .news_img {
         float: left;
-        margin-right: 30px;
-        img {
-            width: 185px;
-//          height: 154px;
+        width: 25%;
+        padding: 15px 0 30px 0;
+       
+        img{
+            width:100%;
+            height: 100%;
+//          max-height: 130px;
         }
-
+    }
+    .news_content{
+        float: right;
+        width: 70%;
+        padding: 15px 0 20px 0;
+//      li{
+//          margin-left: 25px;
+//      }
+    }
+    .news_id{
+        display: none;
     }
     .news_title {
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
         @include fontSize(18px,#292929,600,left);
         line-height: 31px;
+        cursor: pointer;
     }
     .news_details:hover,
     .news_title:hover {
@@ -193,18 +250,78 @@ i{
         @include fontSize(12px,#999999,500,left);
         line-height: 31px;
     }
+    .news_description{
+        display: -webkit-box;
+        display:-moz-box;
+        display:-ms-box;
+        display:-o-box;
+        display:box;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -ms-box-orient: vertical;
+        -o-box-orient: vertical;
+        box-orient: vertical;
+        -webkit-line-clamp: 3;
+        -moz-line-clamp: 3;
+        -ms-line-clamp: 3;
+        -o-line-clamp: 3;
+        line-clamp: 3;
+        overflow: hidden;
+        min-height: 30px;
+    }
     .news_details {
         @include fontSize(14px,#666666,500,left);
         line-height: 28px;
         text-align: right;
+        cursor: pointer;
+        margin-top: 20px;
+        
     }
 }
 .news_list:last-child {
     border-bottom: 1px solid#FFFFFF;
 }
+/*分页*/
+.m-style a {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border: 1px solid #e2e2e2;
 
+}
+.m-style .active {
+     width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background:  #3BBDB5!important;
+
+    border: 1px solid #3BBDB5;
+}
+.jump-btn:hover,.jump-btn{
+    width: 50px!important;
+    text-decoration: none;
+    background: none!important;
+    border: none!important;
+//  padding: 0px 10px;
+}
+.jump-ipt{
+    width: 50px!important;
+    height: 25px;
+}
+.m-style .next, .m-style .prev{
+   font-size: 14px;
+     width: 25px!important;
+    height: 25px!important;
+    line-height: 25px!important;
+}
+.jump-btn:hover,.m-style a:hover{
+    color: #3BBDB5!important;
+    text-decoration: none;
+    background: none!important;
+}
 /*新闻详情--------------------------------------------------------------------------------------------------------------*/
 .news_details_title {
+    word-break:break-all;
     margin-top: 6%;
     @include fontSize(34px,#404040,bold,center);
 }
@@ -269,6 +386,7 @@ i{
     .index_aboutZmt_img {
         width: 90%;
         height: auto;
+        margin-top: 35px;
     }
     .aboutZmt_font_bg {
         display: block;
@@ -322,8 +440,8 @@ i{
 .Slide_box{
      position:relative;
      width: 100%;
-     margin-top:8%;
-     height: 320px;
+     padding-top:8%;
+     height: 420px;
      overflow: hidden;
      ul{
         position:relative;
@@ -342,9 +460,10 @@ i{
             cursor:pointer;
             margin:0;
             padding:0;
+//           @include boxShadow(0 0 2px 2px rgba(227, 229, 235,.5));
             @include borderRadius(5px);
             img{
-                @include boxShadow(0 1px 1px rgb(227, 229, 235));
+                @include boxShadow(#F4F4F4 2px 5px 20px 2px);
                 @include borderRadius(5px);
                 width:100%;
                 vertical-align:middle;
@@ -356,14 +475,14 @@ i{
         }
      }
 }
+
 /*新闻动态*/
 .index_news_img{
     width: 100%;
-    height: 100%;
+    max-height: 290px;
     margin-top: 10px;
-    background: red;
 }
-.index_news_imgUrl,.index_news_id{
+.index_news_imgUrl,.index_news_id,.index_case_id,.aanvraagTypeId{
     display: none;
 }
 .index_ne1px solid #1FB5ADws_box{
@@ -417,11 +536,18 @@ i{
         padding-left: 20px;
         border-left: 1px solid #1FB5AD;
         z-index: 1;
+        padding-bottom: 30px;
     }
     .index_news_description{
-        display: -webkit-box;
+        display:-moz-box;
+        display:-webkit-box;
+        display:box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
+        -moz-box-orient: vertical;
+        -moz-line-clamp: 3;
+        box-orient: vertical;
+        line-clamp: 3;
         overflow: hidden;
         width: 100%;
         top: 30px;
@@ -431,6 +557,38 @@ i{
 }
 /*成功案例*/
 /*生猪溯源系统*/
+
+#solution-box{
+    margin-bottom: 6%;
+}
+.figure{
+   box-sizing:border-box;
+   -moz-box-sizing:border-box; /* Firefox */
+   -webkit-box-sizing:border-box; /* Safari */
+    width: 90%;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border-radius:8px ;
+  img{
+      width: 100%;
+  }
+  .figcaption{
+      margin:30px 10px 0px 10px;
+       @include fontSize(14px, #666666,500,left);
+      padding:0px 10px;
+      p{
+            line-height: 25px;
+            overflow: hidden;
+      }
+  }
+  .caseBtn{
+    width: 90%;
+    display: block;
+    margin: 0px auto;
+    padding: 20px 0px;
+  }
+}
+
 .case{
     margin: 6% 0px;
     .tabRoot{
@@ -440,19 +598,27 @@ i{
         border: 1px solid #E5E5E5;
         @include fontSize(20px, #333333,600,center);
     }
+    .tab-content{
+        margin-left: 55px;
+    }
     .case-nav{
         li{
             width: 100%;
-            text-overflow:ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            padding: 10px 0px;
+//          text-overflow:ellipsis;
+//          white-space: nowrap;
+//          overflow: hidden;
+//          padding: 10px 0px;
              @include fontSize(16px, #666666,500,center);
             border: 1px solid #E5E5E5;
             border-top: none;
             background: #F7F7F7;
             a{
                  text-decoration: none;
+                 display: block;
+                 overflow: hidden;
+                 text-overflow:ellipsis;
+                 white-space: nowrap;
+                 padding: 10px 0px;
             }
             a:hover{
                  color: #1FB5AD;
@@ -499,6 +665,12 @@ i{
     
     
 ///*解决方案*/
+.solution-box{
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
 .lookCaseBtn{
     display: block;
     width:165px;
@@ -517,33 +689,43 @@ i{
     font-weight: 600;
     line-height: 31px;
 }
-.soultion_list{
-        margin-bottom: 6%;
-        .listBox{
-            .p_content{
-                @include fontSize(14px, #666666,500,left);
-                line-height: 28px;
-                padding: 24px 23px 32px 18px;
-                background-color: #FFFFFF;
-                margin-bottom: 0px;
-            }
-            .p_img{
-                background-color: white;
-                border-bottom-left-radius: 10px;
-                border-bottom-right-radius: 10px;
-                padding-bottom: 17px;
-            }
-            .checkDetails{
-                display: inherit;
-                margin: auto;
-                margin-bottom: 17px;
-            }
-        }
-    } 
-    .solution_content{
-        background-color: #F5F5F5;
-       
-  }
+//.marquee_inner_img:hover{
+//  transform: scale(1.2); 
+//  z-index: 5!important;
+//  transition: all 0.6s; 
+//}
+//.soultion_list{
+//      margin-bottom: 6%;
+//      .listBox{
+//          .p_content{
+//              @include fontSize(14px, #666666,500,left);
+//              line-height: 28px;
+//              padding: 24px 23px 0px 18px;
+//              background-color: #FFFFFF;
+//              margin-bottom: 0px;
+//              display: -webkit-box;
+//              -webkit-box-orient: vertical;
+//              -webkit-line-clamp: 5;
+//              overflow: hidden;
+//          }
+//          
+//          .p_img{
+//              background-color: white;
+//              border-bottom-left-radius: 10px;
+//              border-bottom-right-radius: 10px;
+//              padding: 17px 0;
+//          }
+//          .checkDetails{
+//              display: inherit;
+//              margin: auto;
+//              margin-bottom: 17px;
+//          }
+//      }
+//  } 
+//  .solution_content{
+//      background-color: #F5F5F5;
+//     
+//}
 //.solution_box{
 //  .listBox{
 //      img{
@@ -641,7 +823,7 @@ i{
         width: 100%!important;
     }
     .Slide_box{
-        height: 120px!important;
+        height: 160px!important;
     }
     .index_news_box {
         .col-xs-3{
@@ -651,6 +833,7 @@ i{
     }
     /*成功案例*/
     /*生猪溯源系统*/
+
     .case-title{
         font-size: 20px!important;
         margin-bottom: 15px!important;
@@ -658,6 +841,42 @@ i{
     .case-content{
         font-size: 12px!important;
     }
+/*解决方案*/
+    .figcaption{
+      margin: 25px 5px 0px 5px!important;
+      padding:0px!important;
+     
+      
+    }
+    .caseBtn{
+        width: 100%;
+        display: block;
+        margin: 0px auto;
+        padding: 20px 0px;
+    }
+    .news_list{
+         .news_title {
+            @include fontSize(16px,#292929,600,left);
+            line-height: 25px;
+        }
+         .news_details{
+             margin-top: 10px;
+         }
+        .time_gray {
+            line-height: 20px;
+        }
+        .news_img {
+            padding: 0px!important;
+          
+        }
+        .news_content{
+            padding: 0px 0px 5px 0px!important;
+        }
+    }
+    .navBarSet{
+        height: 160px!important;
+    }
+   
 }
 /*横向放置的手机和竖向放置的平板之间的分辨率 --------------------------------------------------------------------------------------------------------------*/
 
@@ -681,9 +900,16 @@ i{
         margin-bottom: 30px;
         li {
             font-size: 14px;
+            
             i {
                 margin-right: 10px;
             }
+            
+        }
+        .company_infor_li{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
         }
     }
 
@@ -712,11 +938,12 @@ i{
             background: #1FB5AD;
         }
     }
-    #companyNews {
+    #companyNews,#tradeNews {
         margin-top: 30px;
     }
     /*新闻详情*/
     .news_details_title {
+        word-break:break-all;
         margin-top: 10%;
         @include fontSize(20px,#404040,bold,center);
     }
@@ -732,6 +959,15 @@ i{
             margin: 30px 0;
         }
     }
+    .news_list{
+        .news_img{
+            padding: 0px 0px 10px 0px;
+        }
+        .news_content{
+            padding: 0px 0px 10px 0px;
+        }
+    }
+    
     /*首页*/
     /*关于猪码头*/
     .index_aboutZmt_box {
@@ -776,16 +1012,29 @@ i{
         @include fontSize(16px, #292929,600,left);
     }
     .Slide_box{
-        height:200px;
+        height:250px;
     }
     /*成功案例*/
     /*生猪溯源系统*/
    .case{
        .xsPad{
            padding: 0px!important;
-           margin-bottom: 30px;
+           margin-top: 30px;
        }
+       .tab-content{
+        margin-left: 0px;
+        }
    }
+    /*底部*/
+    .about-us{
+        margin-top: 20px;
+    }
+    .code{
+         margin-top: 20px;
+    }
+    .bottom-tel{
+        white-space: nowrap;
+    }
 }
 
 /* 平板电脑和小屏电脑之间的分辨率 --------------------------------------------------------------------------------------------------------------*/
@@ -816,6 +1065,7 @@ i{
     /*新闻详情*/
 
     .news_details_title {
+        word-break:break-all;
         margin-top: 8%;
         @include fontSize(30px,#404040,bold,center);
     }
@@ -825,12 +1075,15 @@ i{
         margin-top: -150px;
     }
     .Slide_box{
-        height: 210px;
+        height: 280px;
+        padding-top: 10%;
     }
-//  .marquee_inner_img {
-//
-//      width: 45%!important;
-//  }
+    .success_case_bg{
+        height: 280px;
+    }
+    .success_case_box{
+        margin-top:-280px;
+    }
 //  .marquee_inner_img:nth-child(2) {
 //      width: 55%!important;
 //      left: 22%!important;
@@ -843,7 +1096,18 @@ i{
         .col-xs-1,
         .col-xs-10 {
             padding: 5px;
+           
         }
+    }
+    .tabRoot {
+        font-size: 18px!important;
+    }
+     /*底部*/
+    .about-us{
+        margin-top: 20px;
+    }
+    .code{
+         margin-top: 20px;
     }
     
 }
@@ -857,7 +1121,10 @@ i{
         }
     }
     .Slide_box{
-        height: 260px;
+        height: 320px;
+    }
+    .tabRoot {
+        font-size: 17px!important;
     }
 }
 

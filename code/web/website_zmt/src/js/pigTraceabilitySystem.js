@@ -6,19 +6,20 @@ $(document).ready(function() {
 	var paramsData;
 	var tabRoot = $('.tabRoot').text();
 	if(tabRoot=='生猪溯源系统'){
-		paramsData={aanvraagTypeId:1};
+		paramsData={aanvraagTypeId:1,size:999999};
 		
 	}else if(tabRoot=='猪产品电商平台'){
-		paramsData={aanvraagTypeId:2};
+		paramsData={aanvraagTypeId:2,size:999999};
 	}else if(tabRoot=='猪产业金融中心'){
-		paramsData={aanvraagTypeId:3};
+		paramsData={aanvraagTypeId:3,size:999999};
 	}else if(tabRoot=='猪产业数据研究院'){
-		paramsData={aanvraagTypeId:4};
+		paramsData={aanvraagTypeId:4,size:999999};
 	};
 	$.ajax({
 		type: "post",
 		async: true, //同步执行
-//		dataType: 'json',
+		dataType: 'json',
+		crossDomain: true == !(document.all),
 		url: allUrl.casePig,
 		data:paramsData,
 		success: function(dataAll) {
@@ -31,10 +32,13 @@ $(document).ready(function() {
 						lis+='<li title='+data.name+'><a href="#">'+data.name+'</a><span class="case-list-id">'+data.id+'</span></li>';
 					});
 					$('#caseTab').append(lis);
-					$('#caseTab>li:eq(0)').addClass('active')
+					$('#caseTab>li:eq(0)').addClass('active');
 				};
-				
-				getFirstCase(paramsData,allUrl.casePigGetFirstCase);
+				var firstId=$('#caseTab>li:eq(0)').find('.case-list-id').text();
+//
+				getFirstCase({id:firstId},allUrl.casePigGetIdCase);
+//				getFirstCase(paramsData,allUrl.casePigGetFirstCase);
+
 			} else {
 				layer.alert(dataAll.message, {
 					skin: 'layui-layer-lan'
@@ -44,14 +48,15 @@ $(document).ready(function() {
 	});
 	//获取第一个案例内容
 	function getFirstCase(id,url){
+
 		$.ajax({
 			type: "post",
 			async: true, //同步执行
-	//		dataType: 'json',
+			dataType: 'json',
+			crossDomain: true == !(document.all),
 			url: url,
 			data:id,
 			success: function(dataAll) {
-				
 				if(dataAll.success) {
 					var caseContentData = dataAll.data;
 					
@@ -60,8 +65,8 @@ $(document).ready(function() {
 						$('.tab-content>div').remove();
 						var contents='<div class="tab-pane fade in active"><p class="case-title">'+caseContentData.name+'</p><div class="case-content">'+caseContentData.content+'</div></div>'
 						$('.tab-content').append(contents);
-						var windowWid = $(window).width();
-						fixedFn(windowWid)
+//						var windowWid = $(window).width();
+//						fixedFn(windowWid)
 					};
 					
 					
